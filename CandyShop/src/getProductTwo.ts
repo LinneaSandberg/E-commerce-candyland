@@ -22,9 +22,6 @@ export interface Image {
 }
 
 
-console.log('hej på dig!')
-
-
 export let candies: Product[] = [];
 
 const divEl = document.querySelector<HTMLDivElement>('#app')!;

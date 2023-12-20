@@ -22,6 +22,7 @@ export interface Image {
 }
 
 console.log('testa att det fungerar')
+console.log('testar igen för att se om jag kommer ifrån main!')
 
 
 export let candies: Product[] = [];

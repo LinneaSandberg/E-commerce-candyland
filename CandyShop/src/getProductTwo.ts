@@ -22,6 +22,8 @@ export interface Image {
 }
 
 
+
+
 console.log('hej på dig!')
 
 

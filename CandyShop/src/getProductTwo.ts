@@ -21,10 +21,7 @@ export interface Image {
     large: string
 }
 
-
-
-
-console.log('hej på dig!')
+console.log('testa att det fungerar')
 
 
 export let candies: Product[] = [];

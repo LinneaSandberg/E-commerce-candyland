@@ -1,5 +1,5 @@
 import './style.css'
-import { fetchAllproducts, renderProducts } from './getProductTwo'
+import { fetchAllproducts, renderProducts, renderFetchedProducts } from './getProductTwo'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
@@ -13,4 +13,7 @@ console.log(fetchAllproducts);
 
 renderProducts();
 console.log(renderProducts);
+
+renderFetchedProducts();
+console.log(renderFetchedProducts)
 

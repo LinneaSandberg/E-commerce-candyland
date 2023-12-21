@@ -27,6 +27,14 @@ export let candies: Product[] = [];
 const divEl = document.querySelector<HTMLDivElement>('#app')!;
 
 
+//! OSCAR SKREV, DETTA FUNGERAEDE NÄR VI VAR PÅ SKOLAN 
+// async function getAllProducts(){
+//     const res  =  await fetch("http://www.bortakvall.se/api/v2/products")
+//     const data = await res.json();
+//     console.log("data: ",  data);
+//   }
+//     getAllProducts();
+
 // fetch the products from the API
 export const fetchProducts = async () => {
 

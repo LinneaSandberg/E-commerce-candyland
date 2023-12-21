@@ -3,7 +3,9 @@ import { fetchAllproducts, renderProducts, renderFetchedProducts } from './getPr
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
+
   <div>
+  <h1>The file is clean 🛀🏽</h1>
   <h1>The file is clean 🛀🏽</h1>
   </div>
 `

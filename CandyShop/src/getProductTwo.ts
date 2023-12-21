@@ -1,58 +1,39 @@
-export interface Product {
-    id: number
-    name: string
-    description: string
-    price: number
-    on_sale: boolean
-    images: Image
-    stock_status: string
-    stock_quantity: number | null
-    tags: Tag[]
-}
+import { Product } from "./interface";
 
-export interface Tag {
-    id: number
-    name: string
-    slug: string
-}
+let candies: Product[] = [];
 
-export interface Image {
-    thumbnail: string
-    large: string
-}
-
-
-export let candies: Product[] = [];
-
-const divEl = document.querySelector<HTMLDivElement>('#app')!;
-
-
-//! OSCAR SKREV, DETTA FUNGERAEDE NÄR VI VAR PÅ SKOLAN 
-// async function getAllProducts(){
-//     const res  =  await fetch("http://www.bortakvall.se/api/v2/products")
-//     const data = await res.json();
-//     console.log("data: ",  data);
-//   }
-//     getAllProducts();
+export const divEl = document.querySelector<HTMLDivElement>('#app')!;
 
 // fetch the products from the API
-export const fetchProducts = async () => {
+export async function fetchAllproducts(): Promise<Product[]> {
+   const res = await fetch("http://www.bortakvall.se/api/v2/products")
 
-    const res = await fetch("http://www.bortakvall.se/api/v2/products")
+   if (!res.ok) {
+           throw new Error(`Could not fetch the list of prodecuts. The status code was: ${res.status}`);
+   }
 
-    if (!res.ok) {
-        throw new Error(`Could not fetch the list of prodecuts. The status code was: ${res.status}`);
-    }
+   const data: { data: Product[] } = await res.json();
 
-    const data: Product[] = await res.json();
-
-    return data;
-    
+   return data.data;
+   
 }
 
-console.log(fetchProducts)
+await fetchAllproducts();
+console.log(candies);
 
 
+
+export const renderProducts = () => {
+
+    divEl.innerHTML = candies.map(data => 
+    `<div>
+    <img src="${data.images.thumbnail}" alt="${data.name}"/>
+    <h2>${data.name}</h2>
+    <p>Price: ${data.price}</p>
+    </div>
+    `).join("");
+
+}
 
 
 
@@ -60,24 +41,13 @@ console.log(fetchProducts)
 export const renderFetchedProducts = async () => {
 
     try {
-        candies = await fetchProducts();
-
+        candies = await fetchAllproducts();
         renderProducts();
-
-        console.log('rendering the products', renderFetchedProducts);
-
+        console.log('rendering the products', candies);
 
     } catch (error) {
-        alert(`Could not get products!`)
-
+       alert(`Could not get products!`)
     }
-
-}
-
-export const renderProducts = () => {
-
-    divEl.innerHTML = candies.map(candy => `<div><img>${candy.images.thumbnail}</img><h2>${candy.name}</h2></div>`).join("");
-
 }
 
 renderFetchedProducts();

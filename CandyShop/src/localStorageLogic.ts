@@ -18,7 +18,7 @@ let existingItem:  CartItem | undefined;
 
 //Lägga in apiAnropet i localStorage
     //Lägg till om det inte redan finns en lista
-export function productListToLocalStorage(productList: Product){
+export function productListToLocalStorage(productList: Product[]){
 localStorage.setItem("productList",JSON.stringify(productList))
 // const cart = JSON.parse(localStorage.getItem('cart'));;
 addProductShoppingCart( {

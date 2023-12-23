@@ -11,7 +11,7 @@ export async function fetchAllproducts(): Promise<Product[]> {
            throw new Error(`Could not fetch the list of prodecuts. The status code was: ${res.status}`);
    }
    const data: { data: Product[] } = await res.json()
-   productListToLocalStorage(data);
+   productListToLocalStorage(data.data);
    return data.data;
 }
 

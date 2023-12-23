@@ -10,7 +10,7 @@ async function renderScreen(){
   <main>
   ${await productCard()}
  
-  <main>
+  <main id="toRender">
   <div>
     <h1>The file is clean 🛀🏽</h1>
   

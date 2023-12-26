@@ -1,37 +1,7 @@
-interface placeOrder {
-    name: string
-    adress: string
-    postnumber: number
-    city: string
-    telefon: number | null
-    epost: string
-}
-
-
-
-
-const submitOrder = async (placeOrder: placeOrder) => {
-
-    const res = await fetch("http://www.bortakvall.se/api/v2/users/31/orders", {
-        method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(placeOrder),
-    });
-
-    if (!res.ok) {
-        throw new Error(`Sorry! There is an problem, could not place your order. Status code was: ${res.status}`)
-    }
-}
-
-// const cartButton = document.querySelector('#bajs'); ---> för att sätta addEventlistner på cart knappen
-
-
-
-
+import { placeOrder } from "./interface";
 
 // DOM referenser för alla input-fält
+const asideForOrderEl = document.querySelector<HTMLDivElement>('#order')!
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
 const nameInputEl = document.querySelector<HTMLInputElement>('#nameInput');
 const adressInputEl = document.querySelector<HTMLInputElement>('#adressInput');
@@ -42,20 +12,45 @@ const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
 const toRenderEl = document.querySelector<HTMLElement>('#toRender')!;
 
 
- // input värden för alla inputfält
- const inputName = nameInputEl?.value || "";
- const adressInput = adressInputEl?.value || "";
- const zipcodeInput = Number(zipcodeInputEl?.value);
- const cityInput = cityInputEl?.value ||"";
- const telInput = telInputEl?.value ? Number(telInputEl?.value) : null;
- const mailInput = mailInputEl?.value ||"";
+
+const submitOrder = async (placeOrder: placeOrder) => {
+
+    const res = await fetch("https://www.bortakvall.se/api/v2/users/31/orders", {
+        method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(placeOrder),
+    });
+    console.log('sending to api', res)
+  
+    if (!res.ok) {
+        throw new Error(`Sorry! There is an problem, could not place your order. Status code was: ${res.status}`)
+    }
+  }
+
+// const cartButton = document.querySelector('#bajs'); ---> för att sätta addEventlistner på cart knappen
+
 
 
 orderFormEl?.addEventListener("submit", async (e) => {
-
+    
     e.preventDefault();
 
+     // input värden för alla inputfält
+     const inputName = nameInputEl?.value || "";
+     const adressInput = adressInputEl?.value || "";
+     const zipcodeInput = Number(zipcodeInputEl?.value);
+     const cityInput = cityInputEl?.value ||"";
+     const telInput = telInputEl?.value ? Number(telInputEl?.value) : null;
+     const mailInput = mailInputEl?.value ||"";
+
+
     // skapa en if-sats som kollar att alla input med requiered är ifyllda
+    if (!inputName || !adressInput || isNaN(zipcodeInput) || !cityInput || !mailInput) {
+     alert("Please fill in all required fields");
+     return
+    }
 
 
 
@@ -71,23 +66,19 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
     console.log("values to send to API: ", placeOrder);
 
-
     try {
         await submitOrder(placeOrder);
-
+        console.log('Order placed successfully!');
         // få tillbaka något från API:et?
-
         // töm alla input-fält
-
-
-    } catch (err) {
+    } catch (error) {
         // fixa så att användaren ser att det blivit ett fel och inte i konsollen!
         console.log('Could not send the order to API. The status code was')
-
     }
-
-
 });
+
+
+
 
 toRenderEl.addEventListener('click', (e) => {
 
@@ -99,11 +90,9 @@ toRenderEl.addEventListener('click', (e) => {
 
 
 
-
-
 const renderCart = () => {
 
-toRenderEl.innerHTML=`
+    asideForOrderEl.innerHTML=`
 <div>
 <h2>Checkout</h2>
 <div>

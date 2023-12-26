@@ -11,6 +11,8 @@ const telInputEl = document.querySelector<HTMLInputElement>('#telInput');
 const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
 const toRenderEl = document.querySelector<HTMLElement>('#toRender')!;
 
+
+
 const submitOrder = async (placeOrder: placeOrder) => {
 
     const res = await fetch("https://www.bortakvall.se/api/v2/users/31/orders", {
@@ -52,7 +54,6 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
 
 
-
     // ett object med beställaren inputs
     const placeOrder: placeOrder = {
     name: inputName,
@@ -89,51 +90,48 @@ toRenderEl.addEventListener('click', (e) => {
 
 
 
-
-
 const renderCart = () => {
 
     asideForOrderEl.innerHTML=`
-<div id="wrapper" class="container">
+<div>
+<h2>Checkout</h2>
+<div>
+    <p>Order</p>
+</div>
+<form id="orderForm" action="http://www.bortakvall.se/api/v2/users/31/orders" method="post">
 
-        <h2 id="headerForm">Checkout</h2>
-        <p id="paraForm">Order</p>
-     <form class="container" id="orderForm">
+    <label for="nameInput">
+        Name:
+        <input type="text" name="namn" id="nameInput" required>
+    </label>
 
-        <label class="label" for="nameInput">
-            Name*
-            <input class="input" type="text" name="namn" id="nameInput" placeholder="Name" required>
-        </label>
+    <label for="adressInput">
+        Adress:
+        <input type="text" name="adress" id="adressInput" required>
+    </label>
 
-        <label class="label" for="adressInput">
-            Adress*
-            <input class="input" type="text" name="adress" id="adressInput" placeholder="Adress" required>
-        </label>
+    <label for="zipcodeInput">
+        Zipcode:
+        <input type="text" name="zipcode" id="zipcodeInput" required>
+    </label>
 
-        <label class="label" for="zipcodeInput">
-            Zipcode*
-            <input class="input" type="text" name="zipcode" id="zipcodeInput" placeholder="Zipcode" required>
-        </label>
+    <label for="cityInput">
+        City:
+        <input type="text" name="ort" id="cityInput" required>
+    </label>
 
-        <label class="label" for="cityInput">
-            City*
-            <input class="input" type="text" name="ort" id="cityInput" placeholder="City" required>
-        </label>
+    <label for="telInput">
+        Telephone:
+        <input type="text" name="telephone" id="telInput">
+    </label>
 
-        <label class="label" for="telInput">
-            Telephone
-            <input class="input" type="text" name="telephone" id="telInput" placeholder="Telephone">
-        </label>
+    <label for="mailInput">
+        Email:
+        <input type="text" name="email" id="mailInput" required>
+    </label>
 
-        <label class="label" for="mailInput">
-            Email*
-            <input class="input" type="text" name="email" id="mailInput" placeholder="Email" required>
-        </label>
-
-        <button id="submitButton" type="submit">Lägg order</button>
-
-     </form>
-
-    </div>`
+    <button type="submit">Lägg order</button>
+</form>
+</div>`
 
 }

@@ -19,3 +19,13 @@ interface Tag {
     slug: string
 }
 
+
+export interface placeOrder {
+    name: string
+    adress: string
+    postnumber: number
+    city: string
+    telefon: number | null
+    epost: string
+}
+

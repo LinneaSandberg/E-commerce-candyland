@@ -1,23 +1,27 @@
-import {Product} from "./interface"
-import {fetchAllproducts} from "./getProductTwo"
+import { Product } from "./interface";
+import { fetchAllproducts } from "./getProductTwo";
 
-
-export async function productCard(){
+export async function productCard() {
   //Kollar inte efter error då det görs i fetchAllproducts, borde jag ändå  kolla?
-const products:Product[] = await fetchAllproducts();
-return  products.map((element)=>{
-return `
+  const products: Product[] = await fetchAllproducts();
+  return products
+    .map((element) => {
+      return `
 <div class="productCard" value="${element.id}" status="${element.stock_status}">
     <div class="notis">${element.stock_status ? "In Stock" : ""}</div>
     
-    <img class="" src="https://www.bortakvall.se${element.images.thumbnail}" alt="">
+    <img class="" src="https://www.bortakvall.se${
+      element.images.thumbnail
+    }" alt="">
     <header>
         <h3>${element.name}</h3> <p>${element.price} kr</p>
     </header>
     <article class="tagContainer">
-        ${element.tags.map((tags)=>{
-        return`<p class="tag">${tags.name}</p>`
-        }).join("")}
+        ${element.tags
+          .map((tags) => {
+            return `<p class="tag">${tags.name}</p>`;
+          })
+          .join("")}
     </article>
 
     <footer>
@@ -33,8 +37,9 @@ return `
         </div>
     </footer>
 </div>
-`
-}).join("")
+`;
+    })
+    .join("");
 }
 
-     // <div class="description"><p>${element.description.split("\n")[0]}</p></div>
+// <div class="description"><p>${element.description.split("\n")[0]}</p></div>

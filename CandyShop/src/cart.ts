@@ -1,4 +1,3 @@
-
 interface ProductToCart {
     id: number
     name: string
@@ -7,23 +6,15 @@ interface ProductToCart {
 
 const cart: ProductToCart[] = [];
 
-const toShowCartEl = document.querySelector<HTMLDivElement>('.itemAmountInCart')!
-const asideForOrderEl = document.querySelector<HTMLDivElement>('#order')!
-const cartElementEl = document.querySelector<HTMLUListElement>('#cartList')!
-const orderTotalEl = document.querySelector<HTMLUListElement>('#orderTotal')!
+const mainEL = document.querySelector<HTMLDivElement>('#app')!;
+const buttonCartEl = document.querySelector<HTMLDivElement>('.bajs')!;
+
+const cartElementEl = document.querySelector<HTMLUListElement>('#cartList')!;
+const orderTotalEl = document.querySelector<HTMLUListElement>('#orderTotal')!;
 
 
 
-const renderCart = () => {
-
-    asideForOrderEl.innerHTML = `
-    <h2>Shoppingbag:</h2>
-    <ul id="cartList"></ul>
-    <p id="orderTotal">Order total: </p>
-    `
-}
-
-
+//function to add items to the cart
 function pushToCart(product: ProductToCart) {
     cart.push(product);
 
@@ -50,16 +41,25 @@ function updateCart() {
 
 
 
+// fuction with eventlistner for folding out basket
+export function openCart() {
+  
+    buttonCartEl.addEventListener('click', async (e) => {
 
-toShowCartEl.addEventListener('click', async (e) => {
+            e.preventDefault();
+        
+            console.log('klickade på rätt knapp!')
+            renderCart();
+        })
 
-    e.preventDefault();
+}
 
-
-    renderCart();
-
-
-
-})
+export const renderCart = () => {
+    mainEL.innerHTML = `
+    <h2>Shoppingbag:</h2>
+    <ul id="cartList"></ul>
+    <p id="orderTotal">Order total: </p>
+    `
+}
 
 

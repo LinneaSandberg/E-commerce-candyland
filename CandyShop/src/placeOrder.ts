@@ -1,7 +1,6 @@
 import { placeOrder } from "./interface";
 
 // DOM referenser för alla input-fält
-const asideForOrderEl = document.querySelector<HTMLDivElement>('#order')!
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
 const nameInputEl = document.querySelector<HTMLInputElement>('#nameInput');
 const adressInputEl = document.querySelector<HTMLInputElement>('#adressInput');
@@ -9,8 +8,7 @@ const zipcodeInputEl = document.querySelector<HTMLInputElement>('#zipcodeInput')
 const cityInputEl = document.querySelector<HTMLInputElement>('#cityInput');
 const telInputEl = document.querySelector<HTMLInputElement>('#telInput');
 const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
-const toRenderEl = document.querySelector<HTMLElement>('#toRender')!;
-
+const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
 
 const submitOrder = async (placeOrder: placeOrder) => {
@@ -28,9 +26,6 @@ const submitOrder = async (placeOrder: placeOrder) => {
         throw new Error(`Sorry! There is an problem, could not place your order. Status code was: ${res.status}`)
     }
   }
-
-// const cartButton = document.querySelector('#bajs'); ---> för att sätta addEventlistner på cart knappen
-
 
 
 orderFormEl?.addEventListener("submit", async (e) => {
@@ -79,20 +74,9 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
 
 
+const renderOrder = () => {
 
-toRenderEl.addEventListener('click', (e) => {
-
-    e.preventDefault();
-
-    renderCart();
-
-})
-
-
-
-const renderCart = () => {
-
-    asideForOrderEl.innerHTML=`
+    mainEL.innerHTML=`
 <div>
 <h2>Checkout</h2>
 <div>

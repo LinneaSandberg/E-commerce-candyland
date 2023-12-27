@@ -29,9 +29,6 @@ const submitOrder = async (placeOrder: placeOrder) => {
     }
   }
 
-// const cartButton = document.querySelector('#bajs'); ---> för att sätta addEventlistner på cart knappen
-
-
 
 orderFormEl?.addEventListener("submit", async (e) => {
     

@@ -7,22 +7,12 @@ async function renderScreen(){
   ${navBar()}
   <main>
   ${await productCard()}
- 
-  <main id="toRender">
-  <main>
-  <div>
-    <h1>The file is clean 🛀🏽</h1>
   
-    </div>
+  
+  <main id="toRender">
+  ${await productCard()}
+  </main>
   `
 }
 renderScreen()
-
-
-
-// renderProducts();
-// console.log(renderProducts);
-
-
-
 

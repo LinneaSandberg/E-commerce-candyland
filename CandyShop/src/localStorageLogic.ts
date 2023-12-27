@@ -13,6 +13,7 @@ interface CartItem extends ProductItem{ //cartItem
     amount:number,
     totalCost: number,
 }
+
 let cart: CartItem[]= []; //kundvagn
 let existingItem:  CartItem | undefined;
 
@@ -30,10 +31,10 @@ addProductShoppingCart( {
 })
 }
 
+
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
 // Ta emot id:, image:, name: , price, stock:
 export function addProductShoppingCart(product:ProductItem){
-
 
     const item = findExistingItem(product);
     if (item) {
@@ -61,12 +62,13 @@ if(existingItem){
         totalCost: product.price
     })
 }
+
 // Uppdaterar Local Storage
 localStorage.setItem("cart",JSON.stringify(cart))
 } 
 
-export function removeProductShoppingCart(product:ProductItem){
 
+export function removeProductShoppingCart(product:ProductItem){
     const item = findExistingItem(product);
     if (item) {
         existingItem = item;

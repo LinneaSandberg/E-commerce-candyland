@@ -65,6 +65,8 @@ orderFormEl?.addEventListener("submit", async (e) => {
         await submitOrder(placeOrder);
         console.log('Order placed successfully!');
         // få tillbaka något från API:et?
+        alert('Order was succefully made and will be shipped soon as possible!✅')
+
         // töm alla input-fält
     } catch (error) {
         // fixa så att användaren ser att det blivit ett fel och inte i konsollen!

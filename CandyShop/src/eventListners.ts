@@ -1,3 +1,6 @@
+// vi ska hitta HTML produkkorten
+// hänsyn till asynkron metoder
+
 export function setListeners() {
   const eraseButtons = document.querySelectorAll(
     "#eraseFromCart"
@@ -9,3 +12,9 @@ export function setListeners() {
     });
   });
 }
+
+// yttersta div: class: productCard
+//footer -> knapparna
+// -- minusknapp: addToCartContainer
+// ++ plusknapp: addToCart
+//visa hur många cart item: itemInCart

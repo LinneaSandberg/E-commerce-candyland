@@ -14,9 +14,4 @@ export default function navBar() {
 }
 navBar();
 
-export function addListenerCart() {
-  const shoppingCart = document.querySelector(".bajs");
-  shoppingCart?.addEventListener("click", () => {
-    console.log("Öppna vart vid klick");
-  });
-}
+

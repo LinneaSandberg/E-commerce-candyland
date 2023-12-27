@@ -3,6 +3,7 @@ import { productCard } from "./productCard.ts";
 import {setListeners} from "./eventListners.ts"
 import navBar from "./navBar";
 
+
 async function renderScreen(){
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${navBar()}  
@@ -14,4 +15,5 @@ async function renderScreen(){
    setListeners()
 }
 renderScreen()
+
 

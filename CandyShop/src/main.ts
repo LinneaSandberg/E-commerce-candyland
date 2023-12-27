@@ -4,16 +4,10 @@ import navBar from './navBar'
 
 async function renderScreen(){
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  ${navBar()}
-  <main>
+  ${navBar()}  
+<main id="toRender">
   ${await productCard()}
- 
-  <main id="toRender">
-  <main>
-  <div>
-    <h1>The file is clean 🛀🏽</h1>
-  
-    </div>
+  </main>
   `
 }
 renderScreen()

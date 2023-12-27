@@ -1,7 +1,5 @@
-
-export default function navBar(){
-
-    const content:string =`
+export default function navBar() {
+  const content: string = `
 <nav>
     <p>CandyShop</p> 
    
@@ -11,16 +9,14 @@ export default function navBar(){
     </div>
 
   </nav>
-`
-    return content
+`;
+  return content;
 }
-navBar()
+navBar();
 
-export function addListenerCart(){
-    const shoppingCart = document.querySelector(".bajs");
-    shoppingCart?.addEventListener("click",  ()=>{
-        console.log("Öppna vart vid klick")
-    })
-    
+export function addListenerCart() {
+  const shoppingCart = document.querySelector(".bajs");
+  shoppingCart?.addEventListener("click", () => {
+    console.log("Öppna vart vid klick");
+  });
 }
-

@@ -330,7 +330,43 @@ th, td {
   font-weight: bold;
   text-align: center;
   padding: 1rem;
+  top: 0;
 }
+
+#capTwo {
+  text-align: center;
+  font-size: 1rem;
+}
+
+#buttonDown {
+  transform: rotate(180deg);
+  padding: 0;
+
+}
+
+#buttonUp {
+  padding: 0;
+
+
+}
+
+#buttonCart {
+  margin-right: 0;
+  margin-left: auto;
+  display: block;
+
+  padding: 0.5rem;
+  color: white;
+  border-radius: 2px;
+}
+
+#checkout {
+  display: block;
+  margin: auto;
+  color: white;
+  border-radius: 4px;
+}
+
 
 
 @media (min-width: 480px) {

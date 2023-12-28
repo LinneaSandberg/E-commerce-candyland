@@ -2,6 +2,7 @@
 import {getCart} from "./localStorageLogic"
 import { renderOrder } from './placeOrder'
 import { CartItem } from './interface'
+import 'bootstrap/dist/css/bootstrap.css'
 
 //hela cart vyn = aside
 // i vår aside renderar du en div och listar upp allting i våran cart 
@@ -12,9 +13,11 @@ export function cartListener(){
 const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
 const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
+
 // Lyssnar ju om användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
-    console.log("bajs")
+    console.log("bajs");
+    
         // ny ska vyn för aside renderas
         // NÄR DU GÖR KASSAN SÅ SKA DU HÄMTA ID: sideWindow och lägga in din UI där
 
@@ -25,12 +28,17 @@ cartElementEl.addEventListener("click", (e) => {
         </aside>
         `
 
+        closeCart();
+
         //ASIDE måste ha position absolut här är länk du kan läsa: 
         // https://developer.mozilla.org/en-US/docs/Web/CSS/position 
         // https://developer.mozilla.org/en-US/docs/Web/CSS/top
         // https://developer.mozilla.org/en-US/docs/Web/CSS/left
     })
 }
+
+
+
 
 
 // SKAPA UIn när vi listar cartItems INTE hela cart vyn -> 
@@ -46,12 +54,14 @@ const cartItems = getCart();
 // cartItem kommer vara en array som följer interfacet i CartItem[]:ProductItem + extends 
 return `
 <div id="cartItemsWrapper">
+<button id="buttonCart">
+<i class="bi bi-x-square"></i>
+</button>
+<h2 id="capTitle">Your shoppingbag 🛒</h2>
     <table id="tableBox">
-    <button></button>
-     <caption id="capTitle">Your shoppingbag 🛒</caption>
     <thead>
      <tr>
-      <th>Products in you basket:</th>
+      <th id="capTwo">Products in you basket:</th>
      </tr>
     </thead>
     <tbody>
@@ -61,10 +71,10 @@ return `
                 <tr>
                     <th>Product: ${cartItem.name}</th>
                     <td>
-                    <button>
+                    <button id="buttonUp">
                      <i class="bi bi-arrow-up-short"></i>
                     </button>
-                    <button>
+                    <button id="buttonDown">
                      <i class="bi bi-arrow-up-short"></i>
                     </button>
                      </td>
@@ -76,7 +86,7 @@ return `
 </tbody>
 <tfoot>
 <tr>
-<th colspan="3">Total amount off products: ${cartItems.amount}</th>
+<td colspan="3">Total amount off products: ${cartItems.amount}</th>
 </tr>
 <tr>
 <td colspan="3">Totalcost off order: ${cartItems.totalCost}</td>
@@ -92,6 +102,26 @@ return `
 `
 
 }
+
+
+function closeCart() {
+const buttonCartEl = document.querySelector<HTMLButtonElement>('#buttonCart')!;
+const cartItemsWrapperEl = document.querySelector<HTMLDivElement>('#cartItemsWrapper')!;
+
+
+    buttonCartEl?.addEventListener('click', (e) => {
+
+        console.log('klickade på knappen')
+    
+        cartItemsWrapperEl.style.display = 'none';
+    
+    })
+
+
+}
+
+
+
 
 const checkoutEl = document.querySelector<HTMLFormElement>('#checkout');
 

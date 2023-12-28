@@ -1,7 +1,7 @@
 import "./style.css";
 import { productCard } from "./productCard.ts";
 import {setListeners} from "./eventListners.ts"
-import {cartListener} from "./cart.ts";
+import {cartListener } from "./cart.ts";
 
 
 async function renderScreen(){

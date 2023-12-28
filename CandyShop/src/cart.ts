@@ -1,4 +1,3 @@
-
 // Funktionen som hämtar allt som finns i cart i localstorage
 import {getCart, CartItem} from "./localStorageLogic"
 import { renderOrder } from './placeOrder'
@@ -6,28 +5,26 @@ import { renderOrder } from './placeOrder'
 //hela cart vyn = aside
 // i vår aside renderar du en div och listar upp allting i våran cart 
 
-const mainEL = document.querySelector<HTMLDivElement>('#app')!;
-
-
-
 
 //Öppna cart vy
 export function cartListener(){
 const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
+const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
 // Lyssnar ju om användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
     console.log("bajs")
-
         // ny ska vyn för aside renderas
         // NÄR DU GÖR KASSAN SÅ SKA DU HÄMTA ID: sideWindow och lägga in din UI där
-        // ------------- DU KOMMER BARA kunna CONSOLE LOGGA BAJS OM mainEl är utkommenterad 
-        // mainEL.innerHTML += `
-        // <aside id="sideWindow">
-        // ${renderCart()}
-        // </aside>
-        // `
-        // TIPS: ASIDE måste ha position absolut här är länk du kan läsa: 
+
+       mainEL.innerHTML += `
+
+        <aside id="sideWindow">
+        ${renderCart()}
+        </aside>
+        `
+
+        //ASIDE måste ha position absolut här är länk du kan läsa: 
         // https://developer.mozilla.org/en-US/docs/Web/CSS/position 
         // https://developer.mozilla.org/en-US/docs/Web/CSS/top
         // https://developer.mozilla.org/en-US/docs/Web/CSS/left
@@ -40,7 +37,6 @@ const renderCart = () => {
 const cartItems = getCart();
 
 // INNAN JAG RETURNAR SÅ HADE JAG KOLLAT OM JAG KAN CONSOLE.LOGGA ALLT JAG VILL SKA SYNAS PÅ SKÄRMEN 
-
 // cartItems.forEach((item) => {})
     //testa console.logga allt så du faktiskt ser att du får ut datan du vill komma åt
     // SEN AVKOMMENTERAR DU RETURN OCH FÖRSÖKER LISTA UT HUR DU SKA RENDERA DET I WEBBLÄSAREN
@@ -49,27 +45,34 @@ const cartItems = getCart();
 // cartItem kommer vara en array som följer interfacet i CartItem[]:ProductItem + extends 
 return `
 <div class="cartItemsWrapper"
-<table>
-<thead>
-<tr>
-<th>Your shoppingbag 🛒</th>
-</thead>
-<tbody>
-${
-    cartItems.map((cartItem: CartItem )=>{
-        return`
-        <tr>
-        <td>Product: ${cartItem.name}  </td>
-        <td>Amount:${cartItem.amount}</td>
-        <td>Total: ${cartItem.totalCost}</td>
-        </tr>
+    <table>
+        <thead>
+            <tr>
+                <th>Your shoppingbag 🛒</th>
+        </thead>
+    <tbody>
+        ${
+            cartItems.map((cartItem: CartItem )=>{
+            return`
+                <tr>
+                    <td>Product: ${cartItem.name}</td>
+                    <td>Am                        <button>
+                         <i class="bi bi-arrow-up-short"></i>
+                        </button>
+                        <button>
+                         <i class="bi bi-arrow-up-short"></i>
+                        </button>
+                     </td>
+
+                     <td>Total: ${cartItem.totalCost}</td>
+                </tr>
         `
     })
 }
 </tbody>
 <tfoot>
 <tr>
-<th>Total amount off products: ${cartItems.amount}</th>
+<td>Total amount off products: ${cartItems.amount}</th>
 <td>Totalcost off order: ${cartItems.totalCost}</td>
 </tr>
 <tr>
@@ -78,7 +81,7 @@ ${
 </td>
 </tr>
 </tfoot>
-</table>
+    </table>
 </div>
 `
 

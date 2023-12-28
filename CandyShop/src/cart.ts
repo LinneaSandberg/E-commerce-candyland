@@ -86,10 +86,10 @@ return `
 </tbody>
 <tfoot>
 <tr>
-<td colspan="3">Total amount off products: ${cartItems.amount}</th>
+<td colspan="3" class="positionTotals">Total amount off products: ${cartItems.amount}</th>
 </tr>
 <tr>
-<td colspan="3">Totalcost off order: ${cartItems.totalCost}</td>
+<td colspan="3" class="positionTotals">Totalcost off order: ${cartItems.totalCost}</td>
 </tr>
 <tr>
 <td colspan="3">

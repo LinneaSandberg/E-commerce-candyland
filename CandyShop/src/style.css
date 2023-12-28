@@ -308,7 +308,7 @@ button:active {
 
   background-color: rgb(255, 255, 255);
   border: 2px #ff66a1 solid;
-  z-index: 1;
+  z-index: 20;
 
 }
 
@@ -365,6 +365,14 @@ th, td {
   margin: auto;
   color: white;
   border-radius: 4px;
+}
+
+.positionTotals {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+ 
 }
 
 

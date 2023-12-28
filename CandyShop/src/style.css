@@ -299,14 +299,38 @@ button:active {
   border: solid 2px rgba(72, 53, 53, 0.605);
 }
 
-.cartItemsWrapper {
+/* Styling for the cart 💨 */
+#cartItemsWrapper {
   position: fixed;
   top: 0;
   right: 0;
-  width: 80%;
+  width: 60%;
+
+  background-color: rgb(255, 255, 255);
+  border: 2px #ff66a1 solid;
+  z-index: 1;
 
 }
 
+#tableBox {
+  table-layout: auto;
+
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: none;
+  padding: 1rem;
+  text-align: start;
+}
+
+#capTitle {
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+}
 
 
 @media (min-width: 480px) {

@@ -1,18 +1,5 @@
 
-import {Product} from "./interface"
-
-interface ProductItem{ // Tar emot från Johan
-id: number,
-image: string
-name: string
-price: number
-stock: number
-}
-
-export interface CartItem extends ProductItem{ //cartItem
-    amount:number,
-    totalCost: number,
-}
+import {Product, ProductItem, CartItem} from "./interface"
 
 let cart: CartItem[]= []; //kundvagn
 let existingItem:  CartItem | undefined;

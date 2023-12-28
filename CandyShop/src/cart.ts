@@ -1,6 +1,7 @@
 // Funktionen som hämtar allt som finns i cart i localstorage
-import {getCart, CartItem} from "./localStorageLogic"
+import {getCart} from "./localStorageLogic"
 import { renderOrder } from './placeOrder'
+import { CartItem } from './interface'
 
 //hela cart vyn = aside
 // i vår aside renderar du en div och listar upp allting i våran cart 

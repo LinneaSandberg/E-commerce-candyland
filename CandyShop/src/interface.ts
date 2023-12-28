@@ -29,3 +29,16 @@ export interface placeOrder {
     epost: string
 }
 
+export interface ProductItem{ // Tar emot från Johan
+    id: number,
+    image: string
+    name: string
+    price: number
+    stock: number
+    }
+    
+export interface CartItem extends ProductItem{ //cartItem
+    amount:number,
+    totalCost: number,
+    }
+

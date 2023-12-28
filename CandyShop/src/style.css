@@ -299,8 +299,12 @@ button:active {
   border: solid 2px rgba(72, 53, 53, 0.605);
 }
 
-.sideWindow {
-  position: absolute;
+.cartItemsWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+
 }
 
 

@@ -1,19 +1,35 @@
-// vi ska hitta HTML produkkorten
-// hänsyn till asynkron metoder
-
 export function setListeners() {
-  //Hämtar alla eraseknappar
-  const eraseButtons = document.querySelectorAll(
+  const infoBtns = document.querySelectorAll(
+    "#moreInfo"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const eraseBtns = document.querySelectorAll(
     "#eraseFromCart"
-  ) as NodeListOf<HTMLButtonElement>; //hämtar alla knappar som tar bort godis
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const addBtns = document.querySelectorAll(
+    "#addToCart"
+  ) as NodeListOf<HTMLButtonElement>;
 
   //TODO hämta ut alla knappar som ska lägga till godis i cart
+  infoBtns.forEach((infoBtn) => {
+    infoBtn.addEventListener("click", (event) => {
+      console.log("more info");
+    });
+  });
 
   //Lägger  en knapp på alla click event på alla eraseknappar
-  eraseButtons.forEach((eraseBtn) => {
+  eraseBtns.forEach((eraseBtn) => {
     eraseBtn.addEventListener("click", (event) => {
+      console.log("remove");
       // Behöver få ut ID på godiset som användaren har klickat på
       // Kolla om det finns i cart i  localStorage och ta bort 1st
+    });
+  });
+
+  addBtns.forEach((addBtn) => {
+    addBtn.addEventListener("click", (event) => {
+      console.log("add");
     });
   });
 }

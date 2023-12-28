@@ -9,7 +9,7 @@ price: number
 stock: number
 }
 
-interface CartItem extends ProductItem{ //cartItem
+export interface CartItem extends ProductItem{ //cartItem
     amount:number,
     totalCost: number,
 }

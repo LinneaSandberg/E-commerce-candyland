@@ -28,6 +28,7 @@ const submitOrder = async (placeOrder: placeOrder) => {
   }
 
 
+
 orderFormEl?.addEventListener("submit", async (e) => {
     
     e.preventDefault();
@@ -76,7 +77,7 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
 
 
-const renderOrder = () => {
+export const renderOrder = () => {
 
     mainEL.innerHTML=`
 <div>

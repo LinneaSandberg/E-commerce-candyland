@@ -11,17 +11,17 @@ export function setListeners() {
     "#addToCart"
   ) as NodeListOf<HTMLButtonElement>;
 
-  //TODO hämta ut alla knappar som ska lägga till godis i cart
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
-      console.log("more info");
+      //Måste rendera ut en större bild med extra information.
+
+      console.log(infoBtn.value);
     });
   });
 
-  //Lägger  en knapp på alla click event på alla eraseknappar
   eraseBtns.forEach((eraseBtn) => {
     eraseBtn.addEventListener("click", (event) => {
-      console.log("remove");
+      console.log(eraseBtn.value);
       // Behöver få ut ID på godiset som användaren har klickat på
       // Kolla om det finns i cart i  localStorage och ta bort 1st
     });
@@ -29,7 +29,7 @@ export function setListeners() {
 
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
-      console.log("add");
+      console.log(addBtn.value);
     });
   });
 }

@@ -25,7 +25,7 @@ export async function productCard() {
     </article>
 
     <footer>
-        <button id="moreInfo">Mer Info</button>
+        <button id="moreInfo" value="${element.id}">Mer Info</button>
         <div class="addToCartContainer">
             <button id="eraseFromCart" value="${element.id}">
                 <i class="bi bi-cart-dash"></i>

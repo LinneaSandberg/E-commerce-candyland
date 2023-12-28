@@ -1,114 +1,105 @@
+import { Product } from "./interface";
 
-import {Product} from "./interface"
-
-interface ProductItem{ // Tar emot från Johan
-id: number,
-image: string
-name: string
-price: number
-stock: number
+interface ProductItem {
+  // Tar emot från Johan
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+  stock: number;
 }
 
-interface CartItem extends ProductItem{ //cartItem
-    amount:number,
-    totalCost: number,
+interface CartItem extends ProductItem {
+  //cartItem
+  amount: number;
+  totalCost: number;
 }
 
-let cart: CartItem[]= []; //kundvagn
-let existingItem:  CartItem | undefined;
+let cart: CartItem[] = []; //kundvagn
+let existingItem: CartItem | undefined;
 
 //Lägga in apiAnropet i localStorage
-    //Lägg till om det inte redan finns en lista
-export function productListToLocalStorage(productList: Product[]){
-localStorage.setItem("productList",JSON.stringify(productList))
-// const cart = JSON.parse(localStorage.getItem('cart'));;
-addProductShoppingCart( {
+//Lägg till om det inte redan finns en lista
+export function productListToLocalStorage(productList: Product[]) {
+  localStorage.setItem("productList", JSON.stringify(productList));
+  // const cart = JSON.parse(localStorage.getItem('cart'));;
+  addProductShoppingCart({
     id: 965,
     image: "http:KISS",
     name: "Oscar",
     price: 100,
     stock: 1,
-})
+  });
 }
-
 
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
 // Ta emot id:, image:, name: , price, stock:
-export function addProductShoppingCart(product:ProductItem){
+export function addProductShoppingCart(product: ProductItem) {
+  const item = findExistingItem(product);
+  if (item) {
+    existingItem = item;
+  }
 
-    const item = findExistingItem(product);
-    if (item) {
-        existingItem = item;
-    }
-
- //validera att det är av findExistingItem
-if(existingItem){
+  //validera att det är av findExistingItem
+  if (existingItem) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
-    cart.forEach((candyItem:CartItem)=>{
-        if(candyItem.id === product.id){
-            candyItem.amount++
-            candyItem.totalCost = candyItem.price * candyItem.amount;
-        } 
-    })
-
-} else{ // Lägger till nytt godis om det inte finns i varukorgen
+    cart.forEach((candyItem: CartItem) => {
+      if (candyItem.id === product.id) {
+        candyItem.amount++;
+        candyItem.totalCost = candyItem.price * candyItem.amount;
+      }
+    });
+  } else {
+    // Lägger till nytt godis om det inte finns i varukorgen
     cart.push({
-        id: product.id,
-        image: product.image,
-        name: product.name,
-        price: product.price,
-        stock: product.stock,
-        amount: 1,
-        totalCost: product.price
-    })
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      stock: product.stock,
+      amount: 1,
+      totalCost: product.price,
+    });
+  }
+
+  // Uppdaterar Local Storage
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Uppdaterar Local Storage
-localStorage.setItem("cart",JSON.stringify(cart))
-} 
-
-
-export function removeProductShoppingCart(product:ProductItem){
-    const item = findExistingItem(product);
-    if (item) {
-        existingItem = item;
-    } 
-    if(existingItem){
-        // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
-        cart.forEach((candyItem:CartItem)=>{
-            if(candyItem.id === product.id){
-                candyItem.amount++
-                candyItem.totalCost = candyItem.price * candyItem.amount;
-            } 
-        })
-    }}
+export function removeProductShoppingCart(product: ProductItem) {
+  const item = findExistingItem(product);
+  if (item) {
+    existingItem = item;
+  }
+  if (existingItem) {
+    // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
+    cart.forEach((candyItem: CartItem) => {
+      if (candyItem.id === product.id) {
+        candyItem.amount++;
+        candyItem.totalCost = candyItem.price * candyItem.amount;
+      }
+    });
+  }
+}
 
 //Ger dig hela kundvagnen
 export function getCart() {
-    const cartJSON = localStorage.getItem("cart");
-    if (cartJSON !== null) {
-        const cart = JSON.parse(cartJSON);
-        return cart;
-    } else {
-        return "Couldnt give you cart";
-    }
+  const cartJSON = localStorage.getItem("cart");
+  if (cartJSON !== null) {
+    const cart = JSON.parse(cartJSON);
+    return cart;
+  } else {
+    return "Couldnt give you cart";
+  }
 }
-
 
 function findExistingItem(product: ProductItem): CartItem | undefined {
-    const cartJSON = localStorage.getItem("cart");
-    if (cartJSON) {
-        const cart: CartItem[] = JSON.parse(cartJSON);
-        return cart.find(candy => candy.id === product.id);
-    }
-    return undefined;
+  const cartJSON = localStorage.getItem("cart");
+  if (cartJSON) {
+    const cart: CartItem[] = JSON.parse(cartJSON);
+    return cart.find((candy) => candy.id === product.id);
+  }
+  return undefined;
 }
 
-
-
-
 //Rendera hela kundvagnen
-
-
-
-

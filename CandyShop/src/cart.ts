@@ -48,8 +48,10 @@ return `
 <div class="cartItemsWrapper"
     <table>
         <thead>
-            <tr>
-                <th>Your shoppingbag 🛒</th>
+            
+            <th>Your shoppingbag 🛒</th>
+            <button><i class="bi bi-x-square"></i></button>
+            
         </thead>
     <tbody>
         ${

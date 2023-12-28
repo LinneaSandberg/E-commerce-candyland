@@ -1,7 +1,7 @@
 import "./style.css";
 import { productCard } from "./productCard.ts";
 import {setListeners} from "./eventListners.ts"
-
+import {cartListener} from "./cart.ts";
 
 
 async function renderScreen(){
@@ -21,7 +21,8 @@ async function renderScreen(){
  
   </main>
   `
-   setListeners()
+   setListeners();
+   cartListener();
 }
 renderScreen()
 

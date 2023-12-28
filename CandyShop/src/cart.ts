@@ -7,29 +7,30 @@ import { renderOrder } from './placeOrder'
 // i vår aside renderar du en div och listar upp allting i våran cart 
 
 const mainEL = document.querySelector<HTMLDivElement>('#app')!;
-const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
+
 
 
 
 //Öppna cart vy
 export function cartListener(){
+const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
+
 // Lyssnar ju om användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
-
+    console.log("bajs")
 
         // ny ska vyn för aside renderas
         // NÄR DU GÖR KASSAN SÅ SKA DU HÄMTA ID: sideWindow och lägga in din UI där
-        mainEL.innerHTML += `
-        <aside id="sideWindow">
-        ${renderCart()}
-        </aside>
-        `
-
+        // ------------- DU KOMMER BARA kunna CONSOLE LOGGA BAJS OM mainEl är utkommenterad 
+        // mainEL.innerHTML += `
+        // <aside id="sideWindow">
+        // ${renderCart()}
+        // </aside>
+        // `
         // TIPS: ASIDE måste ha position absolut här är länk du kan läsa: 
         // https://developer.mozilla.org/en-US/docs/Web/CSS/position 
         // https://developer.mozilla.org/en-US/docs/Web/CSS/top
         // https://developer.mozilla.org/en-US/docs/Web/CSS/left
-
     })
 }
 

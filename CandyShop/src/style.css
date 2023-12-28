@@ -304,10 +304,12 @@ button:active {
   position: fixed;
   top: 0;
   right: 0;
-  width: 60%;
+  width: 70%;
+  height: fit-content;
+  margin-top: 0;
 
   background-color: rgb(255, 255, 255);
-  border: 2px #ff66a1 solid;
+  border: 1px #636363cc solid;
   z-index: 20;
 
 }
@@ -393,6 +395,9 @@ th, td {
   nav {
     margin-block: 2em;
   }
+  #cartItemsWrapper {
+    width: 60%;
+  }
 }
 
 @media (min-width: 992px) {
@@ -402,6 +407,9 @@ th, td {
   nav {
     margin-block: 2em;
   }
+  #cartItemsWrapper {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -410,6 +418,9 @@ th, td {
   }
   nav {
     margin-block: 3em;
+  }
+  #cartItemsWrapper {
+    width: 40%;
   }
 }
 

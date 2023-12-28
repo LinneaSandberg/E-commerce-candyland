@@ -45,28 +45,29 @@ const cartItems = getCart();
 
 // cartItem kommer vara en array som följer interfacet i CartItem[]:ProductItem + extends 
 return `
-<div class="cartItemsWrapper"
-    <table>
-        <thead>
-            
-            <th>Your shoppingbag 🛒</th>
-            <button><i class="bi bi-x-square"></i></button>
-            
-        </thead>
+<div id="cartItemsWrapper">
+    <table id="tableBox">
+    <button></button>
+     <caption id="capTitle">Your shoppingbag 🛒</caption>
+    <thead>
+     <tr>
+      <th>Products in you basket:</th>
+     </tr>
+    </thead>
     <tbody>
         ${
             cartItems.map((cartItem: CartItem )=>{
             return`
                 <tr>
-                    <td>Product: ${cartItem.name}</td>
-                    <td>Am                        <button>
-                         <i class="bi bi-arrow-up-short"></i>
-                        </button>
-                        <button>
-                         <i class="bi bi-arrow-up-short"></i>
-                        </button>
+                    <th>Product: ${cartItem.name}</th>
+                    <td>
+                    <button>
+                     <i class="bi bi-arrow-up-short"></i>
+                    </button>
+                    <button>
+                     <i class="bi bi-arrow-up-short"></i>
+                    </button>
                      </td>
-
                      <td>Total: ${cartItem.totalCost}</td>
                 </tr>
         `
@@ -75,11 +76,13 @@ return `
 </tbody>
 <tfoot>
 <tr>
-<td>Total amount off products: ${cartItems.amount}</th>
-<td>Totalcost off order: ${cartItems.totalCost}</td>
+<th colspan="3">Total amount off products: ${cartItems.amount}</th>
 </tr>
 <tr>
-<td>
+<td colspan="3">Totalcost off order: ${cartItems.totalCost}</td>
+</tr>
+<tr>
+<td colspan="3">
 <button id="checkout">Checkout</button>
 </td>
 </tr>

@@ -32,8 +32,20 @@ cartElementEl.addEventListener("click", (e) => {
 const renderCart = () => {
 const cartItems = getCart();
 
+// totala summan för alla produkter
+let totalPrice: number = 0;
+cartItems?.forEach((total) => {
+    totalPrice += total.totalCost
+})
+console.log(totalPrice)
+
+// totala antalet produkter både av samma och olika
+let totalProduct: number = 0;
+cartItems?.forEach((total) => {
+    totalProduct += total.amount
+})
+
 // INNAN JAG RETURNAR SÅ HADE JAG KOLLAT OM JAG KAN CONSOLE.LOGGA ALLT JAG VILL SKA SYNAS PÅ SKÄRMEN
-// cartItem kommer vara en array som följer interfacet i CartItem[]:ProductItem + extends
 
 
 return `
@@ -50,10 +62,10 @@ return `
     </thead>
     <tbody>
         ${
-            cartItems.map((cartItem: CartItem )=>{
+            cartItems?.map((cartItem: CartItem )=>{
             return`
                 <tr>
-                    <th>Product: ${cartItem.name}</th>
+                    <th>${cartItem.name}</th>
                     <td>
                     <button id="buttonUp">
                      <i class="bi bi-arrow-up-short"></i>
@@ -62,7 +74,7 @@ return `
                      <i class="bi bi-arrow-up-short"></i>
                     </button>
                      </td>
-                     <td>Total: ${cartItem.totalCost}</td>
+                     <td>Totalprice: ${cartItem.totalCost}:-</td>
                 </tr>
         `
     })
@@ -70,10 +82,10 @@ return `
 </tbody>
 <tfoot>
 <tr>
-<td colspan="3" class="positionTotals">Total amount off products: ${cartItems.amount}</th>
+<td colspan="3" class="positionTotals">Total amount off products: ${totalProduct}</th>
 </tr>
 <tr>
-<td colspan="3" class="positionTotals">Totalcost off order: ${cartItems.totalCost}</td>
+<td colspan="3" class="positionTotals">Totalcost for order: ${totalPrice}</td>
 </tr>
 <tr>
 <td colspan="3">

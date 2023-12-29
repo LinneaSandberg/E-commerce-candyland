@@ -14,6 +14,7 @@ export function productListToLocalStorage(productList: Product[]) {
 export function findProduct(id) {
   const productList = JSON.parse(localStorage.getItem("productList"));
   const product = productList.find((product) => product.id === Number(id));
+  console.log("product: ", )
   return product;
 }
 
@@ -21,10 +22,15 @@ export function findProduct(id) {
 // Ta emot id:, image:, name: , price, stock:
 export function addProductShoppingCart(product: ProductItem) {
 
+console.log("addProductShoppingCart:", product)
   const item = findExistingItem(product);
+  console.log("efter findExistingItem: ", item)
 
   if (item) {
     existingItem = item;
+    console.log("existingItem: ", existingItem);
+  } else {
+    existingItem = undefined;
   }
 
   //validera att det är av findExistingItem
@@ -73,7 +79,7 @@ export function removeProductShoppingCart(product: ProductItem) {
 }
 
 //Ger dig hela kundvagnen
-export function getCart() {
+export function getCart(): CartItem[] | null {
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON !== null) {
     const cart = JSON.parse(cartJSON);
@@ -84,12 +90,21 @@ export function getCart() {
 }
 
 function findExistingItem(product: ProductItem): CartItem | undefined {
+  console.log("findExistingItem: ", product)
+
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON) {
+
     const cart: CartItem[] = JSON.parse(cartJSON);
-    return cart.find((candy) => candy.id === product.id);
+    const found = cart.find((candy) => candy.id === product.id);
+    console.log("found: ", found);
+  return found;
+  
+  }else{
+    console.log("else kördes")
+    return undefined;
   }
-  return undefined;
+  
 }
 
 //Rendera hela kundvagnen

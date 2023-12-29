@@ -9,7 +9,6 @@ let existingItem: CartItem | undefined;
 export function productListToLocalStorage(productList: Product[]) {
   localStorage.setItem("productList", JSON.stringify(productList));
   // const cart = JSON.parse(localStorage.getItem('cart'));;
- 
 }
 
 

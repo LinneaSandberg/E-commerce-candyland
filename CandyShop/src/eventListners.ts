@@ -42,6 +42,7 @@ export function setListeners() {
 
       addProductShoppingCart({
         id: product.id,
+        price: product.price ,
         image: `https://www.bortakvall.se${product.images.thumbnail}`,
         name: product.name,
         price: product.price,
@@ -50,6 +51,8 @@ export function setListeners() {
     });
   });
 }
+
+
 
 //Sätta eventlyssnare på alla knappar som ska lägga till godis i cart
 //Du behöver lista ut hur du tar ut följande information om godiset på det produktkort som har fått ett event (click)

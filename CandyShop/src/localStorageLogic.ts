@@ -74,7 +74,7 @@ export function removeProductShoppingCart(product: ProductItem) {
 }
 
 //Ger dig hela kundvagnen
-export function getCart() {
+export function getCart(): CartItem[] | null {
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON !== null) {
     const cart = JSON.parse(cartJSON);

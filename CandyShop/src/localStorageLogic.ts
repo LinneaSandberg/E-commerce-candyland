@@ -8,13 +8,12 @@ let existingItem: CartItem | undefined;
 export function productListToLocalStorage(productList: Product[]) {
   localStorage.setItem("productList", JSON.stringify(productList));
   // const cart = JSON.parse(localStorage.getItem('cart'));;
-  addProductShoppingCart({
-    id: 965,
-    image: "http:KISS",
-    name: "Oscar",
-    price: 100,
-    stock: 1,
-  });
+}
+
+export function findProduct(id) {
+  const productList = JSON.parse(localStorage.getItem("productList"));
+  const product = productList.find((product) => product.id === Number(id));
+  return product;
 }
 
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
@@ -60,9 +59,10 @@ export function removeProductShoppingCart(product: ProductItem) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
     cart.forEach((candyItem: CartItem) => {
       if (candyItem.id === product.id) {
-        candyItem.amount++;
+        candyItem.amount--;
         candyItem.totalCost = candyItem.price * candyItem.amount;
       }
+      // Här kan vi kolla om candyItem är === 0 så tar vi bort den från listan
     });
   }
 }

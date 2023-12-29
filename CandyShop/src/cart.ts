@@ -13,6 +13,7 @@ const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
 // Lyssnar efter att användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
+
        mainEL.innerHTML += `
 
         <aside id="sideWindow">

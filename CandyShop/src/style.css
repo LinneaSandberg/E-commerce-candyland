@@ -300,6 +300,11 @@ button:active {
 }
 
 /* Styling for the cart 💨 */
+
+.hide {
+  display: none;
+}
+
 #cartItemsWrapper {
   position: fixed;
   top: 0;

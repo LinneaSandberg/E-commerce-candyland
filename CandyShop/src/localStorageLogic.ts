@@ -14,6 +14,7 @@ export function productListToLocalStorage(productList: Product[]) {
 export function findProduct(id) {
   const productList = JSON.parse(localStorage.getItem("productList"));
   const product = productList.find((product) => product.id === Number(id));
+  console.log("product: ", product)
   return product;
 }
 
@@ -73,7 +74,7 @@ export function removeProductShoppingCart(product: ProductItem) {
 }
 
 //Ger dig hela kundvagnen
-export function getCart() {
+export function getCart(): CartItem[] | null {
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON !== null) {
     const cart = JSON.parse(cartJSON);
@@ -82,6 +83,7 @@ export function getCart() {
     return "Couldnt give you cart";
   }
 }
+
 
 function findExistingItem(product: ProductItem): CartItem | undefined {
   const cartJSON = localStorage.getItem("cart");

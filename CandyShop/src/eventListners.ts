@@ -36,8 +36,9 @@ export function setListeners() {
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
-  
+      console.log(addBtn.value)
       const product = findProduct(addBtn.value);
+      console.log("efter findProduct: ", product)
 
       addProductShoppingCart({
         id: product.id,

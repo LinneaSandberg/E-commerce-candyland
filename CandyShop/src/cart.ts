@@ -10,6 +10,7 @@ export function cartListener(){
 const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
 const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
+
 // Lyssnar efter att användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
        mainEL.innerHTML += `
@@ -25,21 +26,15 @@ cartElementEl.addEventListener("click", (e) => {
 
 
 
+
+
 // UIn för att rendera ut asiden!
 const renderCart = () => {
-const cartItems: CartItem[] = getCart();
-console.log(cartItems);
+const cartItems = getCart();
 
 // INNAN JAG RETURNAR SÅ HADE JAG KOLLAT OM JAG KAN CONSOLE.LOGGA ALLT JAG VILL SKA SYNAS PÅ SKÄRMEN
 // cartItem kommer vara en array som följer interfacet i CartItem[]:ProductItem + extends
 
-if (cartItems === null || cartItems.length === 0) {
-    return `
-    <div id="cartItemsWrapper">
-    <p>Your shoppingbag is empty</p>
-    </div>
-    `
-}
 
 return `
 <div id="cartItemsWrapper">
@@ -55,7 +50,7 @@ return `
     </thead>
     <tbody>
         ${
-            cartItems.map((cartItem: CartItem) => {
+            cartItems.map((cartItem: CartItem )=>{
             return`
                 <tr>
                     <th>Product: ${cartItem.name}</th>
@@ -75,10 +70,10 @@ return `
 </tbody>
 <tfoot>
 <tr>
-<td colspan="3" class="positionTotals">Total amount off products: ${cartItems.length}</th>
+<td colspan="3" class="positionTotals">Total amount off products: ${cartItems.amount}</th>
 </tr>
 <tr>
-<td colspan="3" class="positionTotals">Totalcost: ${cartItems}</td>
+<td colspan="3" class="positionTotals">Totalcost off order: ${cartItems.totalCost}</td>
 </tr>
 <tr>
 <td colspan="3">

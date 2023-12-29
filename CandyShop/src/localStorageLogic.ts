@@ -19,8 +19,6 @@ return product
 }
 
 
-
-//DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
 // Ta emot id:, image:, name: , price, stock:
 export function addProductShoppingCart(product: ProductItem) {
   

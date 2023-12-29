@@ -10,7 +10,6 @@ export function cartListener(){
 const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
 const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
-
 // Lyssnar efter att användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
        mainEL.innerHTML += `
@@ -23,8 +22,6 @@ cartElementEl.addEventListener("click", (e) => {
         closeCart();
     })
 }
-
-
 
 
 

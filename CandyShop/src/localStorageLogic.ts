@@ -3,6 +3,7 @@ import { Product, ProductItem, CartItem } from "./interface";
 let cart: CartItem[] = []; //kundvagn
 let existingItem: CartItem | undefined;
 
+
 //Lägga in apiAnropet i localStorage
 //Lägg till om det inte redan finns en lista
 export function productListToLocalStorage(productList: Product[]) {
@@ -19,7 +20,9 @@ export function findProduct(id) {
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
 // Ta emot id:, image:, name: , price, stock:
 export function addProductShoppingCart(product: ProductItem) {
+
   const item = findExistingItem(product);
+
   if (item) {
     existingItem = item;
   }
@@ -52,9 +55,11 @@ export function addProductShoppingCart(product: ProductItem) {
 
 export function removeProductShoppingCart(product: ProductItem) {
   const item = findExistingItem(product);
+
   if (item) {
     existingItem = item;
   }
+
   if (existingItem) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
     cart.forEach((candyItem: CartItem) => {

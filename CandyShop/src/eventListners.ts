@@ -14,11 +14,11 @@ export function setListeners() {
     "#addToCart"
   ) as NodeListOf<HTMLButtonElement>;
 
+
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
       //Måste rendera ut en större bild med extra information.
-
       console.log(infoBtn.value);
     });
   });
@@ -36,8 +36,7 @@ export function setListeners() {
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-
+  
       const product = findProduct(addBtn.value);
 
       addProductShoppingCart({
@@ -45,7 +44,6 @@ export function setListeners() {
         price: product.price ,
         image: `https://www.bortakvall.se${product.images.thumbnail}`,
         name: product.name,
-        price: product.price,
         stock: product.stock_quantity,
       });
     });

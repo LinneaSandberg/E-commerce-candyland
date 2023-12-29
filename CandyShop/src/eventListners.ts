@@ -14,11 +14,11 @@ export function setListeners() {
     "#addToCart"
   ) as NodeListOf<HTMLButtonElement>;
 
+
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
       //Måste rendera ut en större bild med extra information.
-
       console.log(infoBtn.value);
     });
   });
@@ -36,8 +36,7 @@ export function setListeners() {
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-
+  
       const product = findProduct(addBtn.value);
 
       addProductShoppingCart({

@@ -1,6 +1,5 @@
-
-import {addProductShoppingCart} from "./localStorageLogic"
-import {findProduct} from "./localStorageLogic"
+import { addProductShoppingCart } from "./localStorageLogic";
+import { findProduct } from "./localStorageLogic";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -23,8 +22,8 @@ export function setListeners() {
       console.log(infoBtn.value);
     });
   });
-  
-//Tar bort produkt i localStorage
+
+  //Tar bort produkt i localStorage
   eraseBtns.forEach((eraseBtn) => {
     eraseBtn.addEventListener("click", (event) => {
       event.preventDefault();
@@ -34,26 +33,23 @@ export function setListeners() {
     });
   });
 
-
-//Lägger till produkt i localStorage
+  //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
       event.preventDefault();
-  
-     const product = findProduct(addBtn.value)
+
+      const product = findProduct(addBtn.value);
 
       addProductShoppingCart({
         id: product.id,
-        image: `https://www.bortakvall.se${product.images.thumbnail}` ,
-        name: product.name ,
-        price: product.price ,
+        image: `https://www.bortakvall.se${product.images.thumbnail}`,
+        name: product.name,
+        price: product.price,
         stock: product.stock_quantity,
-        })
+      });
     });
   });
 }
-
-
 
 //Sätta eventlyssnare på alla knappar som ska lägga till godis i cart
 //Du behöver lista ut hur du tar ut följande information om godiset på det produktkort som har fått ett event (click)

@@ -3,6 +3,7 @@ import { productListToLocalStorage } from "./localStorageLogic";
 let candies: Product[] = [];
 export const divEl = document.querySelector<HTMLDivElement>("#app")!;
 
+
 // fetch the products from the API
 export async function fetchAllproducts(): Promise<Product[]> {
 
@@ -18,7 +19,6 @@ export async function fetchAllproducts(): Promise<Product[]> {
   //-> Skickar produktlistan till en funktion i localStorageLogic.ts
   productListToLocalStorage(data.data);
   return data.data; // Denna ska tass bort 
-
 }
 
 // get products from server and update local copy and render the products

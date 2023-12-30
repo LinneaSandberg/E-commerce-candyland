@@ -136,10 +136,55 @@ main {
 
   color: var(--textColor);
 }
+/* Styles för info-popup */
+.moreInfoPopup {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+}
+
+.moreInfoPopupContent {
+  text-align: center;
+  width: 100%;
+  max-width: 30vw;
+  margin: 10% auto;
+  overflow: auto;
+  background: white;
+  position: relative;
+
+  border-radius: 0.8em;
+
+  box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+
+  color: var(--textColor);
+
+  display: flex;
+  flex-direction: column;
+}
+.moreInfoPopupContent img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.closePopup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 3;
+}
 
 .notis {
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   top: 0;
   padding: 10px;
   background-color: #fb397d !important;
@@ -327,7 +372,7 @@ button:active {
 
   background-color: rgb(255, 255, 255);
   border-left: 1px #636363cc solid;
-  z-index: 20;
+  z-index: 3;
 }
 
 #tableBox {

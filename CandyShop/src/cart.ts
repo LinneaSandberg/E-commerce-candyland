@@ -123,6 +123,7 @@ checkoutEl?.addEventListener('click', (e) => {
 })
 
 
+// HÄR SKA JAG NU GÖRA SÅ ATT ANVÄNDREN KAN ÖKA OCH MINSKA ANTALET AV PRODUKTERNA I VARUKORGEN
 // presentera antal produkter som ska köpas-> plussa ihop alla godisar/ du får inte göra en ny funktion
 // Presentera det totala priset för alla produkter -> plussa ihop alla produkters totalCost och presentera det
 

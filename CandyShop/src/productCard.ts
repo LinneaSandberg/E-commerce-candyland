@@ -43,6 +43,3 @@ export async function productCard() {
 }
 
 // <div class="description"><p>${element.description.split("\n")[0]}</p></div>
-
-
-

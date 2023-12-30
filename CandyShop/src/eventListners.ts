@@ -1,5 +1,8 @@
-import { addProductShoppingCart } from "./localStorageLogic";
-import { findProduct } from "./localStorageLogic";
+import {
+  addProductShoppingCart,
+  removeProductShoppingCart,
+  findProduct,
+} from "./localStorageLogic";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -41,8 +44,17 @@ export function setListeners() {
   //Tar bort produkt i localStorage
   eraseBtns.forEach((eraseBtn) => {
     eraseBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      console.log(eraseBtn.value);
+      console.log("Erase btn: ", eraseBtn.value);
+      const product = findProduct(eraseBtn.value);
+
+      removeProductShoppingCart({
+        id: product.id,
+        price: product.price,
+        image: `https://www.bortakvall.se${product.images.thumbnail}`,
+        name: product.name,
+        stock: product.stock_quantity,
+      });
+
       // Behöver få ut ID på godiset som användaren har klickat på
       // Kolla om det finns i cart i  localStorage och ta bort 1st
     });
@@ -51,9 +63,7 @@ export function setListeners() {
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
-      console.log(addBtn.value);
       const product = findProduct(addBtn.value);
-      console.log("efter findProduct: ", product);
 
       addProductShoppingCart({
         id: product.id,

@@ -341,17 +341,22 @@ button:active {
 }
 
 /* Styling for the cart 💨 */
+
+.hide {
+  display: none;
+}
+
 #cartItemsWrapper {
   position: fixed;
   top: 0;
   right: 0;
   width: 70%;
-  height: fit-content;
+  height: 100%;
   margin-top: 0;
 
   background-color: rgb(255, 255, 255);
-  border: 1px #636363cc solid;
-  z-index: 20;
+  border-left: 1px #636363cc solid;
+  z-index: 3;
 }
 
 #tableBox {

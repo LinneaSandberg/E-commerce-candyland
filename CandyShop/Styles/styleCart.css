@@ -1,0 +1,52 @@
+/* 
+KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
+🔹 Här ska enbart styling finnas som är specifikt till checkout.
+    Exempel
+    🔸 Layouter padding och marking på element
+    
+    Exempel på saker som inte ska stylas
+    ⛔  En button som redan är stylad ska inte stylas om eller ändras på. 
+        Padding och margin är redan fixat runt en knapp. Arbeta då  på elementen runt om kring
+
+    🧠  Om du vill skapa en ny knapp, exempelvis att vi har en annan styling på knappar som har x i sig. Då stylar vi den
+        i det generella  CSS dokumentet med en specifik klass som alla kan sätta på sina buttons som innehåller ikonen X. 
+    
+🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
+*/
+
+.header h2 {
+  color: blue;
+}
+
+/* Nedan klasser ska tass bort från style.css */
+
+#tableBox {
+  table-layout: auto;
+
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Detta ska synka med knappstylingen */
+#buttonDown {
+  transform: rotate(180deg);
+  padding: 0;
+}
+
+#buttonUp {
+  padding: 0;
+}
+
+.positionTotals {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+#checkout {
+  display: block;
+  margin: auto;
+  color: white;
+  border-radius: 4px;
+}

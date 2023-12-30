@@ -1,3 +1,19 @@
+/* 
+KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
+🔹 Här ska enbart styling finnas som är specifikt till checkout.
+    Exempel
+    🔸 Layouter padding och marking på element
+    
+    Exempel på saker som inte ska stylas
+    ⛔  En button som redan är stylad ska inte stylas om eller ändras på. 
+        Padding och margin är redan fixat runt en knapp. Arbeta då  på elementen runt om kring
+
+    🧠  Om du vill skapa en ny knapp, exempelvis att vi har en annan styling på knappar som har x i sig. Då stylar vi den
+        i det generella  CSS dokumentet med en specifik klass som alla kan sätta på sina buttons som innehåller ikonen X. 
+    
+🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
+*/
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -257,26 +273,22 @@ button:active {
   color: #0e1017;
 }
 
-
 /* Det är denna som gör att texten hamnar ovan på*/
 .input {
   width: 300px;
   border: solid 2px #ff66a1;
-
 }
 
 #headerForm {
   text-align: center;
   font-size: 2rem;
   color: rgb(78, 77, 77);
-
 }
 
 #paraForm {
   text-align: center;
   color: rgba(78, 77, 77, 0.605);
 }
-
 
 #orderForm {
   display: flex;
@@ -316,7 +328,6 @@ button:active {
   background-color: rgb(255, 255, 255);
   border-left: 1px #636363cc solid;
   z-index: 20;
-
 }
 
 #tableBox {
@@ -326,7 +337,8 @@ button:active {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: none;
   padding: 1rem;
   text-align: start;
@@ -348,13 +360,10 @@ th, td {
 #buttonDown {
   transform: rotate(180deg);
   padding: 0;
-
 }
 
 #buttonUp {
   padding: 0;
-
-
 }
 
 #buttonCart {
@@ -379,10 +388,7 @@ th, td {
   text-align: center;
   font-size: 0.8rem;
   font-weight: bold;
- 
 }
-
-
 
 @media (min-width: 480px) {
   #app {

@@ -1,3 +1,19 @@
+/* 
+KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
+🔹 Här ska enbart styling finnas som är specifikt till checkout.
+    Exempel
+    🔸 Layouter padding och marking på element
+    
+    Exempel på saker som inte ska stylas
+    ⛔  En button som redan är stylad ska inte stylas om eller ändras på. 
+        Padding och margin är redan fixat runt en knapp. Arbeta då  på elementen runt om kring
+
+    🧠  Om du vill skapa en ny knapp, exempelvis att vi har en annan styling på knappar som har x i sig. Då stylar vi den
+        i det generella  CSS dokumentet med en specifik klass som alla kan sätta på sina buttons som innehåller ikonen X. 
+    
+🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
+*/
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

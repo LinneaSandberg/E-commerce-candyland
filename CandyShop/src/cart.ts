@@ -13,14 +13,12 @@ const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
 // Lyssnar efter att användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
-
+console.log("cart tryckt")
        mainEL.innerHTML += `
-
         <aside id="sideWindow">
         ${renderCart()}
         </aside>
         `
-
         closeCart();
     })
 }
@@ -51,10 +49,13 @@ cartItems?.forEach((total) => {
 
 return `
 <div id="cartItemsWrapper">
-<button id="buttonCart">
-<i class="bi bi-x-square"></i>
-</button>
-<h2 id="capTitle">Your shoppingbag 🛒</h2>
+    <header class="header">
+        <h2>Kundvagn</h2>
+        <button id="buttonCart">
+        <i class="bi bi-x-square"></i>
+        </button>
+    </header>
+
     <table id="tableBox">
     <thead>
      <tr>
@@ -103,14 +104,13 @@ return `
 // function for closing the cart, if user wants to look more in shop
 function closeCart() {
 const buttonCartEl = document.querySelector<HTMLButtonElement>('#buttonCart')!;
-const cartItemsWrapperEl = document.querySelector<HTMLDivElement>('#cartItemsWrapper')!;
 
     buttonCartEl?.addEventListener('click', (e) => {
-        console.log('klickade på knappen')
-        cartItemsWrapperEl.style.display = 'none';
+        const cartItemsWrapperEl = document.querySelector<HTMLDivElement>('#sideWindow')!;
+        cartItemsWrapperEl.remove()
     })
+    cartListener();
 }
-
 
 
 // eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts

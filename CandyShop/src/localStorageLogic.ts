@@ -16,12 +16,27 @@ export function findProduct(id) {
   return product;
 }
 
+export function adjustCart(id, action) {
+  const item = findExistingItem(id);
+  const cart = getCart();
+  const indexOfItem = cart?.findIndex((candy) => candy.id === Number(id));
+  console.log("item: ", item);
+
+  if (action === "add") {
+    item.amount++;
+    item.totalCost = item.price * item.amount;
+  } else {
+    item.amount--;
+    item.totalCost = item.price * item.amount;
+  }
+  cart?.splice(indexOfItem, 1, item);
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
 // Ta emot id:, image:, name: , price, stock:
 export function addProductShoppingCart(product: ProductItem) {
-  adjustProductList(product.id, "remove");
-
-  const item = findExistingItem(product);
+  const item = findExistingItem(product.id);
 
   //validera att det är av findExistingItem
   if (item) {
@@ -51,7 +66,7 @@ export function addProductShoppingCart(product: ProductItem) {
 
 export function removeProductShoppingCart(product: ProductItem) {
   console.log("product: ", product);
-  adjustProductList(product.id, "add");
+
   const item = findExistingItem(product);
 
   if (item) {
@@ -70,26 +85,6 @@ export function removeProductShoppingCart(product: ProductItem) {
   }
 }
 
-function adjustProductList(idOfCandy, action) {
-  const productList = JSON.parse(localStorage.getItem("productList"));
-  const candyItme = productList.find((candy) => {
-    return candy.id === idOfCandy;
-  });
-
-  const indexOfCandy = productList.findIndex((candy) => {
-    return candy.id === idOfCandy;
-  });
-
-  if (action === "remove") {
-    candyItme.stock_quantity--;
-  } else {
-    candyItme.stock_quantity++;
-  }
-  console.log("candyObj: ", candyItme);
-  productList.splice(indexOfCandy, 1, candyItme);
-  localStorage.setItem("productList", JSON.stringify(productList));
-}
-
 //Ger dig hela kundvagnen
 export function getCart(): CartItem[] | null {
   const cartJSON = localStorage.getItem("cart");
@@ -101,11 +96,11 @@ export function getCart(): CartItem[] | null {
   }
 }
 
-function findExistingItem(product: ProductItem): CartItem | undefined {
+function findExistingItem(id) {
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON) {
     cart = JSON.parse(cartJSON);
-    const found = cart.find((candy) => candy.id === product.id);
+    const found = cart.find((candy) => candy.id === Number(id));
     return found;
   } else {
     console.log("else kördes");

@@ -3,6 +3,7 @@ import {
   getCart,
   removeProductShoppingCart,
   addProductShoppingCart,
+  adjustCart,
 } from "./localStorageLogic";
 import { renderOrder } from "./placeOrder";
 import { CartItem } from "./interface";
@@ -22,13 +23,12 @@ export function cartListener() {
         `;
     closeCart();
   });
+  adjustCandyItems();
 }
 
 // UIn för att rendera ut asiden!
 const renderCart = () => {
   const cartItems = getCart();
-
-  console.log("cartItems", cartItems);
 
   // totala summan för alla produkter
   let totalPrice: number = 0;
@@ -73,11 +73,11 @@ const renderCart = () => {
                                 <p class="smallText">totalt ${cartItem.totalCost} kr</p>
                             </div>
                             <div class="sumItemCard">
-                                <button onclick="addProductShoppingCart(${cartItem})">
+                                <button class="increaseCandy" value="${cartItem.id}">
                                   <i class="bi bi-arrow-up-short"></i>
                                   </button>
-                                <p class="smallText">${cartItem.amount}</p>
-                                <button onclick="removeProductShoppingCart(${cartItem})}">
+                                <p class="smallText amount">${cartItem.amount}</p>
+                                <button class="decreaseCandy" value="${cartItem.id}">
                                     <i class="bi bi-arrow-up-short"></i>
                                 </button>
                             </div>
@@ -131,22 +131,25 @@ checkoutEl?.addEventListener("click", (e) => {
   renderOrder();
 });
 
-// HÄR SKA JAG NU GÖRA SÅ ATT ANVÄNDREN KAN ÖKA OCH MINSKA ANTALET AV PRODUKTERNA I VARUKORGEN
-// presentera antal produkter som ska köpas-> plussa ihop alla godisar/ du får inte göra en ny funktion
-// Presentera det totala priset för alla produkter -> plussa ihop alla produkters totalCost och presentera det
+function adjustCandyItems() {
+  const increaseCandy = document.querySelectorAll(".increaseCandy");
+  const decreaseCandy = document.querySelectorAll(".decreaseCandy");
 
-// // function to show both the products and the prices for each product in the basket
-// function updateCart() {
-//     let total = 0;
-//     cart.forEach(product => {
-//         const cartItem = document.createElement("li");
-//         const productTotal = product.price;
-//         total += productTotal;
+  increaseCandy.forEach((increaseBtn) => {
+    increaseBtn.addEventListener("click", (event) => {
+      adjustCart(event.currentTarget.getAttribute("value"), "add");
+      const relatedP = increaseBtn.nextElementSibling;
+      const currentValue = Number(relatedP.innerHTML);
+      relatedP.innerHTML = currentValue + 1;
+    });
+  });
 
-//         cartItem.textContent = `${product.name} - ${productTotal} kr`;
-//         cartElementEl.appendChild(cartItem);
-//     })
-//     orderTotalEl.innerHTML = `Totalcost: ${total} kr`
-// }
-
-// // fuction with eventlistner for folding out basket
+  decreaseCandy.forEach((decreaseBtn) => {
+    decreaseBtn.addEventListener("click", (event) => {
+      adjustCart(event.currentTarget.getAttribute("value"), "remove");
+      const relatedP = decreaseBtn.previousElementSibling;
+      const currentValue = Number(relatedP.innerHTML);
+      relatedP.innerHTML = currentValue - 1;
+    });
+  });
+}

@@ -356,7 +356,7 @@ button:active {
   border: solid 2px rgba(72, 53, 53, 0.605);
 }
 
-/* Styling for the cart 💨 */
+/* Style för sidemenu cart och checkout */
 
 @media (min-width: 480px) {
   #app {

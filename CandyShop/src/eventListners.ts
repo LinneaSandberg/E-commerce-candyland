@@ -3,6 +3,8 @@ import {
   removeProductShoppingCart,
   findProduct,
 } from "./localStorageLogic";
+import { renderOrder } from './placeOrder'
+import { renderPopup } from "./productCard";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -14,34 +16,6 @@ export function setListeners() {
   const addBtns = document.querySelectorAll(
     "#addToCart"
   ) as NodeListOf<HTMLButtonElement>;
-
-  //Renders popup
-  const renderPopup = (id) => {
-    const mainEL = document.querySelector<HTMLDivElement>("#app")!;
-    const product = findProduct(id);
-    const infoPopupHTML = `
-      <div class="moreInfoPopup">
-        <div class="moreInfoPopupContent">
-          <img src="https://www.bortakvall.se${product.images.large}" alt="largecandy">
-          <h4>${product.name}</h4>
-          <p>${product.description}</p>
-          <p>Antal i lager: ${product.stock_quantity}</p>
-          <button class="closePopup">&times</button>
-        </div>
-      </div>`;
-
-    mainEL.innerHTML += infoPopupHTML;
-
-    const closePopup =
-      document.querySelector<HTMLButtonElement>(".closePopup")!;
-
-    closePopup.addEventListener("click", (event) => {
-      const moreInfoPopup =
-        document.querySelector<HTMLDivElement>(".moreInfoPopup");
-      moreInfoPopup.remove();
-    });
-    setListeners();
-  };
 
   //Knapp för mer information
   infoBtns.forEach((infoBtn) => {
@@ -84,6 +58,21 @@ export function setListeners() {
       });
     });
   });
+}
+
+export function checkoutListner() {
+  console.log("checkoutListner")
+  const checkoutEl = document.querySelector<HTMLButtonElement>('#checkout')!;
+  const mainEL = document.querySelector<HTMLDivElement>('#app')!;
+
+  checkoutEl?.addEventListener('click', (e) => {
+    const asideWrapper = document.querySelector<HTMLDivElement>('#sideWindow')!;
+    
+    asideWrapper.innerHTML = `
+    ${renderOrder()}
+    `
+  })
+
 }
 
 //Sätta eventlyssnare på alla knappar som ska lägga till godis i cart

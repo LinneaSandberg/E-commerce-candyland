@@ -79,7 +79,7 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
 export const renderOrder = () => {
 
-    mainEL.innerHTML=`
+    return `
 <div>
 <h2>Checkout</h2>
 <div>

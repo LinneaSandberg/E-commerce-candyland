@@ -5,21 +5,36 @@ export function setListeners() {
   const infoBtns = document.querySelectorAll(
     "#moreInfo"
   ) as NodeListOf<HTMLButtonElement>;
-
   const eraseBtns = document.querySelectorAll(
     "#eraseFromCart"
   ) as NodeListOf<HTMLButtonElement>;
-
   const addBtns = document.querySelectorAll(
     "#addToCart"
   ) as NodeListOf<HTMLButtonElement>;
 
+  //Renders popup
+  const renderPopup = (id) => {
+    const mainEL = document.querySelector<HTMLDivElement>("#app")!;
+    const product = findProduct(id);
+    const infoPopupHTML = `
+      <div class="moreInfoPopup">
+        <div class="moreInfoPopupContent">
+          <img src="https://www.bortakvall.se${product.images.large}" alt="largecandy"
+          <h4>${product.name}<h4>
+          <p>${product.description}</p>
+          <p>Antal i lager: ${product.stock_quantity}</p>
+          <button class:"closePopup">&times</button>
+        </div>
+      </div>`;
 
+    mainEL.innerHTML += infoPopupHTML;
+  };
+
+  //Knapp för mer information
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
-      //Måste rendera ut en större bild med extra information.
-      console.log(infoBtn.value);
+      renderPopup(infoBtn.value);
     });
   });
 
@@ -36,9 +51,9 @@ export function setListeners() {
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     addBtn.addEventListener("click", (event) => {
-      console.log(addBtn.value)
+      console.log(addBtn.value);
       const product = findProduct(addBtn.value);
-      console.log("efter findProduct: ", product)
+      console.log("efter findProduct: ", product);
 
       addProductShoppingCart({
         id: product.id,

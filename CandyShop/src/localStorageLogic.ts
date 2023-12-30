@@ -3,7 +3,6 @@ import { Product, ProductItem, CartItem } from "./interface";
 let cart: CartItem[] = []; //kundvagn
 let existingItem: CartItem | undefined;
 
-
 //Lägga in apiAnropet i localStorage
 //Lägg till om det inte redan finns en lista
 export function productListToLocalStorage(productList: Product[]) {
@@ -14,17 +13,16 @@ export function productListToLocalStorage(productList: Product[]) {
 export function findProduct(id) {
   const productList = JSON.parse(localStorage.getItem("productList"));
   const product = productList.find((product) => product.id === Number(id));
-  console.log("product: ", )
+  console.log("product: ");
   return product;
 }
 
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
 // Ta emot id:, image:, name: , price, stock:
 export function addProductShoppingCart(product: ProductItem) {
-
-console.log("addProductShoppingCart:", product)
+  console.log("addProductShoppingCart:", product);
   const item = findExistingItem(product);
-  console.log("efter findExistingItem: ", item)
+  console.log("efter findExistingItem: ", item);
 
   if (item) {
     existingItem = item;
@@ -90,21 +88,18 @@ export function getCart(): CartItem[] | null {
 }
 
 function findExistingItem(product: ProductItem): CartItem | undefined {
-  console.log("findExistingItem: ", product)
+  console.log("findExistingItem: ", product);
 
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON) {
-
     const cart: CartItem[] = JSON.parse(cartJSON);
     const found = cart.find((candy) => candy.id === product.id);
     console.log("found: ", found);
-  return found;
-  
-  }else{
-    console.log("else kördes")
+    return found;
+  } else {
+    console.log("else kördes");
     return undefined;
   }
-  
 }
 
 //Rendera hela kundvagnen

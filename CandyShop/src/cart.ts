@@ -1,5 +1,5 @@
 // Funktionen som hämtar allt som finns i cart i localstorage
-import {getCart} from "./localStorageLogic"
+import {getCart, removeProductShoppingCart, addProductShoppingCart, findProduct} from "./localStorageLogic"
 import { renderOrder } from './placeOrder'
 import { CartItem } from './interface'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -21,6 +21,7 @@ cartElementEl.addEventListener("click", (e) => {
         </aside>
         `
 
+        adjustAmountCart();
         closeCart();
     })
 }
@@ -45,6 +46,9 @@ let totalProduct: number = 0;
 cartItems?.forEach((total) => {
     totalProduct += total.amount
 })
+
+// const itemAmountInCartEl = document.querySelector<HTMLDivElement>('#itemAmountInCart')!;
+// itemAmountInCartEl.innerHTML = `${totalProduct}`
 
 // INNAN JAG RETURNAR SÅ HADE JAG KOLLAT OM JAG KAN CONSOLE.LOGGA ALLT JAG VILL SKA SYNAS PÅ SKÄRMEN
 
@@ -121,6 +125,56 @@ checkoutEl?.addEventListener('click', (e) => {
     renderOrder();
 
 })
+
+
+// HÄR SKA JAG NU GÖRA SÅ ATT ANVÄNDREN KAN ÖKA OCH MINSKA ANTALET AV PRODUKTERNA I VARUKORGEN
+function adjustAmountCart() {
+    const buttonUpEl = document.querySelectorAll(
+        "#buttonUp"
+      ) as NodeListOf<HTMLButtonElement>;
+    const buttonDownEl = document.querySelectorAll(
+        "#buttonDown"
+      ) as NodeListOf<HTMLButtonElement>;
+    
+
+        // använd samma logik som johan använder för sina knappar för att öka och minska antalet varor
+        //Lägger till produkt i localStorage
+        buttonUpEl.forEach((buttonUp) => {
+        buttonUp.addEventListener("click", (event) => {
+        const product = findProduct(buttonUp.value);
+
+
+      addProductShoppingCart({
+        id: product.id,
+        price: product.price ,
+        image: `https://www.bortakvall.se${product.images.thumbnail}`,
+        name: product.name,
+        stock: product.stock_quantity,
+      });
+      });
+      });
+
+
+      //Tar bort produkt i localStorage
+      buttonDownEl.forEach((buttonDown) => {
+        buttonDown.addEventListener("click", (event) => {
+      console.log("Down button: ", buttonDown.value)
+      const product = findProduct(buttonDown.value);
+    
+
+
+      removeProductShoppingCart({
+        id: product.id,
+        price: product.price ,
+        image: `https://www.bortakvall.se${product.images.thumbnail}`,
+        name: product.name,
+        stock: product.stock_quantity,
+      });
+      });
+      });
+
+
+}
 
 
 // presentera antal produkter som ska köpas-> plussa ihop alla godisar/ du får inte göra en ny funktion

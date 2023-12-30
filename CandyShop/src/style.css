@@ -315,7 +315,7 @@ button:active {
 
   background-color: rgb(255, 255, 255);
   border-left: 1px #636363cc solid;
-  z-index: 20;
+  z-index: 3;
 
 }
 

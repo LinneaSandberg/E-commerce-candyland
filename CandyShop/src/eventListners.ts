@@ -3,6 +3,9 @@ import {
   removeProductShoppingCart,
   findProduct,
 } from "./localStorageLogic";
+import { renderOrder } from './placeOrder'
+
+
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -84,6 +87,22 @@ export function setListeners() {
       });
     });
   });
+}
+
+function checkoutListner() {
+  const checkoutEl = document.querySelector<HTMLButtonElement>('#checkout')!;
+  const mainEL = document.querySelector<HTMLDivElement>('#app')!;
+
+
+  checkoutEl?.addEventListener('click', (e) => {
+
+    mainEL.innerHTML = `
+    <aside>
+    ${renderOrder()}
+    </aside>
+    `
+  })
+
 }
 
 //Sätta eventlyssnare på alla knappar som ska lägga till godis i cart

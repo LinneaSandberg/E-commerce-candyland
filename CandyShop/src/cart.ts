@@ -10,8 +10,10 @@ export function cartListener(){
 const cartElementEl = document.querySelector<HTMLDivElement>('.bajs')!;
 const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
+
 // Lyssnar efter att användaren trycker på kundvagnen på hemsidan
 cartElementEl.addEventListener("click", (e) => {
+
        mainEL.innerHTML += `
 
         <aside id="sideWindow">
@@ -25,12 +27,26 @@ cartElementEl.addEventListener("click", (e) => {
 
 
 
+
+
 // UIn för att rendera ut asiden!
 const renderCart = () => {
 const cartItems = getCart();
 
+// totala summan för alla produkter
+let totalPrice: number = 0;
+cartItems?.forEach((total) => {
+    totalPrice += total.totalCost
+})
+console.log(totalPrice)
+
+// totala antalet produkter både av samma och olika
+let totalProduct: number = 0;
+cartItems?.forEach((total) => {
+    totalProduct += total.amount
+})
+
 // INNAN JAG RETURNAR SÅ HADE JAG KOLLAT OM JAG KAN CONSOLE.LOGGA ALLT JAG VILL SKA SYNAS PÅ SKÄRMEN
-// cartItem kommer vara en array som följer interfacet i CartItem[]:ProductItem + extends
 
 
 return `
@@ -47,10 +63,10 @@ return `
     </thead>
     <tbody>
         ${
-            cartItems.map((cartItem: CartItem )=>{
+            cartItems?.map((cartItem: CartItem )=>{
             return`
                 <tr>
-                    <th>Product: ${cartItem.name}</th>
+                    <th>${cartItem.name}</th>
                     <td>
                     <button id="buttonUp">
                      <i class="bi bi-arrow-up-short"></i>
@@ -59,7 +75,7 @@ return `
                      <i class="bi bi-arrow-up-short"></i>
                     </button>
                      </td>
-                     <td>Total: ${cartItem.totalCost}</td>
+                     <td>Totalprice: ${cartItem.totalCost}:-</td>
                 </tr>
         `
     })
@@ -67,10 +83,10 @@ return `
 </tbody>
 <tfoot>
 <tr>
-<td colspan="3" class="positionTotals">Total amount off products: ${cartItems.amount}</th>
+<td colspan="3" class="positionTotals">Total amount off products: ${totalProduct}</th>
 </tr>
 <tr>
-<td colspan="3" class="positionTotals">Totalcost off order: ${cartItems.totalCost}</td>
+<td colspan="3" class="positionTotals">Totalcost for order: ${totalPrice}</td>
 </tr>
 <tr>
 <td colspan="3">
@@ -107,6 +123,7 @@ checkoutEl?.addEventListener('click', (e) => {
 })
 
 
+// HÄR SKA JAG NU GÖRA SÅ ATT ANVÄNDREN KAN ÖKA OCH MINSKA ANTALET AV PRODUKTERNA I VARUKORGEN
 // presentera antal produkter som ska köpas-> plussa ihop alla godisar/ du får inte göra en ny funktion
 // Presentera det totala priset för alla produkter -> plussa ihop alla produkters totalCost och presentera det
 

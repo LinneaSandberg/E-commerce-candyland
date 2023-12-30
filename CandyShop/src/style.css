@@ -120,7 +120,7 @@ main {
 
   color: var(--textColor);
 }
-/* Style för info-popup */
+/* Styles för info-popup */
 .moreInfoPopup {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -135,7 +135,7 @@ main {
 .moreInfoPopupContent {
   text-align: center;
   width: 100%;
-  max-width: 40vw;
+  max-width: 30vw;
   margin: 10% auto;
   overflow: auto;
   background: white;

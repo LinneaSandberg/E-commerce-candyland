@@ -13,3 +13,23 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
     
 🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
 */
+
+
+.checkoutImg {
+    width: 20%;
+    height: 20%;
+}
+
+.checkoutList {
+    text-align: start;
+  
+}
+
+.checkoutFigure {
+    width: 30%;
+}
+
+.checkoutProducts {
+    display: flex;
+    flex-direction: column;
+}

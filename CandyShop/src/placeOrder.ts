@@ -85,15 +85,24 @@ export const renderOrder = () => {
     return `
 
 <header class="header">
-<h2>Checkout</h2>
-<p>Order</p>
+<h2>Kassa</h2>
+<p>Orderinfo</p>
 </header>
-<ul>
+<div class="checkoutProducts">
 ${cartItems?.map((cartItem: CartItem) => {
-    return ``
-})}
+    return `
+    <figure>
+    <img src="${cartItem.image}" class="checkoutImg"></img>
+    </figure>
+    <ul class="checkoutList">
+    <li>${cartItem.name}</li>
+    <li>${cartItem.amount} Items</li>
+    <li>Price: ${cartItem.totalCost}:-</li>
+    </ul>
 
-</ul>
+    `
+})}
+</div>
 <form id="orderForm" action="http://www.bortakvall.se/api/v2/users/31/orders" method="post">
 
     <label for="nameInput">

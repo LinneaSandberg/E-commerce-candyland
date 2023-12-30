@@ -50,6 +50,7 @@ export function addProductShoppingCart(product: ProductItem) {
 }
 
 export function removeProductShoppingCart(product: ProductItem) {
+  console.log("product: ", product);
   adjustProductList(product.id, "add");
   const item = findExistingItem(product);
 
@@ -75,7 +76,6 @@ function adjustProductList(idOfCandy, action) {
     return candy.id === idOfCandy;
   });
 
-  console.log("candyItme :", candyItme);
   const indexOfCandy = productList.findIndex((candy) => {
     return candy.id === idOfCandy;
   });

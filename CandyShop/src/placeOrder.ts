@@ -1,4 +1,6 @@
 import { placeOrder } from "./interface";
+import { CartItem } from './interface'
+import { getCart } from "./localStorageLogic";
 
 // DOM referenser för alla input-fält
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
@@ -78,13 +80,20 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
 
 export const renderOrder = () => {
+    const cartItems = getCart();
 
     return `
-<div>
+
+<header class="header">
 <h2>Checkout</h2>
-<div>
-    <p>Order</p>
-</div>
+<p>Order</p>
+</header>
+<ul>
+${cartItems?.map((cartItem: CartItem) => {
+    return ``
+})}
+
+</ul>
 <form id="orderForm" action="http://www.bortakvall.se/api/v2/users/31/orders" method="post">
 
     <label for="nameInput">
@@ -118,7 +127,6 @@ export const renderOrder = () => {
     </label>
 
     <button type="submit">Lägg order</button>
-</form>
-</div>`
+</form>`
 
 }

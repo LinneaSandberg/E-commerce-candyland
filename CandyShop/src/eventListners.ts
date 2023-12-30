@@ -89,17 +89,16 @@ export function setListeners() {
   });
 }
 
-function checkoutListner() {
+export function checkoutListner() {
+  console.log("checkoutListner")
   const checkoutEl = document.querySelector<HTMLButtonElement>('#checkout')!;
   const mainEL = document.querySelector<HTMLDivElement>('#app')!;
 
-
   checkoutEl?.addEventListener('click', (e) => {
-
-    mainEL.innerHTML = `
-    <aside>
+    const asideWrapper = document.querySelector<HTMLDivElement>('#sideWindow')!;
+    
+    asideWrapper.innerHTML = `
     ${renderOrder()}
-    </aside>
     `
   })
 

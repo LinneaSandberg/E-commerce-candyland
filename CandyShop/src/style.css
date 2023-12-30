@@ -356,13 +356,9 @@ button:active {
   border: solid 2px rgba(72, 53, 53, 0.605);
 }
 
-/* Styling for the cart 💨 */
+/* Style för sidemenu cart och checkout */
 
-.hide {
-  display: none;
-}
-
-#cartItemsWrapper {
+aside {
   position: fixed;
   top: 0;
   right: 0;
@@ -373,66 +369,6 @@ button:active {
   background-color: rgb(255, 255, 255);
   border-left: 1px #636363cc solid;
   z-index: 3;
-}
-
-#tableBox {
-  table-layout: auto;
-
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: none;
-  padding: 1rem;
-  text-align: start;
-}
-
-#capTitle {
-  width: 100%;
-  font-weight: bold;
-  text-align: center;
-  padding: 1rem;
-  top: 0;
-}
-
-#capTwo {
-  text-align: center;
-  font-size: 1rem;
-}
-
-#buttonDown {
-  transform: rotate(180deg);
-  padding: 0;
-}
-
-#buttonUp {
-  padding: 0;
-}
-
-#buttonCart {
-  margin-right: 0;
-  margin-left: auto;
-  display: block;
-
-  padding: 0.5rem;
-  color: white;
-  border-radius: 2px;
-}
-
-#checkout {
-  display: block;
-  margin: auto;
-  color: white;
-  border-radius: 4px;
-}
-
-.positionTotals {
-  width: 100%;
-  text-align: center;
-  font-size: 0.8rem;
-  font-weight: bold;
 }
 
 @media (min-width: 480px) {

@@ -2,6 +2,7 @@
 import {getCart} from "./localStorageLogic"
 import { renderOrder } from './placeOrder'
 import { CartItem } from './interface'
+import { checkoutListner} from "./eventListners"
 import 'bootstrap/dist/css/bootstrap.css'
 
 
@@ -20,10 +21,10 @@ console.log("cart tryckt")
         </aside>
         `
         closeCart();
+        checkoutListner()
     })
+    
 }
-
-
 
 
 
@@ -91,7 +92,7 @@ return `
 </tr>
 <tr>
 <td colspan="3">
-<button id="checkout">Checkout</button>
+<button id="checkout" onclick="${checkoutListner()}">Checkout</button>
 </td>
 </tr>
 </tfoot>
@@ -113,14 +114,6 @@ const buttonCartEl = document.querySelector<HTMLButtonElement>('#buttonCart')!;
 }
 
 
-// eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts
-const checkoutEl = document.querySelector<HTMLFormElement>('#checkout');
-
-checkoutEl?.addEventListener('click', (e) => {
-
-    renderOrder();
-
-})
 
 
 // HÄR SKA JAG NU GÖRA SÅ ATT ANVÄNDREN KAN ÖKA OCH MINSKA ANTALET AV PRODUKTERNA I VARUKORGEN

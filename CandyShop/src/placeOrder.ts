@@ -82,27 +82,56 @@ orderFormEl?.addEventListener("submit", async (e) => {
 export const renderOrder = () => {
     const cartItems = getCart();
 
+    let totalPrice: number = 0;
+    cartItems?.forEach((total) => {
+      totalPrice += total.totalCost;
+    });
+  
+    let totalProduct: number = 0;
+    cartItems?.forEach((total) => {
+      totalProduct += total.amount;
+    });
+    const antal = totalProduct === 1 ? "Vara" : "Varor";
+
+
     return `
 
 <header class="header">
 <h2>Kassa</h2>
 <p>Orderinfo</p>
 </header>
-<div class="checkoutProducts">
-${cartItems?.map((cartItem: CartItem) => {
-    return `
-    <figure>
-    <img src="${cartItem.image}" class="checkoutImg"></img>
-    </figure>
-    <ul class="checkoutList">
-    <li>${cartItem.name}</li>
-    <li>${cartItem.amount} Items</li>
-    <li>Price: ${cartItem.totalCost}:-</li>
-    </ul>
 
+<section class="itemCardWrapper">
+${cartItems?.map((cartItem: CartItem) => {
+    const antal = cartItem.amount === 1 ? "vara" : "varor";
+    return `
+    <div class="itemCheckout">
+    <div class="boxOne">
+     <figure class="iconCheckout">
+      <i class="bi bi-bag-fill"></i>
+     </figure>
+    </div>
+    
+    <div class="boxTwo">
+     <ul class="checkoutList">
+      <li class="productTitle">${cartItem.name}</li>
+      <li class="productAmount">${cartItem.amount} ${antal}</li>
+      <li class="productSum">Totalt ${cartItem.totalCost} kr</li>
+     </ul>
+    </div>
+    </div>
     `
 })}
+</section>
+
+<div class="sumwrapper">
+<p class="checkoutPara">Totalt ${totalProduct} ${antal}</p>
+<figure class="iconCheckout">
+      <i class="bi bi-bag-fill"></i>
+</figure>
+<p class="checkoutPara">Totalsumma: ${totalPrice} kr</p>
 </div>
+
 <form id="orderForm" action="http://www.bortakvall.se/api/v2/users/31/orders" method="post">
 
     <label for="nameInput">

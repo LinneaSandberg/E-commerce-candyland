@@ -8,6 +8,7 @@ import {
 import { renderOrder } from "./placeOrder";
 import { CartItem } from "./interface";
 import "bootstrap/dist/css/bootstrap.css";
+import { checkoutListner } from "./eventListners";
 
 //Öppna aside som innehåller kassan
 export function cartListener() {
@@ -24,6 +25,7 @@ export function cartListener() {
     closeCart();
   });
   adjustCandyItems();
+  checkoutListner();
 }
 
 // UIn för att rendera ut asiden!

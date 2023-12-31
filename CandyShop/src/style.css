@@ -312,50 +312,6 @@ button:active {
   background-color: #2fa365;
 }
 
-/* Styles for placing an order */
-.label {
-  margin-bottom: 1.5rem;
-  color: #0e1017;
-}
-
-/* Det är denna som gör att texten hamnar ovan på*/
-.input {
-  width: 300px;
-  border: solid 2px #ff66a1;
-}
-
-#headerForm {
-  text-align: center;
-  font-size: 2rem;
-  color: rgb(78, 77, 77);
-}
-
-#paraForm {
-  text-align: center;
-  color: rgba(78, 77, 77, 0.605);
-}
-
-#orderForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  column-gap: 1rem;
-
-  background-color: #fff0f8;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  border-radius: 1rem;
-  max-width: 70%;
-}
-
-#submitButton {
-  padding: 0 1rem 0 1rem;
-  background-color: #ff66a1;
-  border-radius: 2rem;
-  border: solid 2px rgba(72, 53, 53, 0.605);
-}
-
 /* Style för sidemenu cart och checkout */
 
 @media (min-width: 480px) {
@@ -364,7 +320,7 @@ button:active {
   }
   nav {
     margin-block: 2em;
-  }
+  }  
 }
 
 @media (min-width: 768px) {
@@ -377,6 +333,10 @@ button:active {
   #cartItemsWrapper {
     width: 60%;
   }
+
+  .itemCheckout {
+    width: 50%;
+  }
 }
 
 @media (min-width: 992px) {
@@ -388,6 +348,10 @@ button:active {
   }
   #cartItemsWrapper {
     width: 50%;
+  }
+
+  .itemCheckout {
+    width: 40%;
   }
 }
 

@@ -16,7 +16,6 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
 .checkoutSection {
     max-width: 100%;
-
 }
 
 .itemCheckout {
@@ -28,8 +27,9 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
     gap: 0.625rem;
     margin: auto;
-    padding: 0.5rem;
-    width: 40%;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    width: 70%;
   
     background-color: white;
     box-shadow: 0px 0px 2.4px -10px rgba(0, 0, 0, 0.011),
@@ -51,11 +51,10 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 }
 
 .boxOne {
-    max-width: 30%;
+    max-width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: rem;
 }
 
 .boxTwo {
@@ -93,17 +92,77 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
 .sumwrapper {
     background-color: #94dcdf;
-    font-size: 1rem;
-    font-weight: 500;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 1rem;
     line-height: 1.571;
 
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10rem;
+}
 
+#orderForm {
+    display: block;
+    margin: auto;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+label {
+    display: flex;
+    flex-basis: 50%;
+    margin-bottom: 0.5rem;
+    margin-right: 0.6rem;
+}
+  
+input {
+    flex: 1;
+    padding: 0.5rem;
+    margin-bottom: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    
+}
+  
+#headerForm {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(78, 77, 77);
+  }
+  
+#paraForm {
+    text-align: center;
+    color: rgba(78, 77, 77, 0.605);
+}
+  
+#orderForm {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+  
+    background-color: #fff0f8;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-bottom: 1rem;
 }

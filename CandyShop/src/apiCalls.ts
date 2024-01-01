@@ -1,4 +1,4 @@
-import { Product, PlaceOrder } from "./interface";
+import { Product } from "./interface";
 import { productListToLocalStorage } from "./localStorageLogic";
 let candies: Product[] = [];
 export const divEl = document.querySelector<HTMLDivElement>("#app")!;

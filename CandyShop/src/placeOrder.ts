@@ -1,17 +1,6 @@
-import { Data, PlaceOrder } from "./interface";
-import { CartItem } from './interface'
+import { ApiResponse, CartItem } from "./interface";
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from './apiCalls';
-
-
-
-/* 
-GLOBALA SAKER RENDERAS DIREKT MED FILEN 
-DENNA KODEN KÖRS FÖRE FORM FINNS I DOM
-
-*/
-// DOM referenser för alla input-fält
-// const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
 
 
 const cartItems: CartItem[] | null = getCart();
@@ -41,14 +30,10 @@ function objApi() {
 //----------------------------------------------
 
 
+// funktion för att rendera orderinfo + formulär
 export const renderOrder = () => {
 
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
-
-    // let totalPrice: number = 0;
-    // cartItems?.forEach((total) => {
-    //   totalPrice += total.totalCost;
-    // });
   
     let totalProduct: number = 0;
     cartItems?.forEach((total) => {
@@ -135,15 +120,16 @@ ${cartItems
 </form>`
 
 
-placeOrder()
+placeOrder();
 }
 
 
+// funktion för att skicka order med inputvärderna till api
 function placeOrder(){
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
 console.log("orderFormEl: ", orderFormEl)
 //----------------------------------------------
-orderFormEl?.addEventListener("submit", (e) => {
+orderFormEl?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
    // HÄR BÖR DU HÄMTA ELEMENTEN
@@ -192,14 +178,80 @@ orderFormEl?.addEventListener("submit", (e) => {
        return;
    }
 
-  
-   sendOrder(placeOrder);
+
+   // try-catch för att rendera ut meddelande om att antingen order kunde skickas eller inte
+   try {
+
+    const response = await sendOrder(placeOrder);
+    console.log('response: ', response);
+
+    renderStatusSuccess(response);
+    
+   } catch (error) {
+
+    renderStatusFail(); // här måste jag byta ut parametern
+    
+   }
+
+
 
    console.log('Order placed successfully!');
    // töm alla input-fält
 
 });
 }
+
+const renderStatusSuccess = (data: ApiResponse) => {
+    const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
+
+    wrapper.innerHTML = `
+    <div>
+    <h2>🛍️ Tack för din order! 🛍️</h2>
+    <p>Ditt ordernummer är: ${data.data.id}</p>
+    </div>
+    `
+}
+
+const renderStatusFail = () => {
+    const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
+
+    wrapper.innerHTML = `
+    <div>
+    <h2>Din order kunde inte skickas</h2>
+    <p>Eventuella fel:</p>
+    </div>
+    `
+
+}
+
+
+// function renderApiResponse(res) {
+//     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
+//     // const response = sendOrder(placeOrder);
+
+//     if (res.ok) {
+//         wrapper.innerHTML = `
+//         <div>
+//         <h2>Din order har skickats</h2>
+//         <p>Ditt ordernummer är: ${}</p>
+//         </div>
+//         `
+//     } else {
+
+//         wrapper.innerHTML = `
+//         <div>
+//         <h2>Din order kunde inte skickas</h2>
+//         </div>
+//         `
+        
+//         console.log('här renderar jag html för fail')
+
+//     }
+
+// }
+
+
+
 
 // funktional expression 
 // const svarFrånAPI = kallarPåAPi()

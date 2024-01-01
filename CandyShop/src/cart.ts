@@ -54,7 +54,7 @@ const renderCart = () => {
         </button>
     </header>
 
-    <div id="cartItemsWrapper">
+    <div class="cartItemsWrapper" id="cartItemsWrapper">
   <p>kundvagn<p>
       <ul>
        ${cartItems

@@ -19,7 +19,7 @@ interface Tag {
   slug: string;
 }
 
-export interface placeOrder {
+export interface PlaceOrder {
   name: string;
   adress: string;
   postnumber: number;
@@ -42,3 +42,28 @@ export interface CartItem extends ProductItem {
   amount: number;
   totalCost: number;
 }
+
+export interface ApiResponse {
+  status: string;
+  message: string;
+  data: Data;
+}
+
+export interface Data {
+  customer_first_name: string;
+  customer_last_name: string;
+  customer_address: string;
+  customer_postcode: string;
+  customer_city: string;
+  customer_email: string;
+  order_total: number;
+  order_items: Item[];
+}
+
+interface Item {
+  product_id: number;
+  qty: number;
+  item_price: number;
+  item_total: number;
+}
+

@@ -1,6 +1,7 @@
-import { placeOrder } from "./interface";
+import { Data, PlaceOrder } from "./interface";
 import { CartItem } from './interface'
 import { getCart } from "./localStorageLogic";
+import { sendOrder } from './apiCalls';
 
 // DOM referenser för alla input-fält
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
@@ -11,24 +12,7 @@ const cityInputEl = document.querySelector<HTMLInputElement>('#cityInput');
 const telInputEl = document.querySelector<HTMLInputElement>('#telInput');
 const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
 
-
-const submitOrder = async (placeOrder: placeOrder) => {
-
-    const res = await fetch("https://www.bortakvall.se/api/v2/users/31/orders", {
-        method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(placeOrder),
-    });
-    console.log('sending to api', res)
-  
-    if (!res.ok) {
-        throw new Error(`Sorry! There is an problem, could not place your order. Status code was: ${res.status}`)
-    }
-  }
-
-
+const cartItems: CartItem[] | null = getCart();
 
 orderFormEl?.addEventListener("submit", async (e) => {
     
@@ -37,54 +21,69 @@ orderFormEl?.addEventListener("submit", async (e) => {
      // input värden för alla inputfält
      const inputName = nameInputEl?.value || "";
      const adressInput = adressInputEl?.value || "";
-     const zipcodeInput = Number(zipcodeInputEl?.value);
+     const zipcodeInput = zipcodeInputEl?.value || "";
      const cityInput = cityInputEl?.value ||"";
-     const telInput = telInputEl?.value ? Number(telInputEl?.value) : null;
+     const telInput = telInputEl?.value ? telInputEl?.value : null;
      const mailInput = mailInputEl?.value ||"";
 
-
-    // skapa en if-sats som kollar att alla input med requiered är ifyllda
-    if (!inputName || !adressInput || isNaN(zipcodeInput) || !cityInput || !mailInput) {
-     alert("Please fill in all required fields");
-     return
-    }
+    const orderItems = cartItems?.map((cartItem) => {
+        return {
+            product_id: cartItem.id,
+            qty: cartItem.amount,
+            item_price: cartItem.price,
+            item_total: cartItem.totalCost,
+        };
+    })
 
 
 
     // ett object med beställaren inputs
-    const placeOrder: placeOrder = {
-    name: inputName,
-    adress: adressInput,
-    postnumber: zipcodeInput,
-    city: cityInput,
-    telefon: telInput,
-    epost: mailInput,
+    const placeOrder: Data = {
+    customer_first_name: inputName,
+    customer_last_name: inputName,
+    customer_address: adressInput,
+    customer_postcode: zipcodeInput,
+    customer_city: cityInput,
+    customer_email: mailInput,
+    order_total: totalPrice,
+    order_items: orderItems,
+
     }
 
     console.log("values to send to API: ", placeOrder);
 
+    // skapa en if-sats som kollar att alla input med requiered är ifyllda
+    if (!inputName || !adressInput || !zipcodeInput || !cityInput || !mailInput) {
+        alert("Please fill in all required fields");
+        return;
+    }
+
+    // en try-catch för att hantera utfallet av sendOrder om api-anropen genomfördes utförs else!
     try {
-        await submitOrder(placeOrder);
+        await sendOrder(placeOrder);
+
         console.log('Order placed successfully!');
-        // få tillbaka något från API:et?
-        alert('Order was succefully made and will be shipped soon as possible!✅')
 
         // töm alla input-fält
     } catch (error) {
         // fixa så att användaren ser att det blivit ett fel och inte i konsollen!
-        console.log('Could not send the order to API. The status code was')
+        console.error('Could not send the order to API. Error: ', error);
     }
+});
+
+let totalPrice: number = 0;
+cartItems?.forEach((total) => {
+  Number(totalPrice += total.totalCost);
 });
 
 
 
 export const renderOrder = () => {
-    const cartItems = getCart();
 
-    let totalPrice: number = 0;
-    cartItems?.forEach((total) => {
-      totalPrice += total.totalCost;
-    });
+    // let totalPrice: number = 0;
+    // cartItems?.forEach((total) => {
+    //   totalPrice += total.totalCost;
+    // });
   
     let totalProduct: number = 0;
     cartItems?.forEach((total) => {

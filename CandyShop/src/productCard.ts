@@ -1,5 +1,5 @@
 import { Product } from "./interface";
-import { fetchAllproducts } from "./getProductTwo";
+import { fetchAllproducts } from "./apiCalls";
 import { findProduct } from "./localStorageLogic";
 import { setListeners } from "./eventListners";
 

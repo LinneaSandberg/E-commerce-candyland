@@ -1,11 +1,11 @@
 import "./style.css";
 import { productCard } from "./productCard.ts";
-import {setListeners} from "./eventListners.ts"
-import {cartListener } from "./cart.ts";
+import { setListeners } from "./eventListners.ts";
+import { cartListener } from "./cart.ts";
+import { numberOfProducts } from "./productCard.ts";
 
-
-async function renderScreen(){
-  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+async function renderScreen() {
+  document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <nav>
     <p>CandyShop</p>
    
@@ -17,13 +17,12 @@ async function renderScreen(){
   </nav>
  
 <main id="toRender">
+  ${numberOfProducts()}
   ${await productCard()}
  
   </main>
-  `
-   setListeners();
-   cartListener();
+  `;
+  setListeners();
+  cartListener();
 }
-renderScreen()
-
-
+renderScreen();

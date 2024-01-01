@@ -1,11 +1,39 @@
 import { Product } from "./interface";
-import { fetchAllproducts } from "./getProductTwo";
+import { fetchAllproducts } from "./apiCalls";
 import { findProduct } from "./localStorageLogic";
 import { setListeners } from "./eventListners";
+
+const productList = await fetchAllproducts();
+
+export function numberOfProducts() {
+  console.log(productList);
+  const productsInStock = productList.filter(
+    (product) => product.stock_status === "instock"
+  );
+  return `
+  <div class="numberOfProducts">
+    <p>Vi har ${productList.length} produkter varav ${productsInStock.length} är i lager</p>
+  </div>
+  `;
+}
 
 export async function productCard() {
   //Kollar inte efter error då det görs i fetchAllproducts, borde jag ändå  kolla?
   const products: Product[] = await fetchAllproducts();
+
+  products.sort(function (a, b) {
+    let nameA = a.name.toLocaleUpperCase();
+    let nameB = b.name.toLocaleUpperCase();
+
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
   return products
     .map((element) => {
       return `

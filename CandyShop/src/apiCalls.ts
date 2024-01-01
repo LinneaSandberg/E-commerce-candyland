@@ -1,4 +1,4 @@
-import { Product } from "./interface";
+import { Product, PlaceOrder } from "./interface";
 import { productListToLocalStorage } from "./localStorageLogic";
 let candies: Product[] = [];
 export const divEl = document.querySelector<HTMLDivElement>("#app")!;
@@ -29,5 +29,26 @@ export const renderFetchedProducts = async () => {
     // renderProducts();
   } catch (error) {
     alert(`Could not get products!`);
+  }
+};
+
+
+
+// post an order to api
+export async function sendOrder(placeOrder: PlaceOrder) {
+
+  const apiURL = "https://www.bortakvall.se/api/v2/users/31/orders";
+
+  const res = await fetch(apiURL, {
+      method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(placeOrder),
+  });
+  console.log('sending to api', res)
+
+  if (!res.ok) {
+      throw new Error(`Sorry! There is an problem, could not place your order. Status code was: ${res.status}`)
   }
 };

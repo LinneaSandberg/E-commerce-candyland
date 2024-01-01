@@ -3,82 +3,47 @@ import { CartItem } from './interface'
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from './apiCalls';
 
+
+
+/* 
+GLOBALA SAKER RENDERAS DIREKT MED FILEN 
+DENNA KODEN KÖRS FÖRE FORM FINNS I DOM
+
+*/
 // DOM referenser för alla input-fält
-const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
-const nameInputEl = document.querySelector<HTMLInputElement>('#nameInput');
-const adressInputEl = document.querySelector<HTMLInputElement>('#adressInput');
-const zipcodeInputEl = document.querySelector<HTMLInputElement>('#zipcodeInput');
-const cityInputEl = document.querySelector<HTMLInputElement>('#cityInput');
-const telInputEl = document.querySelector<HTMLInputElement>('#telInput');
-const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
+// const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
+
 
 const cartItems: CartItem[] | null = getCart();
-
-orderFormEl?.addEventListener("submit", async (e) => {
-    
-    e.preventDefault();
-
-     // input värden för alla inputfält
-     const inputName = nameInputEl?.value || "";
-     const adressInput = adressInputEl?.value || "";
-     const zipcodeInput = zipcodeInputEl?.value || "";
-     const cityInput = cityInputEl?.value ||"";
-     const telInput = telInputEl?.value ? telInputEl?.value : null;
-     const mailInput = mailInputEl?.value ||"";
-
-    const orderItems = cartItems?.map((cartItem) => {
-        return {
-            product_id: cartItem.id,
-            qty: cartItem.amount,
-            item_price: cartItem.price,
-            item_total: cartItem.totalCost,
-        };
-    })
-
-
-
-    // ett object med beställaren inputs
-    const placeOrder: Data = {
-    customer_first_name: inputName,
-    customer_last_name: inputName,
-    customer_address: adressInput,
-    customer_postcode: zipcodeInput,
-    customer_city: cityInput,
-    customer_email: mailInput,
-    order_total: totalPrice,
-    order_items: orderItems,
-
-    }
-
-    console.log("values to send to API: ", placeOrder);
-
-    // skapa en if-sats som kollar att alla input med requiered är ifyllda
-    if (!inputName || !adressInput || !zipcodeInput || !cityInput || !mailInput) {
-        alert("Please fill in all required fields");
-        return;
-    }
-
-    // en try-catch för att hantera utfallet av sendOrder om api-anropen genomfördes utförs else!
-    try {
-        await sendOrder(placeOrder);
-
-        console.log('Order placed successfully!');
-
-        // töm alla input-fält
-    } catch (error) {
-        // fixa så att användaren ser att det blivit ett fel och inte i konsollen!
-        console.error('Could not send the order to API. Error: ', error);
-    }
-});
 
 let totalPrice: number = 0;
 cartItems?.forEach((total) => {
   Number(totalPrice += total.totalCost);
 });
 
+function objApi() {
+    const cart = getCart();
+    const orderItems = cart?.map((product) => {
+        return {
+            product_id: product.id,
+            qty: product.amount,
+            item_price: product.price,
+            item_total: product.totalCost,
+        };
+    })
+
+    return orderItems;
+}
+
+
+
+
+//----------------------------------------------
 
 
 export const renderOrder = () => {
+
+    const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
 
     // let totalPrice: number = 0;
     // cartItems?.forEach((total) => {
@@ -92,7 +57,7 @@ export const renderOrder = () => {
     const antal = totalProduct === 1 ? "vara" : "varor";
 
 
-    return `
+    wrapper.innerHTML= `
 <header class="header">
 <h2>Kassa</h2>
 <p>Orderinfo</p>
@@ -129,12 +94,17 @@ ${cartItems
  <p class="totalPrice">Totalsumma: ${totalPrice} kr</p>
 </div>
 
-<form id="orderForm" action="http://www.bortakvall.se/api/v2/users/31/orders" method="post">
+<form id="orderForm">
  <div class="inputWrapper">
-    <label for="nameInput" class="underline">
-        Namn:
-        <input type="text" name="namn" id="nameInput" required>
+    <label for="firstName" class="underline">
+        Förnamn:
+        <input type="text" name="förnamn" id="firstName" required>
     </label>
+
+    <label for="lastName" class="underline">
+    Efternamn:
+    <input type="text" name="efternamn" id="lastName" required>
+</label>
 
     <label for="adressInput" class="underline">
         Adress:
@@ -164,4 +134,86 @@ ${cartItems
  <button type="submit">Lägg order</button>
 </form>`
 
+
+placeOrder()
 }
+
+
+function placeOrder(){
+const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
+console.log("orderFormEl: ", orderFormEl)
+//----------------------------------------------
+orderFormEl?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+   // HÄR BÖR DU HÄMTA ELEMENTEN
+   const firstNameEl = document.querySelector<HTMLInputElement>('#firstName');
+   const lastNameEl = document.querySelector<HTMLInputElement>('#lastName');
+   const adressInputEl = document.querySelector<HTMLInputElement>('#adressInput');
+   const zipcodeInputEl = document.querySelector<HTMLInputElement>('#zipcodeInput');
+   const cityInputEl = document.querySelector<HTMLInputElement>('#cityInput');
+   const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
+   
+
+
+    // input värden för alla inputfält
+    const firstName = firstNameEl?.value || "";
+    const lastName = lastNameEl?.value || "";
+    const adressInput = adressInputEl?.value || "";
+    const zipcodeInput = zipcodeInputEl?.value || "";
+    const cityInput = cityInputEl?.value ||"";
+    const mailInput = mailInputEl?.value ||"";
+
+    const cart = objApi();
+    console.log(cart);
+
+
+   // ett object med beställaren inputs
+   const placeOrder = {
+   customer_first_name: firstName,
+   customer_last_name: lastName,
+   customer_address: adressInput,
+   customer_postcode: zipcodeInput,
+   customer_city: cityInput,
+   customer_email: mailInput,
+   order_total: totalPrice,
+   order_items: cart
+   }
+   
+   console.log(placeOrder.customer_first_name);
+   console.log(placeOrder.customer_last_name);
+
+
+   console.log("placeOrder", placeOrder);
+
+   // skapa en if-sats som kollar att alla input med requiered är ifyllda
+   if (!firstName || !lastName || !adressInput || !zipcodeInput || !cityInput || !mailInput) {
+       alert("Please fill in all required fields");
+       return;
+   }
+
+  
+   sendOrder(placeOrder);
+
+   console.log('Order placed successfully!');
+   // töm alla input-fält
+
+});
+}
+
+// funktional expression 
+// const svarFrånAPI = kallarPåAPi()
+// I api funktionen return DATA
+
+/***
+ * function responsePOST(){
+hämta elementen ditt form ligger innom 
+ 
+Rendera om vi fick sucsess 200
+ 
+aside.innerHTML = `
+ 
+`
+ 
+}
+ */

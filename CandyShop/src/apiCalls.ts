@@ -35,20 +35,25 @@ export const renderFetchedProducts = async () => {
 
 
 // post an order to api
-export async function sendOrder(placeOrder: PlaceOrder) {
+export async function sendOrder(inputValues: string) {
+  console.log('inputValues: ', inputValues);
 
   const apiURL = "https://www.bortakvall.se/api/v2/users/31/orders";
 
+
   const res = await fetch(apiURL, {
       method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(placeOrder),
-  });
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputValues),
+    });
   console.log('sending to api', res)
 
   if (!res.ok) {
       throw new Error(`Sorry! There is an problem, could not place your order. Status code was: ${res.status}`)
   }
+  const data = await res.json();
+  console.log("data: ", data);
+  return data;
 };

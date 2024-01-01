@@ -107,6 +107,7 @@ const renderCart = () => {
     closeCart()
     adjustCandyItems()
     getIdToRemove();
+    checkout();
 }
 
 // function for closing the cart, if user wants to look more in shop
@@ -122,11 +123,18 @@ function closeCart() {
   });
 }
 
+
+
+function checkout(){
+  const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
+  console.log(" checkoutEl :", checkoutEl)
+  checkoutEl?.addEventListener("click", (e) => {
+    console.log("checkout click")
+    renderOrder();
+  });
+}
 // // eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts
-const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
-checkoutEl?.addEventListener("click", (e) => {
-  renderOrder();
-});
+
 
 
 

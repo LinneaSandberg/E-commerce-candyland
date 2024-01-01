@@ -168,12 +168,13 @@ padding: 1rem;
 
 
 @media (min-width: 480px) {
-  
- 
+  /* Finns inget att göra */
 }
 
 @media (min-width: 768px) {
- 
+aside{
+  width: 50%;
+}
 }
 
 @media (min-width: 992px) {

@@ -19,8 +19,6 @@ export function cartListener() {
     mainEl.innerHTML += `<aside id="sideWindow"></aside>`
     renderCart()
   })
-
-
 }
 
 // UIn för att rendera ut asiden!
@@ -100,6 +98,7 @@ const renderCart = () => {
           Att betala:${totalProduct} kr
         </li>
         </ul>
+        <button id="checkout">Checkout</button>
     </div>
     `
       }
@@ -124,10 +123,10 @@ function closeCart() {
 }
 
 // // eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts
-// const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
-// checkoutEl?.addEventListener("click", (e) => {
-//   renderOrder();
-// });
+const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
+checkoutEl?.addEventListener("click", (e) => {
+  renderOrder();
+});
 
 
 
@@ -162,7 +161,6 @@ function getIdToRemove(){
   console.log(allCartItems)
 
   allCartItems.forEach((element)=>{
- 
     element.addEventListener("click", (node)=>{
       const candyID = element.getAttribute("value");
       removeFromCart(Number(candyID))

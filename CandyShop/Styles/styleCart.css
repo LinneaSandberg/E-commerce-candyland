@@ -26,9 +26,18 @@ aside {
   z-index: 3;
   overflow-y: scroll;
 }
+.cartItemsWrapper{
+  width: 80%;
+}
 
 li{
   list-style: none;
+width: 100% !important;
+}
+
+ul{
+  padding: 0px ;
+  width: 100% ;
 }
 
 .smallText {
@@ -42,7 +51,6 @@ li{
   padding: 0.3rem !important;
 }
 
-
 .itemCard {
   position: relative;
   display: flex;
@@ -51,7 +59,7 @@ li{
   gap: 0.625rem;
   padding:1rem;
   padding-right: 2rem;
-  width: 90%;
+  width: 100%;
 
   background-color: white;
   box-shadow: 0px 0px 2.4px -10px rgba(0, 0, 0, 0.011),
@@ -172,17 +180,27 @@ padding: 1rem;
 }
 
 @media (min-width: 768px) {
-aside{
-  width: 50%;
+
+.cartItemsWrapper{
+  width: 100%;
 }
+aside{
+  width: 60%;
+}
+
+
 }
 
 @media (min-width: 992px) {
- 
+  aside{
+    width: 50%;
+  }
 }
 
 @media (min-width: 1200px) {
-  
+  aside{
+    width: 30%;
+  }
  
 }
 @media (min-width: 1400px) {

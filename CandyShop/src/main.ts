@@ -8,7 +8,6 @@ async function renderScreen(){
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <nav>
     <p>CandyShop</p>
-   
     <div class="bajs">
         <i class="bi bi-cart2"></i>
         <div class="itemAmountInCart">0<div>
@@ -18,7 +17,6 @@ async function renderScreen(){
  
 <main id="toRender">
   ${await productCard()}
- 
   </main>
   `
    setListeners();

@@ -29,8 +29,26 @@ export function adjustCart(id, action) {
     item.amount--;
     item.totalCost = item.price * item.amount;
   }
-  cart?.splice(indexOfItem, 1, item);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  
+  if(item.amount == 0){
+    removeFromCart(Number(item.id))
+  }else {
+    cart?.splice(indexOfItem, 1, item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+  
+}
+
+export function removeFromCart(id:number){
+  const cart = getCart();
+  cart?.forEach((candy, index)=>{
+    if(candy.id === id){
+      const indexOfCandy = cart.findIndex((candy)=> candy.id === id)
+      console.log("indexOfCandy: ",indexOfCandy)
+      cart.splice(indexOfCandy, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  })
 }
 
 //DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data

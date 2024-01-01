@@ -27,12 +27,12 @@ aside {
   overflow-y: scroll;
 }
 
-.smallText {
-  font-size: 14px;
+li{
+  list-style: none;
 }
 
-.itemCard p {
-  margin: 0px;
+.smallText {
+  font-size: 14px;
 }
 
 .cartHeader {
@@ -42,31 +42,16 @@ aside {
   padding: 0.3rem !important;
 }
 
-thead > tr > th {
-  margin-block: auto;
-  padding-bottom: 1rem;
-}
-
-.cartTable {
-  width: 100%;
-}
-
-thead > tr > .itemCardWrapper {
-  text-align: center;
-}
 
 .itemCard {
   position: relative;
-
   display: flex;
   justify-content: flex-start;
   align-items: start;
   gap: 0.625rem;
-  margin: auto;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  padding-right: 2.5rem;
-  width: 80%;
+  padding:1rem;
+  padding-right: 2rem;
+  width: 90%;
 
   background-color: white;
   box-shadow: 0px 0px 2.4px -10px rgba(0, 0, 0, 0.011),
@@ -80,6 +65,9 @@ thead > tr > .itemCardWrapper {
 
 .itemCard > * {
   margin-block: auto;
+}
+.itemCard p {
+  margin: 0px;
 }
 
 .itemCard > img {
@@ -145,4 +133,57 @@ thead > tr > .itemCardWrapper {
 
 .eraseProduct:active {
   background-color: rgb(165, 62, 96);
+}
+
+
+.emptyCart{
+padding: 1rem;
+
+}
+
+.emptyCart button{
+  color: white;
+}
+
+/* SUMMERINGS BORT */
+.sumTable {
+  width: 100%;
+  text-align: right;
+  padding-inline: 3rem;
+  padding-bottom: 1rem;
+  background-color: white;
+}
+
+
+.sumTable > :first-child{
+  font-weight: bolder;
+}
+
+.sumTable ul > :last-child {
+  font-weight: bolder;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid black;
+}
+
+
+@media (min-width: 480px) {
+  
+ 
+}
+
+@media (min-width: 768px) {
+ 
+}
+
+@media (min-width: 992px) {
+ 
+}
+
+@media (min-width: 1200px) {
+  
+ 
+}
+@media (min-width: 1400px) {
+ 
 }

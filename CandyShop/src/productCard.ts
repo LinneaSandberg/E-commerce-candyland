@@ -2,6 +2,7 @@ import { Product } from "./interface";
 import { fetchAllproducts } from "./apiCalls";
 import { findProduct } from "./localStorageLogic";
 import { setListeners } from "./eventListners";
+import { cartListener } from "./cart";
 
 const productList = await fetchAllproducts();
 
@@ -60,7 +61,7 @@ export async function productCard() {
             <button id="eraseFromCart" value="${element.id}">
                 <i class="bi bi-cart-dash"></i>
             </button>
-            <p id="itemInCart">0</p>
+            <p id="itemInCart"></p>
             <button id="addToCart" value="${element.id}">
                 <i class="bi bi-cart-plus" value="add"></i>
             </button>
@@ -73,16 +74,22 @@ export async function productCard() {
 }
 
 //Renders popup
-export const renderPopup = (id) => {
+export const renderPopup = (id: string) => {
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
   const product = findProduct(id);
   const infoPopupHTML = `
     <div class="moreInfoPopup">
       <div class="moreInfoPopupContent">
-        <img src="https://www.bortakvall.se${product.images.large}" alt="largecandy">
+        <img src="https://www.bortakvall.se${
+          product.images.large
+        }" alt="largecandy">
         <h4>${product.name}</h4>
         <p>${product.description}</p>
-        <p>Antal i lager: ${product.stock_quantity}</p>
+        <p>Antal i lager: ${
+          product.stock_quantity == null
+            ? "Slut i lager"
+            : product.stock_quantity
+        }</p>
         <button class="closePopup">&times</button>
       </div>
     </div>`;
@@ -91,12 +98,13 @@ export const renderPopup = (id) => {
 
   const closePopup = document.querySelector<HTMLButtonElement>(".closePopup")!;
 
-  closePopup.addEventListener("click", (event) => {
+  closePopup.addEventListener("click", () => {
     const moreInfoPopup =
       document.querySelector<HTMLDivElement>(".moreInfoPopup");
     moreInfoPopup.remove();
   });
   setListeners();
+  cartListener();
 };
 
 // <div class="description"><p>${element.description.split("\n")[0]}</p></div>

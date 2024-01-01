@@ -10,9 +10,7 @@ async function renderScreen() {
     <p>CandyShop</p>
     <div class="bajs">
         <i class="bi bi-cart2"></i>
-        <div class="itemAmountInCart">0<div>
     </div>
-
   </nav>
  
 <main id="toRender">

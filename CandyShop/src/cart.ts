@@ -19,8 +19,6 @@ export function cartListener() {
     mainEl.innerHTML += `<aside id="sideWindow"></aside>`
     renderCart()
   })
-
-
 }
 
 // UIn för att rendera ut asiden!
@@ -56,7 +54,7 @@ const renderCart = () => {
         </button>
     </header>
 
-    <div id="cartItemsWrapper">
+    <div class="cartItemsWrapper" id="cartItemsWrapper">
   <p>kundvagn<p>
       <ul>
        ${cartItems
@@ -100,6 +98,7 @@ const renderCart = () => {
           Att betala:${totalProduct} kr
         </li>
         </ul>
+        <button id="checkout">Checkout</button>
     </div>
     `
       }
@@ -108,6 +107,7 @@ const renderCart = () => {
     closeCart()
     adjustCandyItems()
     getIdToRemove();
+    checkout();
 }
 
 // function for closing the cart, if user wants to look more in shop
@@ -123,11 +123,18 @@ function closeCart() {
   });
 }
 
+
+
+function checkout(){
+  const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
+  console.log(" checkoutEl :", checkoutEl)
+  checkoutEl?.addEventListener("click", (e) => {
+    console.log("checkout click")
+    renderOrder();
+  });
+}
 // // eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts
-// const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
-// checkoutEl?.addEventListener("click", (e) => {
-//   renderOrder();
-// });
+
 
 
 
@@ -162,7 +169,6 @@ function getIdToRemove(){
   console.log(allCartItems)
 
   allCartItems.forEach((element)=>{
- 
     element.addEventListener("click", (node)=>{
       const candyID = element.getAttribute("value");
       removeFromCart(Number(candyID))

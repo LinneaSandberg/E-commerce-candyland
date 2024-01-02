@@ -57,12 +57,12 @@ export async function productCard() {
     </article>
 
     <footer>
-        <button id="moreInfo" value="${element.id}">Mer Info</button>
+        <button id="moreInfo" value="${element.id}" ">Mer Info</button>
         <div class="addToCartContainer">
-            <button id="eraseFromCart" value="${element.id}">
+            <button id="eraseFromCart" value="${element.id} data-stockStatus="${element.stock_status}">
                 <i class="bi bi-cart-dash"></i>
             </button>
-            <button id="addToCart" value="${element.id}">
+            <button id="addToCart" value="${element.id}" data-stockStatus="${element.stock_status}">
                 <i class="bi bi-cart-plus" value="add"></i>
             </button>
         </div>
@@ -75,9 +75,10 @@ export async function productCard() {
 
 
 //Renders popup
-export const renderPopup = (id: string) => {
+export const renderPopup = (id: number) => {
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
-  const product = findProduct(id);
+  const product: Product = findProduct(id);
+  
   const infoPopupHTML = `
     <div class="moreInfoPopup">
       <div class="moreInfoPopupContent">
@@ -102,10 +103,11 @@ export const renderPopup = (id: string) => {
   closePopup.addEventListener("click", () => {
     const moreInfoPopup =
       document.querySelector<HTMLDivElement>(".moreInfoPopup");
-    moreInfoPopup.remove();
+    if (moreInfoPopup) {
+      moreInfoPopup.remove();
+    }
   });
   setListeners();
   cartListener();
 };
 
-// <div class="description"><p>${element.description.split("\n")[0]}</p></div>

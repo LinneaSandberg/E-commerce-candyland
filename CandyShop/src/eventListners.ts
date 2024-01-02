@@ -21,16 +21,23 @@ export function setListeners() {
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
-      renderPopup(infoBtn.value);
+      renderPopup(Number(infoBtn.value));
+
     });
   });
 
   //Tar bort produkt i localStorage
   eraseBtns.forEach((eraseBtn) => {
-    eraseBtn.addEventListener("click", (event) => {
-      console.log("Erase btn: ", eraseBtn.value);
-      const product = findProduct(eraseBtn.value);
+ // Kod appliceas på alla knappar
+    //stockstatus sparas för varje knapp
+    const stockStatus = eraseBtn.getAttribute("data-stockStatus");
+    //inhiberar addknapp om den är outofstock
+  if(stockStatus === "outofstock"){
+    eraseBtn.disabled = true;
+  }
 
+    eraseBtn.addEventListener("click", () => {
+      const product = findProduct(eraseBtn.value);
       removeProductShoppingCart({
         id: product.id,
         price: product.price,
@@ -38,7 +45,6 @@ export function setListeners() {
         name: product.name,
         stock: product.stock_quantity,
       });
-
       // Behöver få ut ID på godiset som användaren har klickat på
       // Kolla om det finns i cart i  localStorage och ta bort 1st
     });
@@ -46,7 +52,16 @@ export function setListeners() {
 
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
-    addBtn.addEventListener("click", (event) => {
+    // Kod appliceas på alla knappar
+    //stockstatus sparas för varje knapp
+      const stockStatus = addBtn.getAttribute("data-stockStatus");
+      //inhiberar addknapp om den är outofstock
+    if(stockStatus === "outofstock"){
+      addBtn.disabled = true;
+    }
+
+    addBtn.addEventListener("click", () => {
+   // kod appliceras på en specifik knapp NÄR VI KLICKAR PÅ DEN
       const product = findProduct(addBtn.value);
 
       addProductShoppingCart({
@@ -61,11 +76,10 @@ export function setListeners() {
 }
 
 export function checkoutListner() {
-  console.log("checkoutListner");
   const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
 
-  checkoutEl?.addEventListener("click", (e) => {
+  checkoutEl?.addEventListener("click", () => {
     const asideWrapper = document.querySelector<HTMLDivElement>("#sideWindow")!;
 
     asideWrapper.innerHTML = `
@@ -73,21 +87,3 @@ export function checkoutListner() {
     `;
   });
 }
-
-//Sätta eventlyssnare på alla knappar som ska lägga till godis i cart
-//Du behöver lista ut hur du tar ut följande information om godiset på det produktkort som har fått ett event (click)
-/*
-  interface ProductItem{ 
-  id: number, <- godis ID
-  image: string <- godis URL
-  name: string <- Godiset namn
-  price: number <- Priset för godiset
-  stock: number <- Hur många som är i stock // osäker låt mig tänka lite här varför du behöver skicka detta. 
-  } */
-
-// skicka in objectet till addProductShoppingCart()
-// nu ska det inte behöva göras mer
-
-// ------------------ TIPS ------------------------
-
-// Du behöver ha koll på localStorageLogic tar emot och gör.

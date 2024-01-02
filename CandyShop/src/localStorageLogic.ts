@@ -1,5 +1,4 @@
 import { Product, ProductItem, CartItem } from "./interface";
-import { productCard } from "./productCard";
 
 let cart: CartItem[] = []; //kundvagn
 
@@ -10,41 +9,44 @@ export function productListToLocalStorage(productList: Product[]) {
   // const cart = JSON.parse(localStorage.getItem('cart'));;
 }
 
-export function findProduct(id) {
-  const productList = JSON.parse(localStorage.getItem("productList"));
+export function findProduct(id: number) {
+  const productList: Product[] = JSON.parse(localStorage.getItem("productList") ?? "");
   const product = productList.find((product) => product.id === Number(id));
   return product;
 }
 
-export function adjustCart(id, action) {
+export function adjustCart(id: number, action: string) {
   const item = findExistingItem(id);
+  //Hämtar cart för att kunna uppdatera nuvarande
   const cart = getCart();
+  // Hämtar index av vårt item för att kunna ändra det och lägga in på samma plats
   const indexOfItem = cart?.findIndex((candy) => candy.id === Number(id));
-  console.log("item: ", item);
 
+if(item){
   if (action === "add") {
     item.amount++;
     item.totalCost = item.price * item.amount;
-  } else {
+} else {
     item.amount--;
     item.totalCost = item.price * item.amount;
-  }
-  
-  if(item.amount == 0){
-    removeFromCart(Number(item.id))
-  }else {
-    cart?.splice(indexOfItem, 1, item);
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+}
+
+if(item.amount == 0){
+  removeFromCart(Number(item.id))
+}else {
+  cart?.splice(indexOfItem, 1, item);
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+}
+ 
   
 }
 
 export function removeFromCart(id:number){
   const cart = getCart();
-  cart?.forEach((candy, index)=>{
+  cart?.forEach((candy, index) => {
     if(candy.id === id){
       const indexOfCandy = cart.findIndex((candy)=> candy.id === id)
-      console.log("indexOfCandy: ",indexOfCandy)
       cart.splice(indexOfCandy, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
     }
@@ -83,9 +85,7 @@ export function addProductShoppingCart(product: ProductItem) {
 }
 
 export function removeProductShoppingCart(product: ProductItem) {
-  console.log("product: ", product);
-
-  const item = findExistingItem(product);
+  const item = findExistingItem(product.id); // <- SÅ HÄR BLIR DET FEL
 
   if (item) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
@@ -104,25 +104,24 @@ export function removeProductShoppingCart(product: ProductItem) {
 }
 
 //Ger dig hela kundvagnen
-export function getCart(): CartItem[] | null {
+export function getCart(): CartItem[] {
   const cartJSON = localStorage.getItem("cart");
-  console.log("cartJSON", cartJSON); 
   if (cartJSON !== null) {
-    const cart = JSON.parse(cartJSON);
+    const cart: CartItem[] = JSON.parse(cartJSON);
     return cart;
   } else {
     return cart = [];
   }
 }
 
-function findExistingItem(id) {
+function findExistingItem(id: number):CartItem | undefined {
   const cartJSON = localStorage.getItem("cart");
+
   if (cartJSON) {
     cart = JSON.parse(cartJSON);
-    const found = cart.find((candy) => candy.id === Number(id));
+    const found = cart.find((candy) =>   candy.id == id);
     return found;
   } else {
-    console.log("else kördes");
     return undefined;
   }
 }

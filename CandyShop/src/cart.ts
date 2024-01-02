@@ -26,11 +26,15 @@ const renderCart = () => {
   const aside = document.querySelector<HTMLDivElement>("#sideWindow")!;
   const cartItems = getCart();
 
-   // totala summan för alla produkter
+   // totala summan för alla produkter //Lägg till IF 
    let totalPrice: number = 0;
-   cartItems?.forEach((total) => {
-     totalPrice += total.totalCost;
-   });
+
+   if(cartItems !== null ){
+    cartItems?.forEach((total) => {
+      totalPrice += total.totalCost;
+    });
+   }
+   
    console.log(totalPrice);
  
    // totala antalet produkter både av samma och olika
@@ -39,6 +43,7 @@ const renderCart = () => {
      totalProduct += total.amount;
    });
 
+   
    if(cartItems.length <1){
     aside.innerHTML = `
     <div class="emptyCart">

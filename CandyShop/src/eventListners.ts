@@ -3,7 +3,7 @@ import {
   removeProductShoppingCart,
   findProduct,
 } from "./localStorageLogic";
-import { renderOrder } from './placeOrder'
+import { renderOrder } from "./placeOrder";
 import { renderPopup } from "./productCard";
 
 export function setListeners() {
@@ -61,18 +61,17 @@ export function setListeners() {
 }
 
 export function checkoutListner() {
-  console.log("checkoutListner")
-  const checkoutEl = document.querySelector<HTMLButtonElement>('#checkout')!;
-  const mainEL = document.querySelector<HTMLDivElement>('#app')!;
+  console.log("checkoutListner");
+  const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;
+  const mainEL = document.querySelector<HTMLDivElement>("#app")!;
 
-  checkoutEl?.addEventListener('click', (e) => {
-    const asideWrapper = document.querySelector<HTMLDivElement>('#sideWindow')!;
-    
+  checkoutEl?.addEventListener("click", (e) => {
+    const asideWrapper = document.querySelector<HTMLDivElement>("#sideWindow")!;
+
     asideWrapper.innerHTML = `
     ${renderOrder()}
-    `
-  })
-
+    `;
+  });
 }
 
 //Sätta eventlyssnare på alla knappar som ska lägga till godis i cart

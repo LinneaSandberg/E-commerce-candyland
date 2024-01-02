@@ -40,7 +40,6 @@ export async function sendOrder(inputValues: string) {
 
   const apiURL = "https://www.bortakvall.se/api/v2/users/31/orders";
 
-
   const res = await fetch(apiURL, {
       method: "POST",
       headers: {

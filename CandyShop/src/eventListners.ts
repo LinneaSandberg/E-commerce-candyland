@@ -3,8 +3,8 @@ import {
   removeProductShoppingCart,
   findProduct,
 } from "./localStorageLogic";
-import { renderOrder } from './placeOrder'
-import { renderPopup } from "./productCard";
+import { renderOrder } from "./placeOrder";
+import { productCard, renderPopup } from "./productCard";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -46,10 +46,17 @@ export function setListeners() {
 
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
-    addBtn.addEventListener("click", (event) => {
-      const product = findProduct(addBtn.value);
+    const productList = JSON.parse(localStorage.getItem("productList"));
+    const product = productList.find(
+      (product) => product.id === addBtn.dataset.productId
+    );
 
-      addProductShoppingCart({
+    if (product.stock_status !== "instock") {
+      addBtn.disabled = true;
+    }
+
+    addBtn.addEventListener("click", (event) => {
+      const product = addProductShoppingCart({
         id: product.id,
         price: product.price,
         image: `https://www.bortakvall.se${product.images.thumbnail}`,
@@ -61,18 +68,17 @@ export function setListeners() {
 }
 
 export function checkoutListner() {
-  console.log("checkoutListner")
-  const checkoutEl = document.querySelector<HTMLButtonElement>('#checkout')!;
-  const mainEL = document.querySelector<HTMLDivElement>('#app')!;
+  console.log("checkoutListner");
+  const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;
+  const mainEL = document.querySelector<HTMLDivElement>("#app")!;
 
-  checkoutEl?.addEventListener('click', (e) => {
-    const asideWrapper = document.querySelector<HTMLDivElement>('#sideWindow')!;
-    
+  checkoutEl?.addEventListener("click", (e) => {
+    const asideWrapper = document.querySelector<HTMLDivElement>("#sideWindow")!;
+
     asideWrapper.innerHTML = `
     ${renderOrder()}
-    `
-  })
-
+    `;
+  });
 }
 
 //Sätta eventlyssnare på alla knappar som ska lägga till godis i cart

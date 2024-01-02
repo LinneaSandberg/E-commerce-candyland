@@ -7,7 +7,6 @@ import { cartListener } from "./cart";
 const productList = await fetchAllproducts();
 
 export function numberOfProducts() {
-  console.log(productList);
   const productsInStock = productList.filter(
     (product) => product.stock_status === "instock"
   );
@@ -39,7 +38,9 @@ export async function productCard() {
     .map((element) => {
       return `
 <div class="productCard" value="${element.id}" status="${element.stock_status}">
-    <div class="notis">${element.stock_status == "instock" ? "In Stock" : "Not in stock"}</div>
+    <div class="notis">${
+      element.stock_status == "instock" ? "In Stock" : "Not in stock"
+    }</div>
     
     <img class="" src="https://www.bortakvall.se${
       element.images.thumbnail

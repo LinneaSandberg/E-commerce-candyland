@@ -306,6 +306,18 @@ button {
   cursor: pointer;
 }
 
+/* button:disabled {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.5em 1em;
+
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--mainGreen);
+
+  cursor: pointer;
+} */
+
 button:active {
   background-color: #2fa365;
 }

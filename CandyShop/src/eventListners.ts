@@ -4,7 +4,7 @@ import {
   findProduct,
 } from "./localStorageLogic";
 import { renderOrder } from "./placeOrder";
-import { productCard, renderPopup } from "./productCard";
+import { renderPopup } from "./productCard";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -46,17 +46,10 @@ export function setListeners() {
 
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
-    const productList = JSON.parse(localStorage.getItem("productList"));
-    const product = productList.find(
-      (product) => product.id === addBtn.dataset.productId
-    );
-
-    if (product.stock_status !== "instock") {
-      addBtn.disabled = true;
-    }
-
     addBtn.addEventListener("click", (event) => {
-      const product = addProductShoppingCart({
+      const product = findProduct(addBtn.value);
+
+      addProductShoppingCart({
         id: product.id,
         price: product.price,
         image: `https://www.bortakvall.se${product.images.thumbnail}`,

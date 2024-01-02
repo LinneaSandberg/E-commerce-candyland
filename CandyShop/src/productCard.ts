@@ -73,6 +73,7 @@ export async function productCard() {
     .join("");
 }
 
+
 //Renders popup
 export const renderPopup = (id: string) => {
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;

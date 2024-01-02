@@ -29,7 +29,6 @@ export interface PlaceOrder {
 }
 
 export interface ProductItem {
-  // Tar emot från Johan
   id: number;
   image: string;
   name: string;
@@ -69,4 +68,7 @@ interface Item {
   item_price: number;
   item_total: number;
 }
+
+
+
 

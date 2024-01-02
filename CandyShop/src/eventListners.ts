@@ -21,7 +21,8 @@ export function setListeners() {
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
-      renderPopup(infoBtn.value);
+      renderPopup(Number(infoBtn.value));
+
     });
   });
 
@@ -32,10 +33,10 @@ export function setListeners() {
     const stockStatus = eraseBtn.getAttribute("data-stockStatus");
     //inhiberar addknapp om den är outofstock
   if(stockStatus === "outofstock"){
-    eraseBtns.disabled = true;
+    eraseBtn.disabled = true;
   }
 
-    eraseBtn.addEventListener("click", (event) => {
+    eraseBtn.addEventListener("click", () => {
       const product = findProduct(eraseBtn.value);
       removeProductShoppingCart({
         id: product.id,
@@ -59,7 +60,7 @@ export function setListeners() {
       addBtn.disabled = true;
     }
 
-    addBtn.addEventListener("click", (event) => {
+    addBtn.addEventListener("click", () => {
    // kod appliceras på en specifik knapp NÄR VI KLICKAR PÅ DEN
       const product = findProduct(addBtn.value);
 
@@ -75,11 +76,10 @@ export function setListeners() {
 }
 
 export function checkoutListner() {
-  console.log("checkoutListner");
   const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
 
-  checkoutEl?.addEventListener("click", (e) => {
+  checkoutEl?.addEventListener("click", () => {
     const asideWrapper = document.querySelector<HTMLDivElement>("#sideWindow")!;
 
     asideWrapper.innerHTML = `
@@ -87,21 +87,3 @@ export function checkoutListner() {
     `;
   });
 }
-
-//Sätta eventlyssnare på alla knappar som ska lägga till godis i cart
-//Du behöver lista ut hur du tar ut följande information om godiset på det produktkort som har fått ett event (click)
-/*
-  interface ProductItem{ 
-  id: number, <- godis ID
-  image: string <- godis URL
-  name: string <- Godiset namn
-  price: number <- Priset för godiset
-  stock: number <- Hur många som är i stock // osäker låt mig tänka lite här varför du behöver skicka detta. 
-  } */
-
-// skicka in objectet till addProductShoppingCart()
-// nu ska det inte behöva göras mer
-
-// ------------------ TIPS ------------------------
-
-// Du behöver ha koll på localStorageLogic tar emot och gör.

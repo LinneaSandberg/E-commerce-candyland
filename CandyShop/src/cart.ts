@@ -14,7 +14,7 @@ export function cartListener() {
   const mainEl = document.querySelector<HTMLDivElement>("#app")!;
   const cartIcon = document.querySelector<HTMLDivElement>(".bajs")!;
 
-  cartIcon.addEventListener("click", ()=>{
+  cartIcon.addEventListener("click", () => {
     mainEl.innerHTML += `<aside id="sideWindow"></aside>`
     renderCart()
   })
@@ -25,7 +25,7 @@ export function cartListener() {
 const renderCart = () => {
   const aside = document.querySelector<HTMLDivElement>("#sideWindow")!;
   
-  const cartItems = getCart();
+  const cartItems: CartItem[] = getCart();
 
    
    if(cartItems.length <1){
@@ -116,7 +116,7 @@ const renderCart = () => {
 function closeCart() {
   const buttonCartEl =
     document.querySelector<HTMLButtonElement>(".closeCartBtn")!;
-  buttonCartEl?.addEventListener("click", (e) => {
+  buttonCartEl?.addEventListener("click", () => {
     const cartItemsWrapperEl =
       document.querySelector<HTMLDivElement>("#sideWindow")!;
     cartItemsWrapperEl.remove();
@@ -129,15 +129,11 @@ function closeCart() {
 
 function checkout(){
   const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
-  console.log(" checkoutEl :", checkoutEl)
-  checkoutEl?.addEventListener("click", (e) => {
-    console.log("checkout click")
+  checkoutEl?.addEventListener("click", () => {
     renderOrder();
   });
 }
 // // eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts
-
-
 
 
 
@@ -149,29 +145,35 @@ function adjustCandyItems() {
 
   increaseCandy.forEach((increaseBtn) => {
     //Öka antalet godisar
-    increaseBtn.addEventListener("click", (event) => {
-      const id = increaseBtn.nextElementSibling.getAttribute("value");
-      adjustCart(id, "add");
-      renderCart()
+    increaseBtn.addEventListener("click", () => {
+
+      if(increaseBtn.nextElementSibling){
+        const id: number = Number(increaseBtn.nextElementSibling.getAttribute("value"));
+        adjustCart(id, "add");
+        renderCart()
+      }
     });
   });
 
   decreaseCandy.forEach((decreaseBtn) => {
-    decreaseBtn.addEventListener("click", (event) => {
-      const id = decreaseBtn.previousElementSibling.getAttribute("value");
+
+  decreaseBtn.addEventListener("click", () => {
+
+    if(decreaseBtn.previousElementSibling){
+      const id: number = Number(decreaseBtn.previousElementSibling.getAttribute("value"));
       adjustCart(id, "remove");
       renderCart()
-    });
+    }
   });
+});
 }
 
-// Tar bort direkt från kundvagnen
-function getIdToRemove(){
-  const allCartItems = document.querySelectorAll(".eraseProduct");
-  console.log(allCartItems)
 
+// Tar bort direkt från kundvagnen
+function getIdToRemove() {
+  const allCartItems = document.querySelectorAll(".eraseProduct");
   allCartItems.forEach((element)=>{
-    element.addEventListener("click", (node)=>{
+    element.addEventListener("click", ()=>{
       const candyID = element.getAttribute("value");
       removeFromCart(Number(candyID))
       renderCart()

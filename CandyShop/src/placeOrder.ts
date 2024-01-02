@@ -1,4 +1,4 @@
-import { ApiResponse, CartItem } from "./interface";
+import { ApiResponse, CartItem, Data } from "./interface";
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from './apiCalls';
 
@@ -18,12 +18,9 @@ function objApi() {
 }
 
 
-
 // funktion för att rendera orderinfo + formulär
 export function renderOrder() {
-
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
-
     const cartItems = getCart();
     
     let totalPrice: number = 0;
@@ -36,7 +33,6 @@ export function renderOrder() {
       totalProduct += total.amount;
     });
     const antal = totalProduct === 1 ? "vara" : "varor";
-
 
     wrapper.innerHTML= `
 <header class="header">
@@ -115,10 +111,8 @@ ${cartItems
  <button type="submit">Lägg order</button>
 </form>`
 
-
 placeOrder(totalPrice);
 }
-
 
 // funktion för att skicka order med inputvärderna till api
 function placeOrder(totalPrice: number){
@@ -129,7 +123,6 @@ const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
 orderFormEl?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-
    // HÄR BÖR DU HÄMTA ELEMENTEN
    const firstNameEl = document.querySelector<HTMLInputElement>('#firstName');
    const lastNameEl = document.querySelector<HTMLInputElement>('#lastName');
@@ -138,8 +131,6 @@ orderFormEl?.addEventListener("submit", async (e) => {
    const cityInputEl = document.querySelector<HTMLInputElement>('#cityInput');
    const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
    
-
-
     // input värden för alla inputfält
     const firstName = firstNameEl?.value || "";
     const lastName = lastNameEl?.value || "";
@@ -149,10 +140,9 @@ orderFormEl?.addEventListener("submit", async (e) => {
     const mailInput = mailInputEl?.value ||"";
 
     const cart = objApi();
-    console.log(cart);
 
    // ett object med beställaren inputs
-   const placeOrder = {
+   const placeOrder: Data = {
    customer_first_name: firstName,
    customer_last_name: lastName,
    customer_address: adressInput,
@@ -162,12 +152,6 @@ orderFormEl?.addEventListener("submit", async (e) => {
    order_total: totalPrice,
    order_items: cart
    }
-   
-   console.log(placeOrder.customer_first_name);
-   console.log(placeOrder.customer_last_name);
-
-
-   console.log("placeOrder", placeOrder);
 
    // skapa en if-sats som kollar att alla input med requiered är ifyllda
    if (!firstName || !lastName || !adressInput || !zipcodeInput || !cityInput || !mailInput) {
@@ -178,8 +162,8 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
    //Testar göra ett API inrop. catch hanterar om det inte går att anropa APIet
    try {
-    const response = await sendOrder(placeOrder, totalPrice);
-    console.log('response: ', response);
+    const response = await sendOrder(placeOrder);
+   
     renderStatusSuccess(response);
    } catch (error) {
     renderStatusFail(); // här måste jag byta ut parametern

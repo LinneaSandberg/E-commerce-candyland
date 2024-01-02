@@ -45,8 +45,11 @@ export interface CartItem extends ProductItem {
 
 export interface ApiResponse {
   status: string;
-  message: string;
-  data: Data;
+  data: {
+    id: number;
+    user_id: number;
+    order_date: string;
+  }
 }
 
 export interface Data {

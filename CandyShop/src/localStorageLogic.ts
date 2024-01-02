@@ -3,6 +3,7 @@ import { productCard } from "./productCard";
 
 let cart: CartItem[] = []; //kundvagn
 
+
 //Lägga in apiAnropet i localStorage
 //Lägg till om det inte redan finns en lista
 export function productListToLocalStorage(productList: Product[]) {
@@ -83,9 +84,9 @@ export function addProductShoppingCart(product: ProductItem) {
 }
 
 export function removeProductShoppingCart(product: ProductItem) {
-  console.log("product: ", product);
-
-  const item = findExistingItem(product);
+  console.log("removeProductShoppingCart | product", product) //Innehåller data 
+  const item = findExistingItem(product.id); // <- SÅ HÄR BLIR DET FEL
+  console.log("item: ", item)// item innehåller inte data 
 
   if (item) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
@@ -106,7 +107,6 @@ export function removeProductShoppingCart(product: ProductItem) {
 //Ger dig hela kundvagnen
 export function getCart(): CartItem[] | null {
   const cartJSON = localStorage.getItem("cart");
-  console.log("cartJSON", cartJSON); 
   if (cartJSON !== null) {
     const cart = JSON.parse(cartJSON);
     return cart;
@@ -119,10 +119,9 @@ function findExistingItem(id) {
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON) {
     cart = JSON.parse(cartJSON);
-    const found = cart.find((candy) => candy.id === Number(id));
+    const found = cart.find((candy) =>   candy.id == id);
     return found;
   } else {
-    console.log("else kördes");
     return undefined;
   }
 }

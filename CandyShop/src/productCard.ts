@@ -57,12 +57,12 @@ export async function productCard() {
     </article>
 
     <footer>
-        <button id="moreInfo" value="${element.id}">Mer Info</button>
+        <button id="moreInfo" value="${element.id} ">Mer Info</button>
         <div class="addToCartContainer">
-            <button id="eraseFromCart" value="${element.id}">
+            <button id="eraseFromCart" value="${element.id} data-stockStatus="${element.stock_status}">
                 <i class="bi bi-cart-dash"></i>
             </button>
-            <button id="addToCart" value="${element.id}">
+            <button id="addToCart" value="${element.id}" data-stockStatus="${element.stock_status}">
                 <i class="bi bi-cart-plus" value="add"></i>
             </button>
         </div>

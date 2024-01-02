@@ -9,17 +9,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import { setListeners } from "./eventListners";
 
 
-
 //Öppna aside som innehåller kassan
 export function cartListener() {
   const mainEl = document.querySelector<HTMLDivElement>("#app")!;
   const cartIcon = document.querySelector<HTMLDivElement>(".bajs")!;
 
-  cartIcon.addEventListener("click", (event)=>{
+  cartIcon.addEventListener("click", ()=>{
     mainEl.innerHTML += `<aside id="sideWindow"></aside>`
     renderCart()
   })
 }
+
 
 // UIn för att rendera ut asiden!
 const renderCart = () => {

@@ -3,13 +3,7 @@ import { getCart } from "./localStorageLogic";
 import { sendOrder } from './apiCalls';
 
 
-const cartItems: CartItem[] | null = getCart();
-
-let totalPrice: number = 0;
-cartItems?.forEach((total) => {
-  Number(totalPrice += total.totalCost);
-});
-
+// 
 function objApi() {
     const cart = getCart();
     const orderItems = cart?.map((product) => {
@@ -20,20 +14,22 @@ function objApi() {
             item_total: product.totalCost,
         };
     })
-
     return orderItems;
 }
 
 
 
-
-//----------------------------------------------
-
-
 // funktion för att rendera orderinfo + formulär
-export const renderOrder = () => {
+export function renderOrder() {
 
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
+
+    const cartItems = getCart();
+    
+    let totalPrice: number = 0;
+    cartItems?.forEach((total) => {
+    totalPrice += total.totalCost;
+    });
   
     let totalProduct: number = 0;
     cartItems?.forEach((total) => {
@@ -98,7 +94,7 @@ ${cartItems
 
     <label for="zipcodeInput" class="underline">
         Postnummer:
-        <input type="text" name="zipcode" id="zipcodeInput" required>
+        <input type="text" name="zipcode" id="zipcodeInput" minlength="5" maxlength="6" required>
     </label>
 
     <label for="cityInput" class="underline">
@@ -120,17 +116,19 @@ ${cartItems
 </form>`
 
 
-placeOrder();
+placeOrder(totalPrice);
 }
 
 
 // funktion för att skicka order med inputvärderna till api
-function placeOrder(){
+function placeOrder(totalPrice: number){
+    console.log('placeOrder | totalPrice: ', totalPrice);
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
-console.log("orderFormEl: ", orderFormEl)
+
 //----------------------------------------------
 orderFormEl?.addEventListener("submit", async (e) => {
     e.preventDefault();
+
 
    // HÄR BÖR DU HÄMTA ELEMENTEN
    const firstNameEl = document.querySelector<HTMLInputElement>('#firstName');
@@ -152,7 +150,6 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
     const cart = objApi();
     console.log(cart);
-
 
    // ett object med beställaren inputs
    const placeOrder = {
@@ -179,23 +176,15 @@ orderFormEl?.addEventListener("submit", async (e) => {
    }
 
 
-   // try-catch för att rendera ut meddelande om att antingen order kunde skickas eller inte
+   //Testar göra ett API inrop. catch hanterar om det inte går att anropa APIet
    try {
-
-    const response = await sendOrder(placeOrder);
+    const response = await sendOrder(placeOrder, totalPrice);
     console.log('response: ', response);
-
     renderStatusSuccess(response);
-    
    } catch (error) {
-
     renderStatusFail(); // här måste jag byta ut parametern
-    
    }
 
-
-
-   console.log('Order placed successfully!');
    // töm alla input-fält
 
 });
@@ -214,58 +203,12 @@ const renderStatusSuccess = (data: ApiResponse) => {
 
 const renderStatusFail = () => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
-
     wrapper.innerHTML = `
     <div>
     <h2>Din order kunde inte skickas</h2>
-    <p>Eventuella fel:</p>
+    <p>Felet ligger hos vår leverantör och de är medvetna om felet</p>
+    <p>LÄGG IN EN GIF</p>
     </div>
     `
 
 }
-
-
-// function renderApiResponse(res) {
-//     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
-//     // const response = sendOrder(placeOrder);
-
-//     if (res.ok) {
-//         wrapper.innerHTML = `
-//         <div>
-//         <h2>Din order har skickats</h2>
-//         <p>Ditt ordernummer är: ${}</p>
-//         </div>
-//         `
-//     } else {
-
-//         wrapper.innerHTML = `
-//         <div>
-//         <h2>Din order kunde inte skickas</h2>
-//         </div>
-//         `
-        
-//         console.log('här renderar jag html för fail')
-
-//     }
-
-// }
-
-
-
-
-// funktional expression 
-// const svarFrånAPI = kallarPåAPi()
-// I api funktionen return DATA
-
-/***
- * function responsePOST(){
-hämta elementen ditt form ligger innom 
- 
-Rendera om vi fick sucsess 200
- 
-aside.innerHTML = `
- 
-`
- 
-}
- */

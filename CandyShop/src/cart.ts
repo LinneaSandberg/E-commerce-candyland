@@ -24,22 +24,10 @@ export function cartListener() {
 // UIn för att rendera ut asiden!
 const renderCart = () => {
   const aside = document.querySelector<HTMLDivElement>("#sideWindow")!;
+  
   const cartItems = getCart();
 
-   // totala summan för alla produkter
-   let totalPrice: number = 0;
-   cartItems?.forEach((total) => {
-     totalPrice += total.totalCost;
-   });
-   console.log(totalPrice);
- 
-   // totala antalet produkter både av samma och olika
-   let totalProduct: number = 0;
-   cartItems?.forEach((total) => {
-     totalProduct += total.amount;
-   });
-
-   if(cartItems.length <1){
+   if(cartItems.length < 1){
     aside.innerHTML = `
     <div class="emptyCart">
     <p>Tyvärr har du inget i din kundvagn</p>
@@ -47,6 +35,19 @@ const renderCart = () => {
     </div>
     `
    }else{
+    // totala summan för alla produkter
+   let totalPrice: number = 0;
+   cartItems?.forEach((total) => {
+    totalPrice += total.totalCost;
+   });
+   console.log(totalPrice);
+ 
+   // totala antalet produkter både av samma och olika
+   let totalProduct: number = 0;
+   cartItems?.forEach((total) => {
+    totalProduct += total.amount;
+   });
+
     aside.innerHTML=`
     <header class="cartHeader">
         <button class="closeCartBtn">
@@ -89,13 +90,13 @@ const renderCart = () => {
     <p>Din order:</p>
         <ul>
         <li class="smallText">
-          Antal godisar: ${totalProduct} kr
+          Antal godisar: ${totalProduct} st
         </li>
         <li class="smallText">
           skatt: ${Number(totalPrice*0.2).toFixed(0)} kr
         </li>
         <li>
-          Att betala:${totalProduct} kr
+          Att betala:${totalPrice} kr
         </li>
         </ul>
         <button id="checkout">Checkout</button>

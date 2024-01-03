@@ -24,13 +24,18 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
   height: 100vh;
   z-index: 2;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .moreInfoPopupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  width: 100%;
-  max-width: 50vw;
-  margin: 10% auto;
+
+  max-width: 80vw;
+  max-height: 80vh;
   overflow: auto;
   background: white;
   position: relative;
@@ -43,14 +48,18 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
   color: var(--textColor);
 
-  display: flex;
-  flex-direction: column;
+  padding: 1rem;
 }
 
 .moreInfoPopupContent img {
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  margin-bottom: 1rem;
+  margin: 0;
+}
+
+.popupText {
+  max-width: 100%;
+  margin: 0;
 }
 
 .closePopup {
@@ -63,13 +72,22 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
 @media (min-width: 480px) {
   .moreInfoPopupContent {
-    max-width: 90vw;
+    flex-direction: column;
   }
 }
 
 @media (min-width: 768px) {
   .moreInfoPopupContent {
-    max-width: 80vw;
+    flex-direction: row;
+    max-width: 60vw;
+    max-height: 70vh;
+  }
+  .moreInfoPopupContent img {
+    max-width: 50%;
+  }
+
+  .popupText {
+    max-width: 50%;
   }
 }
 
@@ -78,7 +96,6 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
 @media (min-width: 1200px) {
 }
-
 
 /* a {
   font-weight: 500;

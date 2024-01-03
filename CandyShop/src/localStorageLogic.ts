@@ -1,20 +1,20 @@
 import { Product, ProductItem, CartItem } from "./interface";
 
-let cart: CartItem[] = []; //kundvagn
+let cart: CartItem[] = [];
 
-//Lägga in apiAnropet i localStorage
-//Lägg till om det inte redan finns en lista
+// Skicka produktlistan till localstorage
 export function productListToLocalStorage(productList: Product[]) {
   localStorage.setItem("productList", JSON.stringify(productList));
-  // const cart = JSON.parse(localStorage.getItem('cart'));;
 }
 
+// Funktion för att hitta rätt produkten-id i localstorage
 export function findProduct(id: number): Product | undefined {
   const productList: Product[] = JSON.parse(localStorage.getItem("productList") ?? "");
   const product = productList.find((product) => product.id === Number(id));
     return product;
 }
 
+// 
 export function adjustCart(id: number, action: string) {
   const item = findExistingItem(id);
   //Hämtar cart för att kunna uppdatera nuvarande
@@ -38,10 +38,9 @@ if(item.amount == 0){
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 }
- 
-  
 }
 
+// Funktion för att ta bort en vara från varukorgen
 export function removeFromCart(id:number){
   const cart = getCart();
   cart?.forEach((candy) => {
@@ -53,14 +52,12 @@ export function removeFromCart(id:number){
   })
 }
 
-//DEN FUNGERAR 🧹 Städa bara uppp -> fungerar med dummy data
-// Ta emot id:, image:, name: , price, stock:
+// Funktion för att lägga till en produkt i varukorgen
 export function addProductShoppingCart(product: ProductItem) {
   const item = findExistingItem(product.id);
 
-  //validera att det är av findExistingItem
   if (item) {
-    // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
+    // Loopar igen vår array och hittar rätt objekt och uppdaterar det
     cart.forEach((candyItem: CartItem) => {
       if (candyItem.id === product.id) {
         candyItem.amount++;
@@ -80,12 +77,13 @@ export function addProductShoppingCart(product: ProductItem) {
     });
   }
 
-  // Uppdaterar Local Storage
+  // Uppdaterar LocalStorage
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Minska antalet i varukorgen
 export function removeProductShoppingCart(product: ProductItem) {
-  const item = findExistingItem(product.id); // <- SÅ HÄR BLIR DET FEL
+  const item = findExistingItem(product.id);
 
   if (item) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
@@ -103,7 +101,7 @@ export function removeProductShoppingCart(product: ProductItem) {
   }
 }
 
-//Ger dig hela kundvagnen
+// Ger dig hela kundvagnen
 export function getCart(): CartItem[] {
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON !== null) {
@@ -119,7 +117,7 @@ function findExistingItem(id: number):CartItem | undefined {
 
   if (cartJSON) {
     cart = JSON.parse(cartJSON);
-    const found = cart.find((candy) =>   candy.id == id);
+    const found = cart.find((candy) => candy.id == id);
     return found;
   } else {
     return undefined;

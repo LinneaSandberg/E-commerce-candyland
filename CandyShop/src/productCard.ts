@@ -6,19 +6,21 @@ import { cartListener } from "./cart";
 
 const productList = await fetchAllproducts();
 
+// Funktion för att rendera ut produktsaldo
 export function numberOfProducts() {
   const productsInStock = productList.filter(
     (product) => product.stock_status === "instock"
   );
   return `
   <div class="numberOfProducts">
-    <p>Vi har ${productList.length} produkter varav ${productsInStock.length} är i lager</p>
+    <p>${productList.length} Produkter (${productsInStock.length} i lager)</p>
   </div>
   `;
 }
 
+//Funktion som renderar ut alla produktkort
 export async function productCard() {
-  //Kollar inte efter error då det görs i fetchAllproducts, borde jag ändå  kolla?
+  // Kollar inte efter error då det görs i fetchAllproducts, borde jag ändå  kolla?
   const products: Product[] = await fetchAllproducts();
 
   products.sort(function (a, b) {
@@ -76,10 +78,9 @@ export async function productCard() {
     .join("");
 }
 
-//Renders popup
+// Renderar popup-fönstret
 export const renderPopup = (id: number) => {
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
-
   const product = findProduct(id) as Product;
 
   const infoPopupHTML = `
@@ -102,9 +103,9 @@ export const renderPopup = (id: number) => {
     </div>`;
 
   mainEL.innerHTML += infoPopupHTML;
-
   const closePopup = document.querySelector<HTMLButtonElement>(".closePopup")!;
 
+  // Lyssnar efter att användaren klickar på "läs mer"
   closePopup.addEventListener("click", () => {
     const moreInfoPopup =
       document.querySelector<HTMLDivElement>(".moreInfoPopup");

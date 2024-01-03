@@ -4,6 +4,7 @@ import { setListeners } from "./eventListners.ts";
 import { cartListener } from "./cart.ts";
 import { numberOfProducts } from "./productCard.ts";
 
+// Funktion för att rendera hela hemsidan
 async function renderScreen() {
   document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <nav>
@@ -13,7 +14,7 @@ async function renderScreen() {
     </div>
   </nav>
  
-<main id="toRender">
+  <main id="toRender">
   ${numberOfProducts()}
   ${await productCard()}
   </main>

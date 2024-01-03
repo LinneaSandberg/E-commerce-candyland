@@ -37,7 +37,6 @@ export interface ProductItem {
 }
 
 export interface CartItem extends ProductItem {
-  //cartItem
   amount: number;
   totalCost: number;
 }
@@ -68,7 +67,3 @@ interface Item {
   item_price: number;
   item_total: number;
 }
-
-
-
-

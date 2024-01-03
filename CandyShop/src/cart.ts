@@ -37,7 +37,6 @@ const renderCart = () => {
    cartItems?.forEach((total) => {
     totalPrice += total.totalCost;
    });
-   console.log(totalPrice);
  
    // Totala antalet produkter både av samma och olika
    let totalProduct: number = 0;
@@ -53,7 +52,7 @@ const renderCart = () => {
     </header>
 
     <div class="cartItemsWrapper" id="cartItemsWrapper">
-  <p>kundvagn<p>
+  <h2 class="headerKassa">Kundvagn</h2>
       <ul>
        ${cartItems
         ?.map((cartItem: CartItem) => {
@@ -170,6 +169,3 @@ function getIdToRemove() {
     })
   })
 }
-
-
-

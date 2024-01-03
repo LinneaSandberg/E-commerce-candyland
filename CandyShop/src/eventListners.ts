@@ -7,6 +7,7 @@ import { renderOrder } from "./placeOrder";
 import { renderPopup } from "./productCard";
 import { Product } from "./interface";
 
+// DOM referenser
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
     "#moreInfo"
@@ -18,7 +19,7 @@ export function setListeners() {
     "#addToCart"
   ) as NodeListOf<HTMLButtonElement>;
 
-  //Knapp för mer information
+  // Knapp för mer information
   infoBtns.forEach((infoBtn) => {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
@@ -26,14 +27,13 @@ export function setListeners() {
     });
   });
 
-
-  //Tar bort produkt i localStorage
+  // Tar bort produkt i localStorage
   eraseBtns.forEach((eraseBtn) => {
     // Kod appliceas på alla knappar
-    //stockstatus sparas för varje knapp
+    // Stockstatus sparas för varje knapp
     const stockStatus = eraseBtn.getAttribute("data-stockStatus");
     
-    //inhiberar addknapp om den är outofstock
+    // Inhiberar addknapp om den är outofstock
     if (stockStatus === "outofstock") {
       eraseBtn.disabled = true;
     }
@@ -52,19 +52,18 @@ export function setListeners() {
     })
 })
 
-
-  //Lägger till produkt i localStorage
+  // Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
     // Kod appliceas på alla knappar
-    //stockstatus sparas för varje knapp
+    // Stockstatus sparas för varje knapp
     const stockStatus = addBtn.getAttribute("data-stockStatus");
-    //inhiberar addknapp om den är outofstock
+    // Inhiberar addknapp om den är outofstock
     if (stockStatus === "outofstock") {
       addBtn.disabled = true;
     }
 
     addBtn.addEventListener("click", () => {
-   // kod appliceras på en specifik knapp NÄR VI KLICKAR PÅ DEN
+   // Kod appliceras på en specifik knapp
       const product = findProduct(Number(addBtn.value)) as Product;
 
       addProductShoppingCart({
@@ -77,7 +76,6 @@ export function setListeners() {
     });
   });
 }
-
 
 export function checkoutListner() {
   const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;

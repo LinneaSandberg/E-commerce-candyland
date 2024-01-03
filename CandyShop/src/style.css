@@ -38,10 +38,9 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
   box-sizing: border-box;
 }
 
-p{
+p {
   margin: 0px;
 }
-
 
 body {
   margin: 0px;
@@ -55,7 +54,7 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   padding: 0.1em 3em;
   margin-block: 1em;
   width: 100%;
@@ -74,7 +73,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  
+
   gap: 1rem;
 }
 
@@ -112,12 +111,10 @@ form {
   margin: auto;
 }
 
-
 li {
   list-style: none;
-  width: 100% ;
+  width: 100%;
 }
-
 
 /* KNAPPAR */
 
@@ -128,26 +125,26 @@ li {
   font-size: 16px !important;
 }
 
-.btnIcon{
-  background-color: #94dcdf!important;
+.btnIcon {
+  background-color: #94dcdf !important;
   color: #0c4648 !important;
 }
-.btnIcon:active{
-  background-color: #6db0b3!important;
+.btnIcon:active {
+  background-color: #6db0b3 !important;
 }
 
-.btnText{
+.btnText {
   background-color: #ff66a1 !important;
   color: white !important;
   font-weight: bolder !important;
 }
 
-.btnText:active{
-background-color: pink;
+.btnText:active {
+  background-color: pink;
 }
 
-button:disabled{
-  background-color: #f0f0f0!important;
+button:disabled {
+  background-color: #f0f0f0 !important;
   color: #505050 !important;
 }
 
@@ -176,7 +173,7 @@ button:active {
   nav {
     margin-block: 2em;
   }
-  aside{
+  aside {
     width: 60%;
   }
 
@@ -186,7 +183,7 @@ button:active {
 }
 
 @media (min-width: 992px) {
-  aside{
+  aside {
     width: 50%;
   }
   #app {
@@ -198,7 +195,7 @@ button:active {
 }
 
 @media (min-width: 1200px) {
-  aside{
+  aside {
     width: 40%;
   }
   #app {

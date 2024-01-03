@@ -73,7 +73,8 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 .numberOfProducts {
   display: flex;
   justify-content: center;
-  width: 70vw;
+  align-items: center;
+  width: 100vw;
   padding: 0, 5rem;
 
   background-color: #6db0b3;
@@ -96,6 +97,9 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
   .card {
     width: 40%;
     margin-bottom: 1rem;
+  }
+  .numberOfProducts {
+    width: 70vw;
   }
 }
 

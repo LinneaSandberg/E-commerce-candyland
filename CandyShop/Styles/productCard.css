@@ -1,21 +1,3 @@
-/* 
-
-
-KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
-🔹 Här ska enbart styling finnas som är specifikt till checkout.
-    Exempel
-    🔸 Layouter padding och marking på element
-    
-    Exempel på saker som inte ska stylas
-    ⛔  En button som redan är stylad ska inte stylas om eller ändras på. 
-        Padding och margin är redan fixat runt en knapp. Arbeta då  på elementen runt om kring
-
-    🧠  Om du vill skapa en ny knapp, exempelvis att vi har en annan styling på knappar som har x i sig. Då stylar vi den
-        i det generella  CSS dokumentet med en specifik klass som alla kan sätta på sina buttons som innehåller ikonen X. 
-    
-🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
-*/
-
 .card {
   width: 100%;
   height: 35rem !important;
@@ -73,18 +55,20 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 .numberOfProducts {
   display: flex;
   justify-content: center;
-  width: 70vw;
-  padding: 0, 5rem;
-
+  align-items: center;
+  width: 100vw;
+  
   background-color: #6db0b3;
   color: #ffffff;
   border: 2px solid #94dcdf;
   border-radius: 10em;
-
+  padding: 0.5rem;
   font-weight: bolder;
 }
 
-/* Global design */
+.numberOfProducts p {
+  margin: 0;
+}
 
 @media (min-width: 480px) {
   .card {
@@ -96,6 +80,9 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
   .card {
     width: 40%;
     margin-bottom: 1rem;
+  }
+  .numberOfProducts {
+    width: 70vw;
   }
 }
 
@@ -112,7 +99,4 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
     height: 38rem !important;
     margin-bottom: 1rem;
   }
-}
-
-@media (min-width: 1400px) {
 }

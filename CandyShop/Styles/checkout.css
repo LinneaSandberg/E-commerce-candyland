@@ -1,25 +1,9 @@
-/* 
-KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
-🔹 Här ska enbart styling finnas som är specifikt till checkout.
-    Exempel
-    🔸 Layouter padding och marking på element
-    
-    Exempel på saker som inte ska stylas
-    ⛔  En button som redan är stylad ska inte stylas om eller ändras på. 
-        Padding och margin är redan fixat runt en knapp. Arbeta då  på elementen runt om kring
-
-    🧠  Om du vill skapa en ny knapp, exempelvis att vi har en annan styling på knappar som har x i sig. Då stylar vi den
-        i det generella  CSS dokumentet med en specifik klass som alla kan sätta på sina buttons som innehåller ikonen X. 
-    
-🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
-*/
-
 .underline {
     text-decoration: underline;
 }
 
 .headerKassa {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
@@ -47,7 +31,6 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
     margin-top: 10%;
 }
 
-/* Media queries */
 @media (min-width: 480px) {
     .successwrapper {
         margin-left: 3rem;
@@ -61,14 +44,4 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
     .headerKassa {
         font-size: 2rem;
     }
-       
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
-}
-
-@media (min-width: 1400px) {
 }

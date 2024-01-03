@@ -37,41 +37,40 @@ export async function productCard() {
   return products
     .map((element) => {
       return `
-<div class="productCard" value="${element.id}" status="${element.stock_status}">
-    <div class="notis">${
-      element.stock_status == "instock" ? "In Stock" : "Not in stock"
-    }</div>
-    
-    <img class="" src="https://www.bortakvall.se${
-      element.images.thumbnail
-    }" alt="">
-    <header>
-        <h3>${element.name}</h3> <p>${element.price} kr</p>
-    </header>
-    <article class="tagContainer">
-        ${element.tags
+      <div class="card" value="${element.id} status="${element.stock_status}">
+      <img src="https://www.bortakvall.se${
+        element.images.thumbnail
+      }" class="card-img-top" alt="...">
+      <div class="card-body">
+      <div>
+        <header>
+          <h5 class="card-title">${element.name}</h5> <p>${element.price} kr</p>
+        </header>
+        <article class="tagContainer">
+          ${element.tags
           .map((tags) => {
-            return `<p class="tag">${tags.name}</p>`;
+            return `<p class="tag card-text">${tags.name}</p>`;
           })
           .join("")}
-    </article>
-
-    <footer>
-        <button id="moreInfo" value="${element.id}" ">Mer Info</button>
-        <div class="addToCartContainer">
-            <button id="eraseFromCart" value="${element.id}" data-stockStatus="${
-        element.stock_status
-      }">
-                <i class="bi bi-cart-dash"></i>
-            </button>
-            <button id="addToCart" value="${element.id}" data-stockStatus="${
-        element.stock_status
-      }">
-                <i class="bi bi-cart-plus" value="add"></i>
-            </button>
+        </article>
         </div>
-    </footer>
-</div>
+        <footer>
+          <button id="moreInfo" class="btn btnText" value="${element.id}" ">Mer Info</button>
+          <div class="cardCartBtn btn">
+              <button id="eraseFromCart" class="btn btnIcon" value="${element.id}" data-stockStatus="${
+            element.stock_status
+            }">
+                  <i class="bi bi-cart-dash"></i>
+              </button>
+              <button id="addToCart" class="btn btnIcon"  btnIcon" value="${element.id}" data-stockStatus="${
+            element.stock_status
+            }">
+                  <i class="bi bi-cart-plus" value="add"></i>
+              </button>
+          </div>
+        </footer>
+      </div>
+    </div>
 `;
     })
     .join("");

@@ -97,7 +97,7 @@ export const renderPopup = (id: number) => {
               : product.stock_quantity
           }</p>
         <div>
-        <button class="closePopup">&times</button>
+        <button class="btn btnIcon closePopup">&times</button>
       </div>
     </div>`;
 

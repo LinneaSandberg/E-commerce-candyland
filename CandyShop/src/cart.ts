@@ -32,7 +32,7 @@ const renderCart = () => {
     aside.innerHTML = `
     <div class="emptyCart">
     <p>Tyvärr har du inget i din kundvagn</p>
-    <button class="closeCartBtn">Handla lite</button>
+    <button class="btn btnText closeCartBtn">Handla lite</button>
     </div>
     `
    }else{
@@ -51,7 +51,7 @@ const renderCart = () => {
 
     aside.innerHTML=`
     <header class="cartHeader">
-        <button class="closeCartBtn">
+        <button class="btn btnIcon closeCartBtn">
         <i class="bi bi-x-square"></i>
         </button>
     </header>
@@ -71,11 +71,11 @@ const renderCart = () => {
                               <p class="smallText">totalt ${cartItem.totalCost} kr</p>
                           </div>
                           <div class="sumItemCard">
-                              <button class="increaseCandy" value="${cartItem.id}">
+                              <button class="increaseCandy btn btnIcon" value="${cartItem.id}">
                                 <i class="bi bi-arrow-up-short"></i>
                                 </button>
                               <p class="smallText amount" value="${cartItem.id}">${cartItem.amount}</p>
-                              <button class="decreaseCandy" value="${cartItem.id}">
+                              <button class="decreaseCandy btn btnIcon" value="${cartItem.id}">
                                   <i class="bi bi-arrow-up-short"></i>
                               </button>
                           </div>
@@ -100,7 +100,7 @@ const renderCart = () => {
           Att betala:${totalPrice} kr
         </li>
         </ul>
-        <button id="checkout">Checkout</button>
+        <button id="checkout" class="btn btnText">Checkout</button>
     </div>
     `
       }

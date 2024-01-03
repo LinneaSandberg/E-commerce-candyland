@@ -44,7 +44,7 @@ if(item.amount == 0){
 
 export function removeFromCart(id:number){
   const cart = getCart();
-  cart?.forEach((candy, index) => {
+  cart?.forEach((candy) => {
     if(candy.id === id){
       const indexOfCandy = cart.findIndex((candy)=> candy.id === id)
       cart.splice(indexOfCandy, 1);

@@ -5,6 +5,7 @@ import {
 } from "./localStorageLogic";
 import { renderOrder } from "./placeOrder";
 import { renderPopup } from "./productCard";
+import { Product, ProductItem } from "./interface";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -37,7 +38,7 @@ export function setListeners() {
   }
 
     eraseBtn.addEventListener("click", () => {
-      const product = findProduct(eraseBtn.value);
+      const product: Product = findProduct(Number(eraseBtn.value));
       removeProductShoppingCart({
         id: product.id,
         price: product.price,
@@ -62,7 +63,7 @@ export function setListeners() {
 
     addBtn.addEventListener("click", () => {
    // kod appliceras på en specifik knapp NÄR VI KLICKAR PÅ DEN
-      const product = findProduct(addBtn.value);
+      const product: Product = findProduct(Number(addBtn.value));
 
       addProductShoppingCart({
         id: product.id,
@@ -77,7 +78,6 @@ export function setListeners() {
 
 export function checkoutListner() {
   const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;
-  const mainEL = document.querySelector<HTMLDivElement>("#app")!;
 
   checkoutEl?.addEventListener("click", () => {
     const asideWrapper = document.querySelector<HTMLDivElement>("#sideWindow")!;

@@ -197,17 +197,11 @@ padding: 1rem;
   .cartItemsWrapper{
   width: 100%;
 }
-.itemCheckout {
-  width: 50%;
-}
 }
 
 @media (min-width: 992px) {
   #cartItemsWrapper {
     width: 50%;
-  }
-  .itemCheckout {
-    width: 40%;
   }
 }
 

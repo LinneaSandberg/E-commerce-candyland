@@ -33,43 +33,12 @@ export function renderOrder() {
     const antal = totalProduct === 1 ? "vara" : "varor";
 
     wrapper.innerHTML= `
-<header class="header">
+<header>
 <h2>Kassa</h2>
 <p>Orderinfo</p>
 </header>
 
-<section class="itemCardWrapper">
-${cartItems
-    ?.map((cartItem: CartItem) => {
-    const antal = cartItem.amount === 1 ? "vara" : "varor";
-    return `
-    <div class="itemCheckout">
-     <div class="boxOne">
-      <figure class="iconCheckout">
-       <i class="bi bi-bag-fill"></i>
-      </figure>
-     </div>
-     <div class="boxTwo">
-      <ul class="checkoutList">
-       <li class="productTitle">${cartItem.name}</li>
-       <li class="productAmount">${cartItem.amount} ${antal}</li>
-       <li class="productSum">Totalt ${cartItem.totalCost} kr</li>
-      </ul>
-     </div>
-    </div>
-    `;
-}).join("")}
-</section>
-
-<div class="sumwrapper">
- <p class="totalProduct">Totalt ${totalProduct} ${antal}</p>
- <figure class="iconCheckout iconTotal">
-      <i class="bi bi-bag-fill"></i>
- </figure>
- <p class="totalPrice">Totalsumma: ${totalPrice} kr</p>
-</div>
-
-<form id="orderForm">
+<form class="orderForm">
  <div class="inputWrapper">
     <label for="firstName" class="underline">
         Förnamn:

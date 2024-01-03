@@ -14,140 +14,22 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
 */
 
-.checkoutSection {
-    max-width: 100%;
-}
-
-.itemCheckout {
-    position: relative;
-  
-    display: flex;
-    align-items: center;
-    justify-content: start;
-
-    gap: 0.625rem;
-    margin: auto;
-    margin-bottom: 0.5rem;
-    padding: 0;
-    width: 70%;
-  
-    background-color: white;
-    box-shadow: 0px 0px 2.4px -10px rgba(0, 0, 0, 0.011),
-      0px 0px 5.7px -10px rgba(0, 0, 0, 0.016),
-      0px 0px 10.8px -10px rgba(0, 0, 0, 0.02),
-      0px 0px 19.2px -10px rgba(0, 0, 0, 0.024),
-      0px 0px 35.9px -10px rgba(0, 0, 0, 0.029),
-      0px 0px 86px -10px rgba(0, 0, 0, 0.04);
-    border-radius: 0.5rem;
-}
-
-.iconCheckout {
-    background-color: rgb(255, 139, 177);
-    border-radius: 100rem;
-    border: solid 3px #94dcdf;
-    padding: 1rem;
-
-    position: absolute;
-}
-
-.boxOne {
-    max-width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.boxTwo {
-    max-width: 70%;
-    display: block;
-    text-align: left;
-}
-
-.checkoutList {
-    list-style: none;
-}
-
-
-.checkoutProducts {
-    list-style: none;
-}
-
-.productTitle {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.571;
-}
-
-.productSum {
-    font-size: 0.75rem;
-    font-weight: 400;
-    line-height: 1.571;
-}
-
-.productAmount {
-    font-size: 1rem;
-    font-weight: lighter;
-    line-height: 1.571;
-}
-
-.sumwrapper {
-    background-color: #94dcdf;
-    border-radius: 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 1rem;
-    line-height: 1.571;
-
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#orderForm {
-    display: block;
-    margin: auto;
-}
-
 .underline {
     text-decoration: underline;
 }
   
-#headerForm {
-    text-align: center;
-    font-size: 2rem;
-    color: rgb(78, 77, 77);
-  }
-  
-#paraForm {
-    text-align: center;
-    color: rgba(78, 77, 77, 0.605);
-}
-  
-#orderForm {
-    max-width: 400px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    column-gap: 1rem;
-  
-    background-color: #fff0f8;
+.orderForm {
+    margin-left: 1rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
     border-radius: 1rem;
 }
 
 .inputWrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: center;
     margin-bottom: 1rem;
 }
 

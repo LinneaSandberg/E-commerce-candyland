@@ -5,7 +5,7 @@ import {
 } from "./localStorageLogic";
 import { renderOrder } from "./placeOrder";
 import { renderPopup } from "./productCard";
-import { Product, ProductItem } from "./interface";
+import { Product } from "./interface";
 
 export function setListeners() {
   const infoBtns = document.querySelectorAll(
@@ -26,29 +26,32 @@ export function setListeners() {
     });
   });
 
+
   //Tar bort produkt i localStorage
   eraseBtns.forEach((eraseBtn) => {
     // Kod appliceas på alla knappar
     //stockstatus sparas för varje knapp
     const stockStatus = eraseBtn.getAttribute("data-stockStatus");
+    
     //inhiberar addknapp om den är outofstock
     if (stockStatus === "outofstock") {
       eraseBtn.disabled = true;
     }
 
     eraseBtn.addEventListener("click", () => {
-      const product: Product = findProduct(Number(eraseBtn.value));
-      removeProductShoppingCart({
-        id: product.id,
-        price: product.price,
-        image: `https://www.bortakvall.se${product.images.thumbnail}`,
-        name: product.name,
-        stock: product.stock_quantity,
-      });
-      // Behöver få ut ID på godiset som användaren har klickat på
-      // Kolla om det finns i cart i  localStorage och ta bort 1st
-    });
-  });
+      if(eraseBtn.value){
+          const product = findProduct(Number(eraseBtn.value)) as Product;
+          removeProductShoppingCart({
+            id: product.id,
+            price: product.price,
+            image: `https://www.bortakvall.se${product.images.thumbnail}`,
+            name: product.name,
+            stock: product.stock_quantity,
+            })
+        }
+    })
+})
+
 
   //Lägger till produkt i localStorage
   addBtns.forEach((addBtn) => {
@@ -62,7 +65,7 @@ export function setListeners() {
 
     addBtn.addEventListener("click", () => {
    // kod appliceras på en specifik knapp NÄR VI KLICKAR PÅ DEN
-      const product: Product = findProduct(Number(addBtn.value));
+      const product = findProduct(Number(addBtn.value)) as Product;
 
       addProductShoppingCart({
         id: product.id,
@@ -74,6 +77,7 @@ export function setListeners() {
     });
   });
 }
+
 
 export function checkoutListner() {
   const checkoutEl = document.querySelector<HTMLButtonElement>("#checkout")!;

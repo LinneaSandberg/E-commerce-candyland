@@ -9,7 +9,7 @@ export interface Product {
     large: string;
   };
   stock_status: string;
-  stock_quantity: number | null;
+  stock_quantity: number;
   tags: Tag[];
 }
 

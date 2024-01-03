@@ -2,7 +2,6 @@ import { ApiResponse, CartItem, Data } from "./interface";
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from './apiCalls';
 
-
 // 
 function objApi() {
     const cart = getCart();
@@ -16,7 +15,6 @@ function objApi() {
     })
     return orderItems;
 }
-
 
 // funktion för att rendera orderinfo + formulär
 export function renderOrder() {
@@ -116,14 +114,13 @@ placeOrder(totalPrice);
 
 // funktion för att skicka order med inputvärderna till api
 function placeOrder(totalPrice: number){
-    console.log('placeOrder | totalPrice: ', totalPrice);
 const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
 
 //----------------------------------------------
 orderFormEl?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-   // HÄR BÖR DU HÄMTA ELEMENTEN
+   // här hämtar jag min DOM referenser
    const firstNameEl = document.querySelector<HTMLInputElement>('#firstName');
    const lastNameEl = document.querySelector<HTMLInputElement>('#lastName');
    const adressInputEl = document.querySelector<HTMLInputElement>('#adressInput');
@@ -159,24 +156,20 @@ orderFormEl?.addEventListener("submit", async (e) => {
        return;
    }
 
-
    //Testar göra ett API inrop. catch hanterar om det inte går att anropa APIet
    try {
     const response = await sendOrder(placeOrder);
    
     renderStatusSuccess(response);
    } catch (error) {
-    renderStatusFail(); // här måste jag byta ut parametern
+    renderStatusFail();
    }
-
-   // töm alla input-fält
-
 });
 }
 
+// funktion som renderar HTML för att ordern gick igenom
 const renderStatusSuccess = (data: ApiResponse) => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
-
     wrapper.innerHTML = `
     <div>
     <h2>🛍️ Tack för din order! 🛍️</h2>
@@ -185,6 +178,7 @@ const renderStatusSuccess = (data: ApiResponse) => {
     `
 }
 
+// funktion som renderar HTML för att ordern inte gick igenom
 const renderStatusFail = () => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
     wrapper.innerHTML = `
@@ -194,5 +188,4 @@ const renderStatusFail = () => {
     <p>LÄGG IN EN GIF</p>
     </div>
     `
-
 }

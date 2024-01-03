@@ -9,10 +9,10 @@ export function productListToLocalStorage(productList: Product[]) {
   // const cart = JSON.parse(localStorage.getItem('cart'));;
 }
 
-export function findProduct(id: number) {
+export function findProduct(id: number): Product | undefined {
   const productList: Product[] = JSON.parse(localStorage.getItem("productList") ?? "");
   const product = productList.find((product) => product.id === Number(id));
-  return product;
+    return product;
 }
 
 export function adjustCart(id: number, action: string) {
@@ -90,7 +90,7 @@ export function removeProductShoppingCart(product: ProductItem) {
   if (item) {
     // Loopar  igen vår array och hittar rätt objekt och uppdaterar det
     cart.forEach((candyItem: CartItem, index) => {
-      console.log(candyItem.amount);
+      
       if (candyItem.id === item.id && candyItem.amount !== 1) {
         candyItem.amount--;
         candyItem.totalCost = candyItem.price * candyItem.amount;

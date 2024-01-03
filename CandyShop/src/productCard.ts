@@ -59,7 +59,7 @@ export async function productCard() {
     <footer>
         <button id="moreInfo" value="${element.id}" ">Mer Info</button>
         <div class="addToCartContainer">
-            <button id="eraseFromCart" value="${element.id} data-stockStatus="${
+            <button id="eraseFromCart" value="${element.id}" data-stockStatus="${
         element.stock_status
       }">
                 <i class="bi bi-cart-dash"></i>
@@ -81,7 +81,7 @@ export async function productCard() {
 export const renderPopup = (id: number) => {
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
 
-  const product: Product = findProduct(id);
+  const product = findProduct(id) as Product;
 
   const infoPopupHTML = `
     <div class="moreInfoPopup">

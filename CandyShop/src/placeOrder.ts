@@ -83,7 +83,7 @@ placeOrder(totalPrice);
 
 // funktion för att skicka order med inputvärderna till api
 function placeOrder(totalPrice: number){
-const orderFormEl = document.querySelector<HTMLFormElement>('#orderForm');
+const orderFormEl = document.querySelector<HTMLFormElement>('.orderForm');
 
 //----------------------------------------------
 orderFormEl?.addEventListener("submit", async (e) => {

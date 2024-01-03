@@ -46,6 +46,7 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
   display: flex;
   flex-direction: column;
 }
+
 .moreInfoPopupContent img {
   max-width: 100%;
   max-height: 100%;
@@ -77,3 +78,10 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 
 @media (min-width: 1200px) {
 }
+
+
+/* a {
+  font-weight: 500;
+  color: var(--purple);
+  text-decoration: inherit;
+} */

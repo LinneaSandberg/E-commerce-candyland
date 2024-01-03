@@ -14,28 +14,9 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
 */
 
-aside {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 80%;
-  height: 100%;
-  margin-top: 0;
-  background-color: white;
-  border-left: 1px #636363cc solid;
-  z-index: 3;
-  overflow-y: scroll;
-}
 .cartItemsWrapper{
   width: 90% !important;
 }
-
-li{
-  list-style: none;
-width: 100% ;
-}
-
-
 
 .smallText {
   font-size: 12px;
@@ -71,6 +52,7 @@ width: 100% ;
 .itemCard > * {
   margin-block: auto;
 }
+
 .itemCard p {
   margin: 0px;
 }
@@ -83,6 +65,7 @@ width: 100% ;
 .itemCardInfo {
   text-align: start;
 }
+
 .itemCardInfo > :first-child {
   font-weight: bold;
 }
@@ -90,7 +73,6 @@ width: 100% ;
 .itemCardInfo{
 font-size: 0.8rem;
 }
-
 
 .sumItemCard {
   margin-left: auto;
@@ -145,10 +127,8 @@ font-size: 0.8rem;
   background-color: rgb(165, 62, 96);
 }
 
-
 .emptyCart{
 padding: 1rem;
-
 }
 
 .emptyCart button{
@@ -164,7 +144,6 @@ padding: 1rem;
   background-color: white;
 }
 
-
 .sumTable > :first-child{
   font-weight: bolder;
 }
@@ -176,31 +155,68 @@ padding: 1rem;
   border-top: 1px solid black;
 }
 
+.bi-cart2 {
+  font-size: 1.7em;
+}
+
+.bajs {
+  position: relative;
+}
+
+.itemAmountInCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.31);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.31);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.31);
+
+  height: 18px;
+  width: 18px;
+
+  top: 0;
+  left: 15px;
+
+  border-radius: 1rem;
+
+  color: var(--pink);
+  font-size: 12px;
+}
+
+.itemAmountInCart > * {
+  margin: 0px;
+}
 
 @media (min-width: 480px) {
-  /* Finns inget att göra */
 }
 
 @media (min-width: 768px) {
-
-.cartItemsWrapper{
+  .cartItemsWrapper{
   width: 100%;
 }
-aside{
-  width: 60%;
+.itemCheckout {
+  width: 50%;
 }
-
 }
 
 @media (min-width: 992px) {
-  aside{
+  #cartItemsWrapper {
+    width: 50%;
+  }
+  .itemCheckout {
     width: 40%;
   }
 }
 
 @media (min-width: 1200px) {
-  aside{
-    width: 30%;
+  #cartItemsWrapper {
+    width: 40%;
   }
- 
 }
+
+@media (min-width: 1400px) {
+}
+

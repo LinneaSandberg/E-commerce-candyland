@@ -16,9 +16,7 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
 */
 
-main{
-  gap:1rem;
-}
+
 
 .card{
   width: 100%;
@@ -75,32 +73,11 @@ object-fit:cover;
 }
 
 
-/* Global design */
-.btn{
-  border-radius: 5px !important;
-}
+
+
 
 /* Global design */
-.btnIcon{
-  background-color: #94dcdf!important;
-  color: #0c4648 !important;
-}
 
-.btnIcon:disabled{
-  background-color: #f0f0f0!important;
-  color: #505050 !important;
-}
-
-.btnText{
-  background-color: #ff66a1 !important;
-  color: white !important;
-
-  font-size: 14px !important;
-  font-weight: bolder !important;
-
-  padding: 5px 10px !important;
-  height: fit-content !important;
-}
 
 
 @media (min-width: 480px) {

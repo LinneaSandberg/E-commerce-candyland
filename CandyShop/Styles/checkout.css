@@ -117,22 +117,6 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 .underline {
     text-decoration: underline;
 }
-
-label {
-    display: flex;
-    flex-basis: 50%;
-    margin-bottom: 0.5rem;
-    margin-right: 0.6rem;
-}
-  
-input {
-    flex: 1;
-    padding: 0.5rem;
-    margin-bottom: 0.7rem;
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
-    
-}
   
 #headerForm {
     text-align: center;

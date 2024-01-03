@@ -1,4 +1,3 @@
-// Funktionen som hämtar allt som finns i cart i localstorage
 import {
   getCart,
   adjustCart,removeFromCart
@@ -8,25 +7,22 @@ import { CartItem } from "./interface";
 import "bootstrap/dist/css/bootstrap.css";
 import { setListeners } from "./eventListners";
 
-
-//Öppna aside som innehåller kassan
+// Öppna aside som innehåller kassan
 export function cartListener() {
   const mainEl = document.querySelector<HTMLDivElement>("#app")!;
   const cartIcon = document.querySelector<HTMLDivElement>(".bajs")!;
 
+  // Lyssnare för att rendera varukorgen
   cartIcon.addEventListener("click", () => {
     mainEl.innerHTML += `<aside id="sideWindow"></aside>`
     renderCart()
   })
 }
 
-
 // UIn för att rendera ut asiden!
 const renderCart = () => {
   const aside = document.querySelector<HTMLDivElement>("#sideWindow")!;
-  
   const cartItems: CartItem[] = getCart();
-
    
    if(cartItems.length <1){
     aside.innerHTML = `
@@ -36,14 +32,14 @@ const renderCart = () => {
     </div>
     `
    }else{
-    // totala summan för alla produkter
+    // Totala summan för alla produkter
    let totalPrice: number = 0;
    cartItems?.forEach((total) => {
     totalPrice += total.totalCost;
    });
    console.log(totalPrice);
  
-   // totala antalet produkter både av samma och olika
+   // Totala antalet produkter både av samma och olika
    let totalProduct: number = 0;
    cartItems?.forEach((total) => {
     totalProduct += total.amount;
@@ -104,15 +100,14 @@ const renderCart = () => {
     </div>
     `
       }
-      
- 
+
     closeCart()
     adjustCandyItems()
     getIdToRemove();
     checkout();
 }
 
-// function for closing the cart, if user wants to look more in shop
+// Funktion för att stänga varukorgen om användaren vill kolla mer i godisaffären
 function closeCart() {
   const buttonCartEl =
     document.querySelector<HTMLButtonElement>(".closeCartBtn")!;
@@ -125,28 +120,25 @@ function closeCart() {
   });
 }
 
-
-
+// Funktion som tar användaren till formuläret för att fylla in sin data
 function checkout(){
   const checkoutEl = document.querySelector<HTMLFormElement>("#checkout");
   checkoutEl?.addEventListener("click", () => {
     renderOrder();
+    const sumTable = document.querySelector<HTMLDivElement>(".sumTable");
+    sumTable?.remove()
+    
   });
 }
-// // eventlistner for checkout-button ---> maybe to be placed in placeOrder.ts
 
-
-
-
-
+// Funktion för att ändra antalet godisar i varukorgen
 function adjustCandyItems() {
   const increaseCandy = document.querySelectorAll(".increaseCandy");
   const decreaseCandy = document.querySelectorAll(".decreaseCandy");
 
+   // Öka antalet godisar
   increaseCandy.forEach((increaseBtn) => {
-    //Öka antalet godisar
     increaseBtn.addEventListener("click", () => {
-
       if(increaseBtn.nextElementSibling){
         const id: number = Number(increaseBtn.nextElementSibling.getAttribute("value"));
         adjustCart(id, "add");
@@ -155,10 +147,9 @@ function adjustCandyItems() {
     });
   });
 
+  // Minska antalet godisar
   decreaseCandy.forEach((decreaseBtn) => {
-
   decreaseBtn.addEventListener("click", () => {
-
     if(decreaseBtn.previousElementSibling){
       const id: number = Number(decreaseBtn.previousElementSibling.getAttribute("value"));
       adjustCart(id, "remove");
@@ -167,7 +158,6 @@ function adjustCandyItems() {
   });
 });
 }
-
 
 // Tar bort direkt från kundvagnen
 function getIdToRemove() {

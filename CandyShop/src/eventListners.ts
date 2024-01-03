@@ -23,19 +23,18 @@ export function setListeners() {
     infoBtn.addEventListener("click", (event) => {
       event.preventDefault();
       renderPopup(Number(infoBtn.value));
-
     });
   });
 
   //Tar bort produkt i localStorage
   eraseBtns.forEach((eraseBtn) => {
- // Kod appliceas på alla knappar
+    // Kod appliceas på alla knappar
     //stockstatus sparas för varje knapp
     const stockStatus = eraseBtn.getAttribute("data-stockStatus");
     //inhiberar addknapp om den är outofstock
-  if(stockStatus === "outofstock"){
-    eraseBtn.disabled = true;
-  }
+    if (stockStatus === "outofstock") {
+      eraseBtn.disabled = true;
+    }
 
     eraseBtn.addEventListener("click", () => {
       const product: Product = findProduct(Number(eraseBtn.value));
@@ -55,9 +54,9 @@ export function setListeners() {
   addBtns.forEach((addBtn) => {
     // Kod appliceas på alla knappar
     //stockstatus sparas för varje knapp
-      const stockStatus = addBtn.getAttribute("data-stockStatus");
-      //inhiberar addknapp om den är outofstock
-    if(stockStatus === "outofstock"){
+    const stockStatus = addBtn.getAttribute("data-stockStatus");
+    //inhiberar addknapp om den är outofstock
+    if (stockStatus === "outofstock") {
       addBtn.disabled = true;
     }
 

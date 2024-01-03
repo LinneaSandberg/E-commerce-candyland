@@ -1,4 +1,4 @@
-import { ApiResponse, CartItem, Data } from "./interface";
+import { ApiResponse, Data } from "./interface";
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from "./apiCalls";
 
@@ -30,7 +30,6 @@ export function renderOrder() {
   cartItems?.forEach((total) => {
     totalProduct += total.amount;
   });
-  const antal = totalProduct === 1 ? "vara" : "varor";
 
   wrapper.innerHTML = `
 <header>

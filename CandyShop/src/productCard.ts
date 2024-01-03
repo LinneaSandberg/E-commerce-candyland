@@ -4,19 +4,9 @@ import { findProduct } from "./localStorageLogic";
 import { setListeners } from "./eventListners";
 import { cartListener } from "./cart";
 
-const productList = await fetchAllproducts();
 
-// Funktion för att rendera ut produktsaldo
-export function numberOfProducts() {
-  const productsInStock = productList.filter(
-    (product) => product.stock_status === "instock"
-  );
-  return `
-  <div class="numberOfProducts">
-    <p>${productList.length} Produkter (${productsInStock.length} i lager)</p>
-  </div>
-  `;
-}
+
+  
 
 //Funktion som renderar ut alla produktkort
 export async function productCard() {

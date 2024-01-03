@@ -54,15 +54,9 @@
 
 .numberOfProducts {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  
-  background-color: #6db0b3;
-  color: #ffffff;
-  border: 2px solid #94dcdf;
-  border-radius: 10em;
-  padding: 0.5rem;
+  text-align: start;
+  width: 85%;
+  color: darkgrey;
   font-weight: bolder;
 }
 
@@ -81,9 +75,7 @@
     width: 40%;
     margin-bottom: 1rem;
   }
-  .numberOfProducts {
-    width: 70vw;
-  }
+  
 }
 
 @media (min-width: 992px) {

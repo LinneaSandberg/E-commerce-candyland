@@ -36,8 +36,8 @@ export function renderOrder() {
     // HTML för att rendera ett formulär i kassan
     wrapper.innerHTML= `
 <header>
-<h2>Kassa</h2>
-<p>Orderinfo</p>
+<h2 class="headerKassa">Kassa</h2>
+<p>Fyll i dina uppgifter:</p>
 </header>
 
 <form class="orderForm">
@@ -77,7 +77,7 @@ export function renderOrder() {
         <input type="text" name="email" id="mailInput" required>
     </label>
  </div>
- <button type="submit">Lägg order</button>
+ <button class="btn btnText" type="submit">Lägg order</button>
 </form>`
 
 placeOrder(totalPrice);
@@ -142,11 +142,12 @@ const renderStatusSuccess = (data: ApiResponse) => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
     wrapper.innerHTML = `
     <div class="successwrapper">
-    <h2>🛍️ Tack för din order! 🛍️</h2>
-    <p>Ditt ordernummer är: ${data.data.id}</p>
+    <h2 class="headerKassa">🛍️ Tack för din order! 🛍️</h2>
     <figure>
-    <img src="/Media/giphy.gif" class="img-fluid">
+    <img src="/Media/giphy.gif" class="img-fluid" alt="gif-candyshop">
     </figure>
+    <p class="ordernummer">Ditt ordernummer är: ${data.data.id}</p>
+    <p>${data.data.order_date}</p>
     </div>
     `
 }
@@ -156,10 +157,10 @@ const renderStatusFail = () => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
     wrapper.innerHTML = `
     <div class="successwrapper">
-    <h2>Din order kunde inte skickas</h2>
+    <h2 class="headerKassa">Din order kunde inte skickas</h2>
     <p>Felet ligger hos vår leverantör och de är medvetna om felet</p>
     <figure>
-    <img src="/Media/no-candy-for.jpeg" class="img-fluid">
+    <img src="/Media/no-candy-for.jpeg" class="img-fluid" alt="meme-no-candy">
     </figure>
     </div>
     `

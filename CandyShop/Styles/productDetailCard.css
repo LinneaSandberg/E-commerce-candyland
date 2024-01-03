@@ -13,3 +13,67 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
     
 🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
 */
+
+/* Styles för info-popup */
+.moreInfoPopup {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+}
+
+.moreInfoPopupContent {
+  text-align: center;
+  width: 100%;
+  max-width: 50vw;
+  margin: 10% auto;
+  overflow: auto;
+  background: white;
+  position: relative;
+
+  border-radius: 0.8em;
+
+  box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+
+  color: var(--textColor);
+
+  display: flex;
+  flex-direction: column;
+}
+.moreInfoPopupContent img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.closePopup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+@media (min-width: 480px) {
+  .moreInfoPopupContent {
+    max-width: 90vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .moreInfoPopupContent {
+    max-width: 80vw;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

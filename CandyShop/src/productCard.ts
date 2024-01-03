@@ -59,10 +59,14 @@ export async function productCard() {
     <footer>
         <button id="moreInfo" value="${element.id}" ">Mer Info</button>
         <div class="addToCartContainer">
-            <button id="eraseFromCart" value="${element.id} data-stockStatus="${element.stock_status}">
+            <button id="eraseFromCart" value="${element.id} data-stockStatus="${
+        element.stock_status
+      }">
                 <i class="bi bi-cart-dash"></i>
             </button>
-            <button id="addToCart" value="${element.id}" data-stockStatus="${element.stock_status}">
+            <button id="addToCart" value="${element.id}" data-stockStatus="${
+        element.stock_status
+      }">
                 <i class="bi bi-cart-plus" value="add"></i>
             </button>
         </div>
@@ -73,25 +77,27 @@ export async function productCard() {
     .join("");
 }
 
-
 //Renders popup
 export const renderPopup = (id: number) => {
   const mainEL = document.querySelector<HTMLDivElement>("#app")!;
+
   const product: Product = findProduct(id);
-  
+
   const infoPopupHTML = `
     <div class="moreInfoPopup">
       <div class="moreInfoPopupContent">
         <img src="https://www.bortakvall.se${
           product.images.large
         }" alt="largecandy">
-        <h4>${product.name}</h4>
-        <p>${product.description}</p>
-        <p>Antal i lager: ${
-          product.stock_quantity == null
-            ? "Slut i lager"
-            : product.stock_quantity
-        }</p>
+        <div class="popupText">
+          <h4>${product.name}</h4>
+          <p>${product.description}</p>
+          <p>Antal i lager: ${
+            product.stock_quantity == null
+              ? "Slut i lager"
+              : product.stock_quantity
+          }</p>
+        <div>
         <button class="closePopup">&times</button>
       </div>
     </div>`;
@@ -110,4 +116,3 @@ export const renderPopup = (id: number) => {
   setListeners();
   cartListener();
 };
-

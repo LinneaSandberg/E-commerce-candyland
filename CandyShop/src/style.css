@@ -34,13 +34,11 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-*{
+* {
   box-sizing: border-box;
 }
-body{
+body {
   margin: 0px;
-  
 }
 
 #app {
@@ -108,6 +106,31 @@ main {
   flex-wrap: wrap;
 }
 
+.numberOfProducts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bolder;
+  font-size: 1rem;
+
+  width: 80vw;
+
+  border-radius: 0.8em;
+
+  background: rgb(255, 240, 248);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 240, 248, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
+
+  color: var(--textColor);
+}
+
 .productCard {
   display: flex;
   align-items: flex-start;
@@ -133,51 +156,6 @@ main {
   -moz-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
 
   color: var(--textColor);
-}
-/* Styles för info-popup */
-.moreInfoPopup {
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2;
-  display: flex;
-}
-
-.moreInfoPopupContent {
-  text-align: center;
-  width: 100%;
-  max-width: 30vw;
-  margin: 10% auto;
-  overflow: auto;
-  background: white;
-  position: relative;
-
-  border-radius: 0.8em;
-
-  box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(255, 44, 151, 0.31);
-
-  color: var(--textColor);
-
-  display: flex;
-  flex-direction: column;
-}
-.moreInfoPopupContent img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.closePopup {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  z-index: 3;
 }
 
 .notis {
@@ -329,7 +307,7 @@ button:active {
   }
   nav {
     margin-block: 2em;
-  }  
+  }
 }
 
 @media (min-width: 768px) {

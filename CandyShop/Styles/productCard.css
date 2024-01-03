@@ -16,37 +16,35 @@ KOLLA FÖRST OM STYLING FINNS PÅ ELEMENTET SÅ DU INTE SKRIVER ÖVER
 🙏🏼 Det är viktigt då det ska se enhetligt ut över allt. Lika bra att lära sig det nu än sen. 
 */
 
-
-
-.card{
+.card {
   width: 100%;
   height: 35rem !important;
   border-color: #ffe9f1 !important;
 }
 
-.card img{
-width: 100%;
-max-height: 20rem;
-object-fit:cover;
+.card img {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
 }
 
-.card *{
-  padding-inline:0px;
+.card * {
+  padding-inline: 0px;
 }
 
-.card-body{
+.card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.card-body header{
+.card-body header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align:start;
+  text-align: start;
 }
 
-.tagContainer{
+.tagContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -54,57 +52,62 @@ object-fit:cover;
   gap: 10px;
   padding: 0px !important;
 }
-.tag{
+.tag {
   font-size: 0.8rem;
   color: rgb(84, 82, 4);
   text-align: center;
   background-color: lightgoldenrodyellow;
   padding: 0.5rem 1rem !important;
-  margin-bottom: 0px!important;
+  margin-bottom: 0px !important;
   width: fit-content;
   border-radius: 5px;
 }
 
-.card-body footer{
+.card-body footer {
   padding: 0px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.numberOfProducts {
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+  padding: 0, 5rem;
 
+  background-color: #6db0b3;
+  color: #ffffff;
+  border: 2px solid #94dcdf;
+  border-radius: 10em;
 
-
+  font-weight: bolder;
+}
 
 /* Global design */
 
-
-
 @media (min-width: 480px) {
-  .card{
+  .card {
     max-width: 25rem;
   }
 }
 
 @media (min-width: 768px) {
-  .card{
+  .card {
     width: 40%;
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width: 992px) {
-  .card{
+  .card {
     width: 45%;
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width: 1200px) {
-
-
-
-  .card{
+  .card {
     width: 30%;
     height: 38rem !important;
     margin-bottom: 1rem;
@@ -112,6 +115,4 @@ object-fit:cover;
 }
 
 @media (min-width: 1400px) {
-
 }
-

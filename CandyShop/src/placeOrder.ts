@@ -1,8 +1,8 @@
-import { ApiResponse, CartItem, Data } from "./interface";
+import { ApiResponse, Data } from "./interface";
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from './apiCalls';
 
-// 
+// Funktion för att skapa varje objekt som ska skickas med POST till API:et
 function objApi() {
     const cart = getCart();
     const orderItems = cart?.map((product) => {
@@ -16,22 +16,24 @@ function objApi() {
     return orderItems;
 }
 
-// funktion för att rendera orderinfo + formulär
+// Funktion för att rendera orderinfo + formulär
 export function renderOrder() {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
     const cartItems = getCart();
     
+    // Räkna ut total summan av alla godisar
     let totalPrice: number = 0;
     cartItems?.forEach((total) => {
     totalPrice += total.totalCost;
     });
   
+    // Räkna ut antalet av alla godisar
     let totalProduct: number = 0;
     cartItems?.forEach((total) => {
       totalProduct += total.amount;
     });
-    const antal = totalProduct === 1 ? "vara" : "varor";
 
+    // HTML för att rendera ett formulär i kassan
     wrapper.innerHTML= `
 <header>
 <h2>Kassa</h2>
@@ -81,15 +83,15 @@ export function renderOrder() {
 placeOrder(totalPrice);
 }
 
-// funktion för att skicka order med inputvärderna till api
+// Funktion för att skicka order med inputvärderna till api
 function placeOrder(totalPrice: number){
 const orderFormEl = document.querySelector<HTMLFormElement>('.orderForm');
 
-//----------------------------------------------
+// Eventlyssnare som lyssar på att användaren lägger en order
 orderFormEl?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-   // här hämtar jag min DOM referenser
+   // Alla DOM refernenser
    const firstNameEl = document.querySelector<HTMLInputElement>('#firstName');
    const lastNameEl = document.querySelector<HTMLInputElement>('#lastName');
    const adressInputEl = document.querySelector<HTMLInputElement>('#adressInput');
@@ -97,7 +99,7 @@ orderFormEl?.addEventListener("submit", async (e) => {
    const cityInputEl = document.querySelector<HTMLInputElement>('#cityInput');
    const mailInputEl = document.querySelector<HTMLInputElement>('#mailInput');
    
-    // input värden för alla inputfält
+    // Värderna för alla inputfält
     const firstName = firstNameEl?.value || "";
     const lastName = lastNameEl?.value || "";
     const adressInput = adressInputEl?.value || "";
@@ -107,7 +109,7 @@ orderFormEl?.addEventListener("submit", async (e) => {
 
     const cart = objApi();
 
-   // ett object med beställaren inputs
+   // Skapar ett objekt med beställaren inputs och varor som ska köpas
    const placeOrder: Data = {
    customer_first_name: firstName,
    customer_last_name: lastName,
@@ -119,42 +121,46 @@ orderFormEl?.addEventListener("submit", async (e) => {
    order_items: cart
    }
 
-   // skapa en if-sats som kollar att alla input med requiered är ifyllda
+   // Kollar att alla requiered inputfält är ifyllda
    if (!firstName || !lastName || !adressInput || !zipcodeInput || !cityInput || !mailInput) {
        alert("Please fill in all required fields");
        return;
    }
 
-   //Testar göra ett API inrop. catch hanterar om det inte går att anropa APIet
+   // Försöker göra en POST till API + Catch hanterar om det inte går att anropa APIet
    try {
     const response = await sendOrder(placeOrder);
-   
     renderStatusSuccess(response);
    } catch (error) {
     renderStatusFail();
    }
-});
-}
+})
+};
 
-// funktion som renderar HTML för att ordern gick igenom
+// Funktion som renderar HTML om ordern gick igenom
 const renderStatusSuccess = (data: ApiResponse) => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
     wrapper.innerHTML = `
-    <div>
+    <div class="successwrapper">
     <h2>🛍️ Tack för din order! 🛍️</h2>
     <p>Ditt ordernummer är: ${data.data.id}</p>
+    <figure>
+    <img src="/Media/giphy.gif" class="img-fluid">
+    </figure>
     </div>
     `
 }
 
-// funktion som renderar HTML för att ordern inte gick igenom
+// Funktion som renderar HTML om ordern inte gick igenom
 const renderStatusFail = () => {
     const wrapper = document.querySelector<HTMLDivElement>("#cartItemsWrapper")!;
     wrapper.innerHTML = `
-    <div>
+    <div class="successwrapper">
     <h2>Din order kunde inte skickas</h2>
     <p>Felet ligger hos vår leverantör och de är medvetna om felet</p>
-    <p>LÄGG IN EN GIF</p>
+    <figure>
+    <img src="/Media/no-candy-for.jpeg" class="img-fluid">
+    </figure>
     </div>
     `
 }

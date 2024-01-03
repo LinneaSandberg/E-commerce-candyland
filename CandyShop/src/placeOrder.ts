@@ -152,9 +152,6 @@ const renderStatusSuccess = (data: ApiResponse) => {
   wrapper.innerHTML = `
     <div class="successwrapper">
     <h2 class="headerKassa">🛍️ Tack för din order! 🛍️</h2>
-    <figure>
-    <img src="/Media/giphy.gif" class="img-fluid" alt="gif-candyshop">
-    </figure>
     <p class="ordernummer">Ditt ordernummer är: ${data.data.id}</p>
     <p>${data.data.order_date}</p>
     </div>

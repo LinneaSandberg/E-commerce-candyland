@@ -1,5 +1,5 @@
 import "./style.css";
-import { productCard,numberOfProducts } from "./productCard.ts";
+import { productCard } from "./productCard.ts";
 import { setListeners } from "./eventListners.ts";
 import { cartListener } from "./cart.ts";
 import { fetchAllproducts } from "./apiCalls.ts";

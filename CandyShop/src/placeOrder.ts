@@ -1,4 +1,4 @@
-import { ApiResponse, Data } from "./interface";
+import { ApiResponse, Data, CartItem } from "./interface";
 import { getCart } from "./localStorageLogic";
 import { sendOrder } from "./apiCalls";
 
@@ -40,6 +40,31 @@ export function renderOrder() {
 <h2 class="headerKassa">Kassa</h2>
 <p>Fyll i dina uppgifter:</p>
 </header>
+<div>
+<ul>
+${cartItems
+	?.map((cartItem: CartItem) => {
+		return `
+              <li id="candyCard"> 
+               <div class="itemCard">
+                   <img src="${cartItem.image}" alt=""/> 
+                   <div class="itemCardInfo">
+                       <p>${cartItem.name}</p>
+                       <p class="smallText">${cartItem.price} kr/st</p>
+                       <p class="smallText">totalt ${cartItem.totalCost} kr</p>
+                   </div>
+                   <div class="sumItemCard">
+                       <p class="smallText amount" value="${cartItem.id}">${cartItem.amount}</p> 
+                   </div>
+               </div>
+             </li>`;
+	})
+	.join("")}
+</ul>
+<p>Totalt pris: ${totalPrice}</p>
+</div>
+
+
 
 <form class="orderForm">
  <div class="inputWrapper">

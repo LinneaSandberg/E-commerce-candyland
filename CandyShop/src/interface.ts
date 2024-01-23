@@ -19,15 +19,6 @@ interface Tag {
 	slug: string;
 }
 
-export interface PlaceOrder {
-	name: string;
-	adress: string;
-	postnumber: number;
-	city: string;
-	telefon: number | null;
-	epost: string;
-}
-
 export interface ProductItem {
 	id: number;
 	image: string;
